@@ -123,7 +123,7 @@ public class eventDAO {
         }
         return check;
     }
-
+    
     public boolean AddEvent(eventDTO event) throws SQLException {
         boolean check = false;
         Connection conn = null;

@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AddEventController extends HttpServlet {
 
     public static final String ERROR = "addevent.jsp";
-    public static final String SUCCESS = "viewevent.jsp";
+    public static final String SUCCESS = "showevent.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -32,7 +32,7 @@ public class AddEventController extends HttpServlet {
         eventErrors eventError = new eventErrors("", "", "", "", "", "", "", "", "", "");
         try {
             String eventID = request.getParameter("eventID");
-            String eventName = request.getParameter("EventName");
+            String eventName = request.getParameter("eventName");
             Date createDate = java.sql.Date.valueOf(LocalDate.now());
             Date eventStartDate = java.sql.Date.valueOf(request.getParameter("StartDate"));
             String userID = request.getParameter("userID");
@@ -43,8 +43,8 @@ public class AddEventController extends HttpServlet {
             String interestID = request.getParameter("interestID");
             String content = request.getParameter("content");
             boolean check = true;
-            if (eventName.length() > 100 || eventName.length() < 20) {
-                eventError.setEventNameError("Event Name [ 20 , 100 ] !");
+            if (eventName.length() > 100 || eventName.length() < 2) {
+                eventError.setEventNameError("Event Name [ 2 , 100 ] !");
                 check = false;
             }
             if (limitMember > 800) {

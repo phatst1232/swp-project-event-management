@@ -22,7 +22,8 @@ public class MainController extends HttpServlet {
     private static final String ERROR = "error.jsp";
     private static final String LOGIN = "LoginController";
     private static final String LOGOUT = "LogoutController";
-
+    //-- Event
+    private static final String CREATE_EVENT = "AddEventController";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -34,6 +35,8 @@ public class MainController extends HttpServlet {
                 url = LOGIN;
             } else if ("logout".equals(action) || "back to login".equals(action)) {
                 url = LOGOUT;
+            } else if ("Create".equals(action)) {
+                url = CREATE_EVENT;
             } else {
                 HttpSession session = request.getSession();
                 session.setAttribute("ERROR_MESSAGE", "Function is not avaiable!! ");
