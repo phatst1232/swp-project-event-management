@@ -28,7 +28,7 @@ public class eventDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "SELECT EVENTID,EVENTNAME,EVENTCREATEDATE,EVENTSTARTDATE,USERID,CATEGORYID,STATUSID,LIMITMEMBER,ROOMID,INTERESTEDID FROM TblEVENTS "
+                String sql = "SELECT EVENTID,EVENTNAME,EVENTCREATEDATE,EVENTSTARTDATE,USERID,CATEGORYID,STATUSID,LIMITMEMBER,ROOMID,INTERESTEDID,CONTENT,CLUBID,DMID FROM TblEVENTS "
                         + " WHERE EVENTIDLIKE ? ";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, "%" + search + "%");
@@ -45,7 +45,9 @@ public class eventDAO {
                     int roomID = Integer.parseInt(rs.getString("RoomID"));
                     String interestID = rs.getString("InterestID");
                     String content = rs.getString("content");
-                    list.add(new eventDTO(eventID, eventName, eventCreateDate, eventStartDate, userID, categoryID, statusID, LimitMember, roomID, interestID,content));
+                    String clubID = rs.getString("clubID");
+                    String dmID = rs.getString("dmID");
+                    list.add(new eventDTO(eventID, eventName, eventCreateDate, eventStartDate, userID, categoryID, statusID, LimitMember, roomID, interestID, content, clubID, dmID));
                 }
             }
         } catch (Exception e) {
@@ -97,7 +99,7 @@ public class eventDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 String sql = " UPDATE tblEvents "
-                        + " SET eventName=?, eventCreateDate=?, eventStartDate=?, userID=?,categoryID=?, statusID=?, limitMember=?, roomID=?, interestID=?"
+                        + " SET eventName=?, eventCreateDate=?, eventStartDate=?, userID=?,categoryID=?, statusID=?, limitMember=?, roomID=?, interestID=?, content=?"
                         + " WHERE userID=?";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, event.getEventName());
@@ -109,6 +111,7 @@ public class eventDAO {
                 stm.setInt(7, event.getLimitMember());
                 stm.setInt(8, event.getRoomID());
                 stm.setString(9, event.getInterestedID());
+                stm.setString(10, event.getContent());
                 check = stm.executeUpdate() > 0;
             }
         } catch (Exception e) {
@@ -123,7 +126,7 @@ public class eventDAO {
         }
         return check;
     }
-    
+
     public boolean AddEvent(eventDTO event) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -131,19 +134,21 @@ public class eventDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "Insert INTO tblEvents( EVENTID,EVENTNAME,EVENTCREATEDATE,EVENTSTARTDATE,USERID,CATEGORYID,STATUSID,LIMITMEMBER,ROOMID,INTERESTEDID)"
-                        + "Values (?,?,?,?,?,?,?,?,?,?)";
-                stm = conn.prepareStatement(sql);
-                stm.setString(1, event.getEventID());
-                stm.setString(2, event.getEventName());
-                stm.setDate(3, event.getCreateDate());
-                stm.setDate(4, event.getEventStartDate());
-                stm.setString(5, event.getUserID());
-                stm.setString(6, event.getCategoryID());
-                stm.setString(7, event.getStatusID());
-                stm.setInt(8, event.getLimitMember());
-                stm.setInt(9, event.getRoomID());
-                stm.setString(10, event.getInterestedID());
+                String sql = " Insert INTO tblEvents(EVENTNAME,EVENTCREATEDATE,EVENTSTARTDATE,USERID,CATEGORYID,STATUSID,LIMITMEMBER,ROOMID,INTERESTEDID,CONTENT,ClUBID,DMID) "
+                        + " Values (?,?,?,?,?,?,?,?,?,?,?,?) ";
+                stm = conn.prepareStatement(sql);              
+                stm.setString(1, event.getEventName());
+                stm.setDate(2, event.getCreateDate());
+                stm.setDate(3, event.getEventStartDate());
+                stm.setString(4, event.getUserID());
+                stm.setString(5, event.getCategoryID());
+                stm.setString(6, event.getStatusID());
+                stm.setInt(7, event.getLimitMember());
+                stm.setInt(8, event.getRoomID());
+                stm.setString(9, event.getInterestedID());
+                stm.setString(10, event.getContent());
+                stm.setString(11, event.getClubID());
+                stm.setString(12, event.getDmID());
                 check = stm.executeUpdate() > 0;
             }
 

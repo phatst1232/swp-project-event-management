@@ -23,11 +23,13 @@ public class eventDTO {
     private int roomID;
     private String interestedID;
     private String content;
+    private String clubID;
+    private String dmID;
 
     public eventDTO() {
     }
 
-    public eventDTO(String eventID, String eventName, Date createDate, Date eventStartDate, String userID, String categoryID, String statusID, int limitMember, int roomID, String interestedID,String content) {
+    public eventDTO(String eventID, String eventName, Date createDate, Date eventStartDate, String userID, String categoryID, String statusID, int limitMember, int roomID, String interestedID,String content, String clubID, String dmID) {
         this.eventID = eventID;
         this.eventName = eventName;
         this.createDate = createDate;
@@ -39,6 +41,8 @@ public class eventDTO {
         this.roomID = roomID;
         this.interestedID = interestedID;
         this.content=content;
+        this.clubID=clubID;
+        this.dmID=dmID;
     }
 
     public String getEventID() {
@@ -55,6 +59,22 @@ public class eventDTO {
 
     public void setEventName(String eventName) {
         this.eventName = eventName;
+    }
+
+    public void setClubID(String clubID) {
+        this.clubID = clubID;
+    }
+
+    public void setDmID(String dmID) {
+        this.dmID = dmID;
+    }
+
+    public String getClubID() {
+        return clubID;
+    }
+
+    public String getDmID() {
+        return dmID;
     }
 
     public Date getCreateDate() {

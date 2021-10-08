@@ -15,6 +15,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import user.UserDTO;
 
 /**
  *
@@ -29,19 +31,23 @@ public class AddEventController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
+        HttpSession session = request.getSession();
         eventErrors eventError = new eventErrors("", "", "", "", "", "", "", "", "", "");
         try {
-            String eventID = request.getParameter("eventID");
+            UserDTO user = (UserDTO)session.getAttribute("LOGIN_USER");
+            String eventID = "";
             String eventName = request.getParameter("eventName");
             Date createDate = java.sql.Date.valueOf(LocalDate.now());
             Date eventStartDate = java.sql.Date.valueOf(request.getParameter("StartDate"));
-            String userID = request.getParameter("userID");
+            String userID = user.getUserID();
             String categoryID = request.getParameter("categoryID");
             String statusID = request.getParameter("statusID");
             int limitMember = Integer.parseInt(request.getParameter("limitMember"));
             int RoomID = Integer.parseInt(request.getParameter("RoomID"));
             String interestID = request.getParameter("interestID");
             String content = request.getParameter("content");
+            String clubID = request.getParameter("clubID");
+            String dmID = request.getParameter("dmID");
             boolean check = true;
             if (eventName.length() > 100 || eventName.length() < 2) {
                 eventError.setEventNameError("Event Name [ 2 , 100 ] !");
@@ -53,7 +59,7 @@ public class AddEventController extends HttpServlet {
             }
             if (check) {
                 eventDAO dao = new eventDAO();
-                eventDTO event = new eventDTO(eventID, eventName, createDate, eventStartDate, userID, categoryID, statusID, limitMember, RoomID, interestID, content);
+                eventDTO event = new eventDTO(eventID, eventName, createDate, eventStartDate, userID, categoryID, statusID, limitMember, RoomID, interestID, content, clubID, dmID);
                 boolean checkInsert = dao.AddEvent(event);
                 if (checkInsert) {
                     url = SUCCESS;
