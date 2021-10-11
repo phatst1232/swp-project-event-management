@@ -20,6 +20,10 @@
         <servlet-name>MainController</servlet-name>
         <servlet-class>controller.MainController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginGoogleServlet</servlet-name>
+        <servlet-class>stackjava.com.accessgoogle.servlet.LoginGoogleServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddEventController</servlet-name>
         <url-pattern>/AddEventController</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginGoogleServlet</servlet-name>
+        <url-pattern>/login-google</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
