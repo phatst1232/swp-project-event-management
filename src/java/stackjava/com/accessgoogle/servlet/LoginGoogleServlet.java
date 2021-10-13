@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +20,7 @@ import stackjava.com.accessgoogle.common.GoogleUtils;
  *
  * @author benth
  */
+@WebServlet("/login-google")
 public class LoginGoogleServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -39,7 +41,7 @@ public class LoginGoogleServlet extends HttpServlet {
             request.setAttribute("id", googlePojo.getId());
             request.setAttribute("name", googlePojo.getName());
             request.setAttribute("email", googlePojo.getEmail());
-            RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("sus.html");
             dis.forward(request, response);
         }
     }
