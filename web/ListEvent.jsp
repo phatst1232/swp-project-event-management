@@ -14,7 +14,7 @@
         <%
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
             if (loginUser == null) {
-                response.sendRedirect("Eventmanagement.html");
+                response.sendRedirect("Eventmanagement.jsp");
                 return;
             }
         %>
