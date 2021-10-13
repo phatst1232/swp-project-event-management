@@ -1,52 +1,41 @@
-html{
-    min-height: 100%;
-}
-
 body{
-    background-color: rgba(248, 165, 194,0.2);
+    background-color: #F2CED8;
 }
 .top {
     background-color: whitesmoke;
     width: 100%;
     font-family: 'Open Sans', sans-serif;
-    height: 110px;
-    padding: auto;
+    height: 130px;
     bottom: 5px;
     border-radius: 12px;
     box-shadow: 10px 10px 8px #888888;
 }
 
 #Logo {
-    border: 2px solid black;
+    left: 100px;
     position: absolute;
-    height: 100px;
-    width: 350px;
-    text-align: center;
 }
 #searchbar {
     top: 20px;
     position: absolute;
-    right: 200px;
+    right: 400px;
     border: none;
-    border-radius: 12px;
 }
 
 .top input[type=text] {
-    font-size: 15px;
+    font-size: 20px;
     padding: 5px;
-    border-radius: 12px;
-    width: 600px;
+    width:500px;
     margin-top: 5px;
-    box-shadow: 3px 3px 3px ;
 }
 
-.top button {
-    margin: 7px; 
+.top button { 
     cursor: pointer;
-    font-size: 15px;
-    padding: 7px;
+    font-size: 20px;
+    padding: 5px;
     border-radius: 10px;
-    box-shadow: 2px 2px 2px;
+    background-color: #F288AF;
+    width: 80px;
 }
 
 .top button:hover {
@@ -54,14 +43,21 @@ body{
 }
 #category {
     float: right;
-    overflow: hidden;
 }
 
-#category {     
+#category {   
+    height: 35px ;  
     color: black;
-    padding: 8px 10px;
-    margin-right: 40px;   
+    padding: 8px 10px 0;
+    margin-right: 40px;
+    margin-top: 8px;   
 }
+ #categorybtn {
+    padding-bottom: 0;
+    background-color: whitesmoke;
+    box-shadow: none;
+    border: 1px white;
+ }
 
 #category-content {
     display: none;
@@ -83,9 +79,8 @@ body{
     width: 50px;
 }
 
-
 #category-content a:hover{
-    background-color: #ddd;
+    background-color: #F288AF;
 }
 
 #category:hover #category-content {
@@ -143,6 +138,7 @@ img {
   padding: 0 10px ;
   width: 980px;
   background-color: white;
+  height: 40px;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
@@ -151,7 +147,7 @@ img {
 .contain p {
     font-size: 18px;
     float: right;
-    margin-bottom: 10px;
+    margin-top: 10px;
 }
  .contain nav {
     margin-top: 15px;
@@ -173,7 +169,7 @@ img {
 
 /*bot nav*/
 .bottom {
-    border-top: 1px solid black;
+    border-top: 2px solid #732424;
     top: 200px;
     position: relative;
     height: 40px;
@@ -181,6 +177,7 @@ img {
 }
 
 #bot-nav {
+    color:#732424 ;
     padding: 10px;
     display: flex;
     flex-direction: row;
@@ -189,7 +186,9 @@ img {
     font-size: 20px;
 }
 
+
 .bottom h3 {
+    color: #732424 ;
     text-align: center;
     padding-bottom: 30px;
     font-style: italic ;

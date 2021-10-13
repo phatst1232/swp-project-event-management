@@ -17,23 +17,26 @@
     <!-- top stage -->
     <div class="top">
         <div id="Logo">
-            <h3>Add Logo later</h3>
+            <img src="image\244351476_224631916395247_2148764225629497919_n.png" 
+            height="120px"
+            width="140px">
         </div>
-
-        <div id="searchbar">
-            <form>
-                <input type="text" name="search" value="" placeholder="Search..." />
-                <button type="submit">search</button>
-            </form>
-        </div>
+            <div id="searchbar">
+                <form>
+                    <input type="text" name="search" 
+                           value="" placeholder="Search..." />
+                    <button type="submit"><img src="image\search.png" width="20px" height="20px" />
+                    </button>
+                </form>
+            </div>           
 
         <div id="category">
             <button id="categorybtn">
-                <img src="https://img.icons8.com/material-rounded/24/000000/settings.png" />
+                <img src="image\icons8-listing-24.png" />
             </button>
             <div id="category-content">
                 <a href="">Home</a>
-                <a href="">Event</a>
+                <a href=""><label for="show">Event</label></a>
                 <a href=""><label for="show">Login</label></a>
             </div>
         </div>
@@ -49,9 +52,9 @@
                 <img src="https://img.freepik.com/free-psd/event-planner-landing-page_23-2149104376.jpg?size=626&ext=jpg"
                     width="100%">
             </div>
-            <button class="accordion" onclick="function()"><img
-                    src="https://img.icons8.com/material-outlined/24/000000/down--v1.png" /
-                    width="15px">Details</button>
+            <button class="accordion" onclick="function()">
+                <img src="" /
+                    width="15px">Details </button>
             <div class="contain">
                 <p id="demo"></p>
 
@@ -75,7 +78,6 @@
                     <input type="submit" name="action" value="login"><br>
                     <a class="btn-google" href=""><img src="">
                         SIGN IN WITH GOOGLE</a>
-
                 </form>
 
                 <form class="register form formunactive" >

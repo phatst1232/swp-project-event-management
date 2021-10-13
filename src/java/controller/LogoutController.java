@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 public class LogoutController extends HttpServlet {
 
     private static final String ERROR = "mainpage.jsp";
-    private static final String SUCCESS = "mainpage.jsp";
+    private static final String SUCCESS = "Eventmanagement.html";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

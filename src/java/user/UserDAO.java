@@ -50,7 +50,9 @@ public class UserDAO {
                     String majorID = rs.getString("majorID");
                     String reportID = rs.getString("reportID");
                     String interestedDetail = rs.getString("interestedDetail");
-                    list.add(new UserDTO(userID, userName, password, roleID, address, phoneNumber, email, statusID, majorID, reportID, interestedDetail));
+                    String clubID = rs.getString("clubID");
+                    String dmID = rs.getString("dmID");
+                    list.add(new UserDTO(userID, userName, password, roleID, address, phoneNumber, email, statusID, majorID, reportID, interestedDetail, clubID, dmID));
                 }
             }
         } catch (Exception e) {

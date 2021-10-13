@@ -5,8 +5,14 @@
  */
 package controller;
 
+import event.eventDAO;
+import event.eventDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,46 +21,31 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author benth
+ * @author phats
  */
-public class MainController extends HttpServlet {
-    
-    //--Page
+public class ShowEventController extends HttpServlet {
+
     private static final String ERROR = "error.jsp";
-    private static final String LOGIN = "LoginController";
-    private static final String LOGOUT = "LogoutController";
-    //-- Event
-    private static final String SEARCH_EVENT = "SearchEventController";
-    private static final String CREATE_EVENT = "AddEventController";
-    private static final String SHOW_EVENT = "ShowEventController";
-    
+    private static final String SUCCESS = "eventpage.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String action = request.getParameter("action");
-            if ("login".equals(action)) {
-                url = LOGIN;
-            } else if ("logout".equals(action) || "back to login".equals(action)) {
-                url = LOGOUT;
-            } else if ("Create".equals(action)) {
-                url = CREATE_EVENT;
-            }else if ("Search event".equals(action)) {
-                url = SEARCH_EVENT;
-            } else if ("show event".equals(action)) {
-                url = SHOW_EVENT;
-            }else {
-                HttpSession session = request.getSession();
-                session.setAttribute("ERROR_MESSAGE", "Function is not avaiable!!!!");
+            eventDAO dao = new eventDAO();
+            eventDTO event = dao.getEvent(request.getParameter("eventID"));
+            HttpSession session = request.getSession();
+            if (event != null) {
+                session.setAttribute("CLICK_ON_EVENT", event);
+                url = SUCCESS;
             }
         } catch (Exception e) {
-            log("ERROR at MainController: " + e.toString());
+            log("Error at ShowEventController" + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
-
         }
     }
 
@@ -70,7 +61,11 @@ public class MainController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ShowEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -84,7 +79,11 @@ public class MainController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ShowEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

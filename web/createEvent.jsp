@@ -35,14 +35,21 @@
 
             Room ID<input type="text" name="RoomID" required=""/>         
 
-            Interested ID<input type="text" name="interestID" required=""/> 
+            Interested ID<input type="text" name="interestedID" required=""/> 
 
-            Content<input type="text" name="content" required="">
-            
+            Content<input type="text" name="content" required="">           
+            <%
+                if (loginUser.getRoleID().equals("CL")) {
+            %>
             ClubID<input type="text" name="clubID" required="">
-            
+            <%
+            } else if (loginUser.getRoleID().equals("DM")) {
+            %>
             DmID<input type="text" name="dmID" required="">
-
+            <%
+                } 
+            %>         
+            
             <input type="submit" name="action" value="Create"/>
             <input type="reset" value="Reset"/>
 
