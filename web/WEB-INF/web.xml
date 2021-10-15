@@ -28,6 +28,10 @@
         <servlet-name>ShowEventController</servlet-name>
         <servlet-class>controller.ShowEventController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchUserController</servlet-name>
+        <servlet-class>controller.SearchUserController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddEventController</servlet-name>
         <url-pattern>/AddEventController</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>ShowEventController</servlet-name>
         <url-pattern>/ShowEventController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchUserController</servlet-name>
+        <url-pattern>/SearchUserController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

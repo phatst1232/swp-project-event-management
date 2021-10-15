@@ -13,10 +13,10 @@
     <body>  
         <%
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-            if (loginUser == null) {
-                response.sendRedirect("Eventmanagement.jsp");
-                return;
-            }
+//            if (loginUser == null) {
+//                response.sendRedirect("Eventmanagement.jsp");
+//                return;
+//            }
         %>
         <form action="SearchEventController" name="firstSearch">
             <input type="hidden" name="search" value="">
@@ -58,8 +58,15 @@
                 <div id="category-content">
                     <a href="LoginPage.jsp">Home</a>                    
                     <a href="createEvent.jsp">Create event</a>
+                    <%
+                        if (loginUser != null) {
+                    %>
                     <a href="LogoutController">Sign Out</a>
                     <a href="">Edit Profile</a>
+                    <%
+                        }
+                    %>
+                    
 
                 </div>
             </div>

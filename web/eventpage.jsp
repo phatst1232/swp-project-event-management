@@ -14,7 +14,7 @@
         <title>Event Page</title>
     </head>
     <body>
-        <h1>Show event space!</h1> </br>
+        <h1>Show event space!!!!</h1> </br>
         <%
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
             eventDTO event = (eventDTO) session.getAttribute("CLICK_ON_EVENT");

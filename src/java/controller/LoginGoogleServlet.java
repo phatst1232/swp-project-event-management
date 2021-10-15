@@ -25,7 +25,8 @@ import user.UserDTO;
 @WebServlet("/login-google")
 public class LoginGoogleServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+    private static final String ERROR = "Eventmanagement.jsp";
+    private static final String SUCCESS = "LoginPage.jsp";
 
     public LoginGoogleServlet() {
         super();
@@ -35,27 +36,26 @@ public class LoginGoogleServlet extends HttpServlet {
             throws ServletException, IOException {
         String code = request.getParameter("code");
         HttpSession session = request.getSession();
-        if (code == null || code.isEmpty()) {
-            RequestDispatcher dis = request.getRequestDispatcher("Eventmanagement.jsp");
-            dis.forward(request, response);
-        } else {
-            String accessToken = GoogleUtils.getToken(code);
-            GooglePojo googlePojo = GoogleUtils.getUserInfo(accessToken);
-            UserDAO dao= new UserDAO();
-            UserDTO user = new UserDTO(googlePojo.getId(), googlePojo.getName(), "*****", "ST", "", "", googlePojo.getEmail(), "AC", "", null, "", "", "");
-            session.setAttribute("LOGIN_USER", user);           
-            try {            
+        String url = ERROR;
+        String accessToken = GoogleUtils.getToken(code);
+        GooglePojo googlePojo = GoogleUtils.getUserInfo(accessToken);
+        UserDAO dao = new UserDAO();
+        UserDTO user = new UserDTO(googlePojo.getId(), googlePojo.getName(), "*****", "ST", "", "", googlePojo.getEmail(), "AC", "", null, "", "", "");
+        try {
+            if (user!=null && dao.isFPTEmail(googlePojo.getEmail())) {
+                session.setAttribute("LOGIN_USER", user);
+                url = SUCCESS;
                 dao.insertUserNew(user);
-            } catch (SQLException ex) {
-                Logger.getLogger(LoginGoogleServlet.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(LoginGoogleServlet.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (NamingException ex) {
-                Logger.getLogger(LoginGoogleServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            RequestDispatcher dis = request.getRequestDispatcher("LoginPage.jsp");
-            dis.forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginGoogleServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LoginGoogleServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NamingException ex) {
+            Logger.getLogger(LoginGoogleServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+        request.getRequestDispatcher(url).forward(request, response);
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

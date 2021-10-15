@@ -25,7 +25,7 @@ import user.UserDTO;
 public class AddEventController extends HttpServlet {
 
     public static final String ERROR = "error.jsp";
-    public static final String SUCCESS = "showevent.jsp";
+    public static final String SUCCESS = "ListEvent.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

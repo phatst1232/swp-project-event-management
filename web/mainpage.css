@@ -196,9 +196,8 @@ img {
 
 /* CSS của login */
 #loginbox{
-    display: none;
-    background-image:url('https://images.pexels.com/photos/6534437/pexels-photo-6534437.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-    background-repeat: no-repeat;
+    display: none;  
+    background-color: #F2ACC6;
     opacity: 0.95;
     background-size: 500px 600px;
     border-radius: 30px;
@@ -227,7 +226,7 @@ input[type="checkbox"] {
     color: white;
 
 }
-.changebox{
+/* .changebox{
     width: 220px;
     margin: 10px auto 30px auto;
     position: relative;
@@ -241,6 +240,13 @@ input[type="checkbox"] {
     border: 0;
     outline: none;
     position: relative;
+} */
+.loginwelcome {
+    width: 40%;
+    margin: auto;
+    left: 50%;
+    color: whitesmoke;
+    
 }
 #btn{
     top: 0;
@@ -258,7 +264,7 @@ input[type="checkbox"] {
 }
 
 .fields{
-    width: 90%;
+    width: 400px;
     color: whitesmoke;
     border: none;
     border-bottom: 1px solid #fff;
@@ -267,15 +273,31 @@ input[type="checkbox"] {
     background: transparent;
 }
 #loginbox input[type="submit"]{
-    border: none;
+    /* border: none;
     outline: none;
     margin-top: 40px;
     height: 40px;
     width: 90%;
     background: orange;
     font-size: 18px;
-    border-radius: 20px;
-}  
+    border-radius: 20px; */
+    font-weight: 500;
+    font-size: 20px;
+  flex: 1 1 auto;
+  margin-top: 40px;
+  width: 400px;
+  padding: 15px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: black;
+ text-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 20px #eee;
+  border-radius: 30px;
+  background-image: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);
+  justify-content: center;
+} 
 /* #loginbox input[value="register"]{
     border: none;
     outline: none;
@@ -288,9 +310,7 @@ input[type="checkbox"] {
 }  */
 
 #loginbox input[type="submit"]:hover{
-    cursor: pointer;
-    background: orangered;
-    color: black;
+    background-position: right center;
 }
 #loginbox p{
     

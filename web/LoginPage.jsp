@@ -48,6 +48,13 @@
                     <%
                         }
                     %>
+                    <%
+                        if (loginUser.getRoleID().equals("AD")) {
+                    %>
+                    <a href="UserManagement.jsp">User Management</a>
+                    <%
+                        }
+                    %>
 
                     <a href="LogoutController">Sign Out</a>
                     <a href="">Edit Profile</a>               
@@ -125,9 +132,10 @@
             </script>
 
             <!-- side -->
-            <div id="sidebar">
+            
+           <!-- <div id="sidebar">
 
-            </div>
+            </div>  --!>
 
         </div>
 

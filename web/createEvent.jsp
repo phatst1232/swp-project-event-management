@@ -14,8 +14,8 @@
         <title>Create Event Page</title>
     </head>
     <body>
-        <h1>Create an event!</h1>
         <%UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");%>
+        <h1>Create an event! Hi, <%=loginUser.getUserName()%>! </h1>
         <form action="MainController" method="POST">
             <input type="hidden" name="eventID" value="">            
 
@@ -47,12 +47,13 @@
             %>
             DmID<input type="text" name="dmID" required="">
             <%
-                } 
+                }
             %>         
-            
             <input type="submit" name="action" value="Create"/>
-            <input type="reset" value="Reset"/>
-
+            <input type="reset" value="Reset"/></br> </br>
+            <a href="LoginPage.jsp">Home</a> </br>
+            <a href="ListEvent.jsp">Event</a> </br>
+            <a href="LogoutController">Logout</a> </br>         
         </form>
     </body>
 </html>

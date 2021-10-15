@@ -65,13 +65,13 @@ public class eventDAO {
         return list;
 
     }
-    
+
     public eventDTO getEvent(String eventID) throws SQLException {
         List<eventDTO> list = new ArrayList();
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
-        eventDTO event = null ;
+        eventDTO event = null;
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
@@ -81,8 +81,8 @@ public class eventDAO {
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, eventID);
                 rs = stm.executeQuery();
-                if (rs.next()) {                   
-                    String eventName = rs.getString("eventName");  
+                if (rs.next()) {
+                    String eventName = rs.getString("eventName");
                     Date eventCreateDate = rs.getDate("eventCreateDate");
                     Date eventStartDate = rs.getDate("eventStartDate");
                     String userID = rs.getString("userID");
@@ -127,7 +127,7 @@ public class eventDAO {
                 rs = stm.executeQuery();
                 while (rs.next()) {
                     String eventID = rs.getString("eventID");
-                    String eventName = rs.getString("eventName");  
+                    String eventName = rs.getString("eventName");
                     Date eventCreateDate = rs.getDate("eventCreateDate");
                     Date eventStartDate = rs.getDate("eventStartDate");
                     String categoryID = rs.getString("categoryID");
@@ -181,19 +181,19 @@ public class eventDAO {
     }
 
     public int getQuantity() throws SQLException {
-        int quantity=0;
+        int quantity = 0;
         Connection conn = null;
         PreparedStatement stm = null;
-         ResultSet rs = null;
+        ResultSet rs = null;
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = " SELECT COUNT(*) as quantity " 
-                        +" FROM tblEvents ";                    
+                String sql = " SELECT COUNT(*) as quantity "
+                        + " FROM tblEvents ";
                 stm = conn.prepareStatement(sql);
                 rs = stm.executeQuery();
                 if (rs.next()) {
-                    quantity=rs.getInt("quantity");
+                    quantity = rs.getInt("quantity");
                 }
             }
         } catch (Exception e) {
@@ -208,9 +208,9 @@ public class eventDAO {
                 conn.close();
             }
         }
-        return quantity;   
+        return quantity;
     }
-    
+
     public boolean updateUser(eventDTO event) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -256,7 +256,7 @@ public class eventDAO {
             if (conn != null) {
                 String sql = " Insert INTO tblEvents(EVENTID,EVENTNAME,EVENTCREATEDATE,EVENTSTARTDATE,USERID,CATEGORYID,STATUSID,LIMITMEMBER,ROOMID,INTERESTEDID,CONTENT,ClUBID,DMID) "
                         + " Values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                stm = conn.prepareStatement(sql);             
+                stm = conn.prepareStatement(sql);
                 stm.setString(1, event.getEventID());
                 stm.setString(2, event.getEventName());
                 stm.setDate(3, event.getCreateDate());
