@@ -5,7 +5,6 @@
  */
 package user;
 
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -50,7 +49,8 @@ public class UserDAO {
                     String majorID = rs.getString("majorID");
                     String reportID = rs.getString("reportID");
                     String interestedDetail = rs.getString("interestedDetail");
-                    list.add(new UserDTO(userID, userName, password, roleID, address, phoneNumber, email, statusID, majorID, reportID, interestedDetail));
+                   
+                    list.add(new UserDTO(userID, userName, password, roleID, address, phoneNumber, email, statusID, majorID, reportID, interestedDetail, "", ""));
                 }
             }
         } catch (Exception e) {
@@ -67,7 +67,7 @@ public class UserDAO {
         }
         return list;
     }
-    
+
     //Login and Role
     public UserDTO checkLogin(String userID, String password) throws SQLException {
         UserDTO user = null;
@@ -77,7 +77,7 @@ public class UserDAO {
         try {
             conn = DBUtils.getConnection();
             String sql = " SELECT userName, roleID FROM tblUsers "
-                    + " WHERE userID=? AND Password=? ";
+                    + " WHERE userID=? AND Password=? AND statusID = 'AC' ";
             stm = conn.prepareStatement(sql);
             stm.setString(1, userID);
             stm.setString(2, password);
@@ -170,6 +170,11 @@ public class UserDAO {
         return check;
     }
 
+    public boolean isFPTEmail(String email) {
+        String regex = "^[a-z][a-z0-9_\\.]{5,32}@fpt.edu.vn\\b$";
+        return email.matches(regex);
+    }
+
     public boolean updateUser(UserDTO user) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -207,7 +212,7 @@ public class UserDAO {
         }
         return check;
     }
-    
+
     public boolean deleteUser(String userID) throws SQLException {
         boolean result = false;
         Connection conn = null;

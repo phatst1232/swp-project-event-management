@@ -5,62 +5,40 @@
  */
 package controller;
 
+import comment.CommentDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import user.UserDAO;
-import user.UserDTO;
 
 /**
  *
  * @author benth
  */
-public class LoginController extends HttpServlet {
+public class CommentDeleteController extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
-    private static final String ADMIN_PAGE = "LoginPage.jsp";
-    private static final String CL_DM_PAGE = "LoginPage.jsp";
-    private static final String GU_PAGE = "LoginPage.jsp";
-    private static final String LM_PAGE = "LoginPage.jsp";
-    private static final String ST_PAGE = "LoginPage.jsp";
-
+    private static final String ERROR = "eventpage.jsp";
+    private static final String SUCCESS = "eventpage.jsp";
+    
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String userID = request.getParameter("userID");
-            String password = request.getParameter("password");
-            UserDAO dao = new UserDAO();
-            UserDTO user = dao.checkLogin(userID, password);
-            HttpSession session = request.getSession();
-            if (user != null) {
-                session.setAttribute("LOGIN_USER", user);
-                String roleID = user.getRoleID();
-                if ("AD".equals(roleID)) {
-                    url = ADMIN_PAGE;
-                } else if ("CL".equals(roleID) || "DM".equals(roleID)) {
-                    url = CL_DM_PAGE;
-                } else if ("GU".equals(roleID)) {
-                    url = GU_PAGE;
-                } else if ("LM".equals(roleID)) {
-                    url = LM_PAGE;
-                } else if ("ST".equals(roleID)) {
-                    url = ST_PAGE;
-                } else {
-                    session.setAttribute("ERROR_MESSAGE", "Your role is not support!! ");
-                }
-            } else {
-                session.setAttribute("ERROR_MESSAGE", "Incorrect UserID or Password! ");
+            String commentID = request.getParameter("commentID");
+            CommentDAO dao = new CommentDAO();
+            boolean check = dao.deleteComment(commentID);
+            if (check) {
+                url = SUCCESS;
             }
+
         } catch (Exception e) {
-            log("ERROR at LoginController: " + e.toString());
+            log("Error at CommentDeleteController: " + e.toString());
         } finally {
-            response.sendRedirect(url);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

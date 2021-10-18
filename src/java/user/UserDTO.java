@@ -21,11 +21,14 @@ public class UserDTO {
     private String majorID;
     private String reportID;
     private String interestedDetail;
+    private String clubID;
+    private String dmID;
+    
 
     public UserDTO() {
     }
 
-    public UserDTO(String userID, String userName, String password, String roleID, String address, String phoneNumber, String email, String statusID, String majorID, String reportID, String interestedDetail) {
+    public UserDTO(String userID, String userName, String password, String roleID, String address, String phoneNumber, String email, String statusID, String majorID, String reportID, String interestedDetail, String clubID, String dmID) {
         this.userID = userID;
         this.userName = userName;
         this.password = password;
@@ -37,6 +40,8 @@ public class UserDTO {
         this.majorID = majorID;
         this.reportID = reportID;
         this.interestedDetail = interestedDetail;
+        this.clubID = clubID;
+        this.dmID = dmID;
     }
 
     public UserDTO(String userID, String userName, String password, String roleID) {
@@ -54,6 +59,22 @@ public class UserDTO {
 
     public void setUserID(String userID) {
         this.userID = userID;
+    }
+
+    public void setClubID(String clubID) {
+        this.clubID = clubID;
+    }
+
+    public void setDmID(String dmID) {
+        this.dmID = dmID;
+    }
+
+    public String getClubID() {
+        return clubID;
+    }
+
+    public String getDmID() {
+        return dmID;
     }
 
     public String getUserName() {

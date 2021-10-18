@@ -5,62 +5,47 @@
  */
 package controller;
 
+import event.eventDAO;
+import event.eventDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import user.UserDAO;
-import user.UserDTO;
 
 /**
  *
- * @author benth
+ * @author phats
  */
-public class LoginController extends HttpServlet {
+public class ShowEventController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String ADMIN_PAGE = "LoginPage.jsp";
-    private static final String CL_DM_PAGE = "LoginPage.jsp";
-    private static final String GU_PAGE = "LoginPage.jsp";
-    private static final String LM_PAGE = "LoginPage.jsp";
-    private static final String ST_PAGE = "LoginPage.jsp";
+    private static final String SUCCESS = "eventpage.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String userID = request.getParameter("userID");
-            String password = request.getParameter("password");
-            UserDAO dao = new UserDAO();
-            UserDTO user = dao.checkLogin(userID, password);
+            eventDAO dao = new eventDAO();
+            eventDTO event = dao.getEvent(request.getParameter("eventID"));
             HttpSession session = request.getSession();
-            if (user != null) {
-                session.setAttribute("LOGIN_USER", user);
-                String roleID = user.getRoleID();
-                if ("AD".equals(roleID)) {
-                    url = ADMIN_PAGE;
-                } else if ("CL".equals(roleID) || "DM".equals(roleID)) {
-                    url = CL_DM_PAGE;
-                } else if ("GU".equals(roleID)) {
-                    url = GU_PAGE;
-                } else if ("LM".equals(roleID)) {
-                    url = LM_PAGE;
-                } else if ("ST".equals(roleID)) {
-                    url = ST_PAGE;
-                } else {
-                    session.setAttribute("ERROR_MESSAGE", "Your role is not support!! ");
-                }
-            } else {
-                session.setAttribute("ERROR_MESSAGE", "Incorrect UserID or Password! ");
+            if (event != null) {
+                session.setAttribute("CLICK_ON_EVENT", event);
+                url = SUCCESS;
             }
         } catch (Exception e) {
-            log("ERROR at LoginController: " + e.toString());
+            log("Error at ShowEventController" + e.toString());
         } finally {
-            response.sendRedirect(url);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
@@ -76,7 +61,11 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ShowEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -90,7 +79,11 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ShowEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

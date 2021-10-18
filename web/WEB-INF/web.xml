@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>AddEventController</servlet-name>
         <servlet-class>controller.AddEventController</servlet-class>
@@ -22,8 +21,32 @@
         <servlet-class>controller.MainController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LoginGoogleServlet</servlet-name>
-        <servlet-class>stackjava.com.accessgoogle.servlet.LoginGoogleServlet</servlet-class>
+        <servlet-name>SearchEventController</servlet-name>
+        <servlet-class>controller.SearchEventController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShowEventController</servlet-name>
+        <servlet-class>controller.ShowEventController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchUserController</servlet-name>
+        <servlet-class>controller.SearchUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddCommentController</servlet-name>
+        <servlet-class>controller.CommentAddController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CommentViewController</servlet-name>
+        <servlet-class>controller.CommentViewController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CommentUpdateController</servlet-name>
+        <servlet-class>controller.CommentUpdateController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CommentDeleteController</servlet-name>
+        <servlet-class>controller.CommentDeleteController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddEventController</servlet-name>
@@ -46,8 +69,32 @@
         <url-pattern>/MainController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LoginGoogleServlet</servlet-name>
-        <url-pattern>LoginGoogleServlet</url-pattern>
+        <servlet-name>SearchEventController</servlet-name>
+        <url-pattern>/SearchEventController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowEventController</servlet-name>
+        <url-pattern>/ShowEventController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchUserController</servlet-name>
+        <url-pattern>/SearchUserController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddCommentController</servlet-name>
+        <url-pattern>/AddCommentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CommentViewController</servlet-name>
+        <url-pattern>/CommentViewController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CommentUpdateController</servlet-name>
+        <url-pattern>/CommentUpdateController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CommentDeleteController</servlet-name>
+        <url-pattern>/CommentDeleteController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -55,6 +102,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>Eventmanagement.html</welcome-file>
+        <welcome-file>Eventmanagement.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

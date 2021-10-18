@@ -5,12 +5,9 @@
  */
 package controller;
 
-import event.eventDAO;
 import event.eventDTO;
-import event.eventErrors;
 import java.io.IOException;
-import java.sql.Date;
-import java.time.LocalDate;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,64 +17,34 @@ import user.UserDTO;
 
 /**
  *
- * @author AN515-52
+ * @author benth
  */
-public class AddEventController extends HttpServlet {
+public class CommentAddController extends HttpServlet {
 
-    public static final String ERROR = "error.jsp";
-    public static final String SUCCESS = "ListEvent.jsp";
-
+    public static final String ERROR = "eventpage.jsp";
+    public static final String SUCCESS = "eventpage.jsp";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         HttpSession session = request.getSession();
-        eventErrors eventError = new eventErrors("", "", "", "", "", "", "", "", "", "");
         try {
             UserDTO user = (UserDTO) session.getAttribute("LOGIN_USER");
-            eventDAO dao = new eventDAO();
-            String eventID;
-            if (user.getRoleID().equals("CL")) {
-                eventID = "CL";
-            } else if (user.getRoleID().equals("DM")) {
-                eventID = "DM";
-            } else {
-                eventID = "AD";
-            } 
-            eventID = eventID + String.valueOf(dao.getQuantity()+1);
-            String eventName = request.getParameter("eventName");
-            Date createDate = java.sql.Date.valueOf(LocalDate.now());
-            Date eventStartDate = java.sql.Date.valueOf(request.getParameter("StartDate"));
+            eventDTO event = (eventDTO) session.getAttribute("CURRENT_EVENT");
+            
+            
+            String commentID = request.getParameter("commentID");
+            String commentDetail = request.getParameter("commentDetail");
+            String replyID;
+            String eventID = event.getEventID();
             String userID = user.getUserID();
-            String categoryID = request.getParameter("categoryID");
-            String statusID = "AC";
-            int limitMember = Integer.parseInt(request.getParameter("limitMember"));
-            int RoomID = Integer.parseInt(request.getParameter("RoomID"));
-            String interestID = request.getParameter("interestedID");
-            String content = request.getParameter("content");
-            String clubID = user.getClubID();
-            String dmID = user.getDmID();
+            
+            
             boolean check = true;
-            if (eventName.length() > 100 || eventName.length() < 2) {
-                eventError.setEventNameError("Event Name [ 2 , 100 ] !");
+            if (commentDetail.length() < 0 && commentDetail.length() > 500) {
                 check = false;
             }
-            if (limitMember > 800) {
-                eventError.setLimitMemberError("Limit Member [ 0,800]");
-                check = false;
-            }
-            if (check) {               
-                eventDTO event = new eventDTO(eventID, eventName, createDate, eventStartDate, userID, categoryID, statusID, limitMember, RoomID, interestID, content, clubID, dmID);
-                boolean checkInsert = dao.AddEvent(event);
-                if (checkInsert) {
-                    url = SUCCESS;
-                }
-            } else {
-                request.setAttribute("Create Event ERROR", eventError);
-            }
-
         } catch (Exception e) {
             log("Error at CreateController: " + e.toString());
         } finally {
