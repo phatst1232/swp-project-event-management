@@ -91,15 +91,87 @@
 
                 <div class="grid-contain fade">
                     <div class="grid">
-                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
+                        <div class="grid-item" style="background-image: url('event-user-photo/an-phuket-beach-venue-theme1.jpg');">
                             <p id="time-box">
                                 <a href="#">Beach Event</a>
+                            <p id="box"><img src="image/time-regular-24.png">16:00</p>
+                            </p>
+                            <p>T2:16/10/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:352</label>
+                                <img src="image/star-regular-24.png"><label id="famous">Follow:234</label>
+                            </div>
+                        </div>
+                        <div class="grid-item" style="background-image: url('event-user-photo/space-1821a-2400x1200.jpg');">
+                            <p id="time-box">
+                                <a href="#">Space Exploration</a>
+                            <p id="box"><img src="image/time-regular-24.png">7:00</p>
+                            </p>
+                            <p>T6:22/10/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:879</label>
+                                <img src="image/star-regular-24.png"><label id="famous">Follow:999</label>
+                            </div>
+                        </div>
+                        <div class="grid-item" style="background-image: url('event-user-photo/Music.jpeg');">
+                            <p id="time-box">
+                                <a href="#">Music</a>
+                            <p id="box"><img src="image/time-regular-24.png">13h:15</p>
+                            </p>
+                            <p>T7:30/10/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:123</label>
+                                <img src="image/star-regular-24.png"><label id="famous">Follow:324</label>
+                            </div>
+                        </div>
+                        <div class="grid-item" style="background-image: url('event-user-photo/posters-muscular-sports-man-stretching-out-over-dark-background.jpg');">
+                            <p id="time-box">
+                                <a href="#">Calisthenics</a>
                             <p id="box"><img src="image/time-regular-24.png">16:10</p>
                             </p>
                             <p>T2:16/10/2021</p>
                             <div class="itm-flex">
                                 <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
-                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous">Follow:10</label>
+                            </div>
+                        </div>
+                        <div class="grid-item" style="background-image: url('event-user-photo/images (1).jpg');">
+                            <p id="time-box">
+                                <a href="#">Cooking</a>
+                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
+                            </p>
+                            <p>T2:16/10/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous">Follow:10</label>
+                            </div>
+                        </div>
+                        <div class="grid-item" style="background-image: url('event-user-photo/coding.jpg');">
+                            <p id="time-box">
+                                <a href="#">Coding</a>
+                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
+                            </p>
+                            <p>T2:16/10/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous">Follow:10</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="grid-contain fade">
+                    <div class="grid">
+                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
+                            <p id="time-box">
+                                <a href="#">Photo</a>
+                            <p id="box"><img src="image/time-regular-24.png">19h00</p>
+                            </p>
+                            <p>T7:15/11/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:453</label>
+                                <img src="image/star-regular-24.png"><label id="famous">Follow:234</label>
                             </div>
                         </div>
                         <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
@@ -110,7 +182,7 @@
                             <p>T2:16/10/2021</p>
                             <div class="itm-flex">
                                 <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
-                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous">Follow:10</label>
                             </div>
                         </div>
                         <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
@@ -121,7 +193,7 @@
                             <p>T2:16/10/2021</p>
                             <div class="itm-flex">
                                 <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
-                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous">Follow:0</label>
                             </div>
                         </div>
                         <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
@@ -132,7 +204,7 @@
                             <p>T2:16/10/2021</p>
                             <div class="itm-flex">
                                 <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
-                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous">Follow:10</label>
                             </div>
                         </div>
                         <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
@@ -143,7 +215,7 @@
                             <p>T2:16/10/2021</p>
                             <div class="itm-flex">
                                 <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
-                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous">Follow:10</label>
                             </div>
                         </div>
                         <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
@@ -154,7 +226,7 @@
                             <p>T2:16/10/2021</p>
                             <div class="itm-flex">
                                 <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
-                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous">Follow:10</label>
                             </div>
                         </div>
                     </div>
@@ -170,7 +242,7 @@
                             <p>T2:16/10/2021</p>
                             <div class="itm-flex">
                                 <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
-                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous">Follow:10</label>
                             </div>
                         </div>
                         <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
@@ -181,7 +253,7 @@
                             <p>T2:16/10/2021</p>
                             <div class="itm-flex">
                                 <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
-                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous">Follow:10</label>
                             </div>
                         </div>
                         <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
@@ -192,7 +264,7 @@
                             <p>T2:16/10/2021</p>
                             <div class="itm-flex">
                                 <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
-                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous">Follow:10</label>
                             </div>
                         </div>
                         <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
@@ -203,7 +275,7 @@
                             <p>T2:16/10/2021</p>
                             <div class="itm-flex">
                                 <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
-                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous">Follow:10</label>
                             </div>
                         </div>
                         <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
@@ -214,7 +286,7 @@
                             <p>T2:16/10/2021</p>
                             <div class="itm-flex">
                                 <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
-                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous">Follow:10</label>
                             </div>
                         </div>
                         <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
@@ -225,78 +297,7 @@
                             <p>T2:16/10/2021</p>
                             <div class="itm-flex">
                                 <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
-                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="grid-contain fade">
-                    <div class="grid">
-                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
-                            <p id="time-box">
-                                <a href="#">Beach Event</a>
-                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
-                            </p>
-                            <p>T2:16/10/2021</p>
-                            <div class="itm-flex">
-                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
-                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
-                            </div>
-                        </div>
-                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
-                            <p id="time-box">
-                                <a href="#">Space Exploration</a>
-                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
-                            </p>
-                            <p>T2:16/10/2021</p>
-                            <div class="itm-flex">
-                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
-                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
-                            </div>
-                        </div>
-                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
-                            <p id="time-box">
-                                <a href="#">Music</a>
-                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
-                            </p>
-                            <p>T2:16/10/2021</p>
-                            <div class="itm-flex">
-                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
-                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
-                            </div>
-                        </div>
-                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
-                            <p id="time-box">
-                                <a href="#">Calisthenics</a>
-                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
-                            </p>
-                            <p>T2:16/10/2021</p>
-                            <div class="itm-flex">
-                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
-                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
-                            </div>
-                        </div>
-                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
-                            <p id="time-box">
-                                <a href="#">Cooking</a>
-                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
-                            </p>
-                            <p>T2:16/10/2021</p>
-                            <div class="itm-flex">
-                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
-                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
-                            </div>
-                        </div>
-                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
-                            <p id="time-box">
-                                <a href="#">Coding</a>
-                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
-                            </p>
-                            <p>T2:16/10/2021</p>
-                            <div class="itm-flex">
-                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
-                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous">Follow:10</label>
                             </div>
                         </div>
                     </div>
