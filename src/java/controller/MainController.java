@@ -19,15 +19,23 @@ import javax.servlet.http.HttpSession;
  */
 public class MainController extends HttpServlet {
 
+    //--Page
     private static final String ERROR = "error.jsp";
     private static final String LOGIN = "LoginController";
     private static final String LOGOUT = "LogoutController";
     //-- Event
+    private static final String SEARCH_EVENT = "SearchEventController";
     private static final String CREATE_EVENT = "AddEventController";
+    private static final String SHOW_EVENT = "ShowEventController";
+    //-- User
+    private static final String USER_PROFILE = "ShowProfileController";
+    private static final String SEARCH_USER = "SearchUserController";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-
         String url = ERROR;
         try {
             String action = request.getParameter("action");
@@ -37,9 +45,17 @@ public class MainController extends HttpServlet {
                 url = LOGOUT;
             } else if ("Create".equals(action)) {
                 url = CREATE_EVENT;
+            } else if ("Search event".equals(action)) {
+                url = SEARCH_EVENT;
+            } else if ("show event".equals(action)) {
+                url = SHOW_EVENT;
+            } else if ("profile".equals(action)) {
+                url = USER_PROFILE;
+            }else if ("Search user".equals(action)) {
+                url = SEARCH_USER;
             } else {
                 HttpSession session = request.getSession();
-                session.setAttribute("ERROR_MESSAGE", "Function is not avaiable!! ");
+                session.setAttribute("ERROR_MESSAGE", "Function is not avaiable!!!!");
             }
         } catch (Exception e) {
             log("ERROR at MainController: " + e.toString());

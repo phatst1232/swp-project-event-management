@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class DeleteEventController extends HttpServlet {
 
-    private static final String ERROR = "deleteevent.jsp";
+    private static final String ERROR = "error.jsp";
     private static final String SUCCESS = "viewevent.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

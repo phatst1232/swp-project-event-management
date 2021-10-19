@@ -22,11 +22,11 @@ import user.UserDTO;
 public class LoginController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String ADMIN_PAGE = "sus.html";
-    private static final String CL_DM_PAGE = "cldm.jsp";
-    private static final String GU_PAGE = "mainpage.jsp";
-    private static final String LM_PAGE = "ưser.jsp";
-    private static final String ST_PAGE = "user.jsp";
+    private static final String ADMIN_PAGE = "LoginPage.jsp";
+    private static final String CL_DM_PAGE = "LoginPage.jsp";
+    private static final String GU_PAGE = "LoginPage.jsp";
+    private static final String LM_PAGE = "LoginPage.jsp";
+    private static final String ST_PAGE = "LoginPage.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -52,10 +52,10 @@ public class LoginController extends HttpServlet {
                 } else if ("ST".equals(roleID)) {
                     url = ST_PAGE;
                 } else {
-                    session.setAttribute("ERROR_MESSAGE", "Your role is not support!! ");
+                    session.setAttribute("ERROR_MESSAGE", "Your role is not support in our Database!");
                 }
             } else {
-                session.setAttribute("ERROR_MESSAGE", "Incorrect UserID or Password! ");
+                session.setAttribute("ERROR_MESSAGE", "Incorrect UserID or Password!");
             }
         } catch (Exception e) {
             log("ERROR at LoginController: " + e.toString());

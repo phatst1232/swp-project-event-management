@@ -17,29 +17,24 @@ public class eventDTO {
     private Date createDate;
     private Date eventStartDate;
     private String userID;
-    private String categoryID;
     private String statusID;
     private int limitMember;
-    private int roomID;
-    private String interestedID;
     private String content;
     private String clubID;
     private String dmID;
+    private int like;
 
     public eventDTO() {
     }
 
-    public eventDTO(String eventID, String eventName, Date createDate, Date eventStartDate, String userID, String categoryID, String statusID, int limitMember, int roomID, String interestedID,String content, String clubID, String dmID) {
+    public eventDTO(String eventID, String eventName, Date createDate, Date eventStartDate, String userID, String statusID, int limitMember, String content, String clubID, String dmID, int like) {
         this.eventID = eventID;
         this.eventName = eventName;
         this.createDate = createDate;
         this.eventStartDate = eventStartDate;
         this.userID = userID;
-        this.categoryID = categoryID;
         this.statusID = statusID;
         this.limitMember = limitMember;
-        this.roomID = roomID;
-        this.interestedID = interestedID;
         this.content=content;
         this.clubID=clubID;
         this.dmID=dmID;
@@ -101,14 +96,6 @@ public class eventDTO {
         this.userID = userID;
     }
 
-    public String getCategoryID() {
-        return categoryID;
-    }
-
-    public void setCategoryID(String categoryID) {
-        this.categoryID = categoryID;
-    }
-
     public String getStatusID() {
         return statusID;
     }
@@ -125,20 +112,12 @@ public class eventDTO {
         this.limitMember = limitMember;
     }
 
-    public int getRoomID() {
-        return roomID;
+    public void setLike(int like) {
+        this.like = like;
     }
 
-    public void setRoomID(int roomID) {
-        this.roomID = roomID;
-    }
-
-    public String getInterestedID() {
-        return interestedID;
-    }
-
-    public void setInterestedID(String interestedID) {
-        this.interestedID = interestedID;
+    public int getLike() {
+        return like;
     }
 
     public String getContent() {
