@@ -19,16 +19,15 @@ public class UserDTO {
     private String email;
     private String statusID;
     private String majorID;
-    private String reportID;
-    private String interestedDetail;
     private String clubID;
     private String dmID;
+    private String avtLink;
     
 
     public UserDTO() {
     }
 
-    public UserDTO(String userID, String userName, String password, String roleID, String address, String phoneNumber, String email, String statusID, String majorID, String reportID, String interestedDetail, String clubID, String dmID) {
+    public UserDTO(String userID, String userName, String password, String roleID, String address, String phoneNumber, String email, String statusID, String majorID, String clubID, String dmID, String avtLink) {
         this.userID = userID;
         this.userName = userName;
         this.password = password;
@@ -38,20 +37,10 @@ public class UserDTO {
         this.email = email;
         this.statusID = statusID;
         this.majorID = majorID;
-        this.reportID = reportID;
-        this.interestedDetail = interestedDetail;
         this.clubID = clubID;
         this.dmID = dmID;
-    }
-
-    public UserDTO(String userID, String userName, String password, String roleID) {
-        this.userID = userID;
-        this.userName = userName;
-        this.password = password;
-        this.roleID = roleID;
-    }
-    
-    
+        this.avtLink = avtLink;
+    }    
 
     public String getUserID() {
         return userID;
@@ -141,21 +130,11 @@ public class UserDTO {
         this.majorID = majorID;
     }
 
-    public String getReportID() {
-        return reportID;
+    public String getAvtLink() {
+        return avtLink;
     }
 
-    public void setReportID(String reportID) {
-        this.reportID = reportID;
+    public void setAvtLink(String avtLink) {
+        this.avtLink = avtLink;
     }
-
-    public String getInterestedDetail() {
-        return interestedDetail;
-    }
-
-    public void setInterestedDetail(String interestedDetail) {
-        this.interestedDetail = interestedDetail;
-    }
-    
-    
 }

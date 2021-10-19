@@ -36,6 +36,7 @@ public class AddEventController extends HttpServlet {
         HttpSession session = request.getSession();
         eventErrors eventError = new eventErrors("", "", "", "", "", "", "", "", "", "");
         try {
+            //-- Generate EventID --//
             UserDTO user = (UserDTO) session.getAttribute("LOGIN_USER");
             eventDAO dao = new eventDAO();
             String eventID;
@@ -46,7 +47,8 @@ public class AddEventController extends HttpServlet {
             } else {
                 eventID = "AD";
             } 
-            eventID = eventID + String.valueOf(dao.getQuantity()+1);
+            eventID = eventID + String.valueOf(dao.getQuantity()+1);    //-- end of generation -//
+            
             String eventName = request.getParameter("eventName");
             Date createDate = java.sql.Date.valueOf(LocalDate.now());
             Date eventStartDate = java.sql.Date.valueOf(request.getParameter("StartDate"));
@@ -55,7 +57,6 @@ public class AddEventController extends HttpServlet {
             String statusID = "AC";
             int limitMember = Integer.parseInt(request.getParameter("limitMember"));
             int RoomID = Integer.parseInt(request.getParameter("RoomID"));
-            String interestID = request.getParameter("interestedID");
             String content = request.getParameter("content");
             String clubID = user.getClubID();
             String dmID = user.getDmID();
@@ -69,7 +70,7 @@ public class AddEventController extends HttpServlet {
                 check = false;
             }
             if (check) {               
-                eventDTO event = new eventDTO(eventID, eventName, createDate, eventStartDate, userID, categoryID, statusID, limitMember, RoomID, interestID, content, clubID, dmID);
+                eventDTO event = new eventDTO(eventID, eventName, createDate, eventStartDate, userID, statusID, limitMember, content, clubID, dmID, 1);
                 boolean checkInsert = dao.AddEvent(event);
                 if (checkInsert) {
                     url = SUCCESS;

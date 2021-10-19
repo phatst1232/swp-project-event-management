@@ -5,7 +5,6 @@
  */
 package controller;
 
-import event.eventDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,30 +14,17 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author benth
+ * @author phats
  */
-public class DeleteEventController extends HttpServlet {
+public class ViewProfileController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "viewevent.jsp";
-    
+    private static final String SUCCESS = "PersonalPorofile.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-        try {
-            String eventID = request.getParameter("eventID");
-            eventDAO dao = new eventDAO();
-            boolean check = dao.deleteEvent(eventID);
-            if (check) {
-                url = SUCCESS;
-            }
 
-        } catch (Exception e) {
-            log("Error at DeleteController: " + e.toString());
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

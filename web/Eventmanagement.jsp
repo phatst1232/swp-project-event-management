@@ -7,9 +7,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://kit.fontawesome.com/912e671d73.js" crossorigin="anonymous"></script>
-        <script src="./js/script.js"></script>
+        <script src="js/script.js"></script>
 
-        <link rel="stylesheet" href="./css/mainpage.css">
+        <link rel="stylesheet" href="css/mainpage.css">
     </head>
 
     <body>
@@ -19,55 +19,409 @@
                 search = "";
             }
         %>
-        <!-- top stage -->
-        <div class="top">
-            <div id="Logo">
-                <img src="image\244351476_224631916395247_2148764225629497919_n.png" 
-                     height="120px"
-                     width="140px">
+        <!-- navigation bar -->
+        <div class="sidebar">
+            <div class="logo-content">
+                <div class="logo">
+                    <img src="image\243476569_4979393015418472_7594668457206850499_n.png" width="60px" height="60px">
+                    <div class="logo-name">Event</div>
+                </div>
+                <i id="but"><img src="image\menu-regular-24.png"></i>
             </div>
-            <div id="searchbar">
-                <form action="MainController">
-                    <input type="text" name="search" 
-                           value="<%=search%>" placeholder="Search..." />
-                    <button type="submit" name="action" value="Search event"><img src="image\search.png" width="20px" height="20px" />
-                    </button>
-                </form>
-            </div>        
-
-            <div id="category">
-                <button id="categorybtn">
-                    <img src="image\icons8-listing-24.png" />
-                </button>
-                <div id="category-content">
-                    <a href="">Home</a>
-                    <a href="ListEvent.jsp">Event</a>
-                    <a href=""><label for="show">Login</label></a>
+            <ul class="nav-list">
+                <li>
+                    <form action="MainController">
+                        <i id="but-search"><img src="image\search.png"></i>
+                        <input type="text" name="search" value="<%=search%>" placeholder="Search...">
+                        <input type="hidden" name="action" value="Search event">
+                        <span class="tooltip">Search</span>
+                    </form>
+                </li>
+                <li>
+                    <a href="PersonalPorofile.jsp">
+                        <i id="user-search"><img src="image\icons8-user-24.png"></i>
+                        <span class="link-name">User</span>                   
+                    <span class="tooltip">User</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i id="edit-search"><img src="image\pencil-solid-24.png"></i>
+                        <span class="link-name">Edit</span>
+                    </a>
+                    <span class="tooltip">Edit</span>
+                </li>
+                <li>
+                    <a href="#">
+                        <i id="noti-search"><img src="image\bell-solid-24.png"></i>
+                        <span class="link-name">Notification</span>
+                    </a>
+                    <span class="tooltip">Notification</span>
+                </li>
+            </ul>
+            <div class="profile-content">
+                <div class="profile">
+                    <div class="profile-detail">
+                        <img src="image\icons8-user-24.png">
+                        <div class="name-job">
+                            <div class="name"><a href="#" style="text-decoration:none; "><label for="show">Login</label></a></div>
+                            <!--                            <div class="job"><a href="#" style="text-decoration:none; ">Sign Up</a></div>-->
+                        </div>
+                    </div>
+                    <i id="log-out"><img src="image\log-in-regular-24.png"></i>
                 </div>
             </div>
         </div>
+        <!-- End Navigation Bar  -->
 
 
-        <!-- contain stage  -->
-        <div class="container">
-            <!-- main -->
-            <h2>Upcoming! Do not miss!!!</h2>
-            <div class="slideshow-container">
-                <div class="mySlides fade">
-                    <img src="https://img.freepik.com/free-psd/event-planner-landing-page_23-2149104376.jpg?size=626&ext=jpg"
-                         width="100%">
-                </div>
-                <button class="accordion" onclick="function()">
-                    <img src="" 
-                         width="15px">Details </button>
-                <div class="contain">
+        <!-- Home Content -->
+        <div class="home-content">
+            <div class="event-content">
+                <div class="content">
+                    <p class="text">Space exploration</p>
+                    <p class="txt"><img src="image/calendar-7-24.png" width="25px" height="25px">16/10</p>
                     <p id="demo"></p>
+                    <a href="#">Join now</a>
+                </div>
+            </div>
+
+
+            <div class="show-slide">
+
+                <div class="grid-contain fade">
+                    <div class="grid">
+                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
+                            <p id="time-box">
+                                <a href="#">Beach Event</a>
+                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
+                            </p>
+                            <p>T2:16/10/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                            </div>
+                        </div>
+                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
+                            <p id="time-box">
+                                <a href="#">Space Exploration</a>
+                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
+                            </p>
+                            <p>T2:16/10/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                            </div>
+                        </div>
+                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
+                            <p id="time-box">
+                                <a href="#">Music</a>
+                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
+                            </p>
+                            <p>T2:16/10/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                            </div>
+                        </div>
+                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
+                            <p id="time-box">
+                                <a href="#">Calisthenics</a>
+                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
+                            </p>
+                            <p>T2:16/10/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                            </div>
+                        </div>
+                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
+                            <p id="time-box">
+                                <a href="#">Cooking</a>
+                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
+                            </p>
+                            <p>T2:16/10/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                            </div>
+                        </div>
+                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
+                            <p id="time-box">
+                                <a href="#">Coding</a>
+                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
+                            </p>
+                            <p>T2:16/10/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-contain fade">
+                    <div class="grid">
+                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
+                            <p id="time-box">
+                                <a href="#">Beach Event</a>
+                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
+                            </p>
+                            <p>T2:16/10/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                            </div>
+                        </div>
+                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
+                            <p id="time-box">
+                                <a href="#">Space Exploration</a>
+                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
+                            </p>
+                            <p>T2:16/10/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                            </div>
+                        </div>
+                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
+                            <p id="time-box">
+                                <a href="#">Music</a>
+                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
+                            </p>
+                            <p>T2:16/10/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                            </div>
+                        </div>
+                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
+                            <p id="time-box">
+                                <a href="#">Calisthenics</a>
+                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
+                            </p>
+                            <p>T2:16/10/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                            </div>
+                        </div>
+                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
+                            <p id="time-box">
+                                <a href="#">Cooking</a>
+                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
+                            </p>
+                            <p>T2:16/10/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                            </div>
+                        </div>
+                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
+                            <p id="time-box">
+                                <a href="#">Coding</a>
+                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
+                            </p>
+                            <p>T2:16/10/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-contain fade">
+                    <div class="grid">
+                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
+                            <p id="time-box">
+                                <a href="#">Beach Event</a>
+                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
+                            </p>
+                            <p>T2:16/10/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                            </div>
+                        </div>
+                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
+                            <p id="time-box">
+                                <a href="#">Space Exploration</a>
+                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
+                            </p>
+                            <p>T2:16/10/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                            </div>
+                        </div>
+                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
+                            <p id="time-box">
+                                <a href="#">Music</a>
+                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
+                            </p>
+                            <p>T2:16/10/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                            </div>
+                        </div>
+                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
+                            <p id="time-box">
+                                <a href="#">Calisthenics</a>
+                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
+                            </p>
+                            <p>T2:16/10/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                            </div>
+                        </div>
+                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
+                            <p id="time-box">
+                                <a href="#">Cooking</a>
+                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
+                            </p>
+                            <p>T2:16/10/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                            </div>
+                        </div>
+                        <div class="grid-item" style="background-image: url('./image/Sunset-Wallpapers-HD-A3.jpg');">
+                            <p id="time-box">
+                                <a href="#">Coding</a>
+                            <p id="box"><img src="image/time-regular-24.png">16:10</p>
+                            </p>
+                            <p>T2:16/10/2021</p>
+                            <div class="itm-flex">
+                                <img src="image/heart-regular-24.png"><label id="like">Like:10</label>
+                                <img src="image/star-regular-24.png"><label id="famous"> Famous:10</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                <div style="text-align: center;">
+                    <span class="dot" onclick="currentSlide(1)">1</span>
+                    <span class="dot" onclick="currentSlide(2)">2</span>
+                    <span class="dot" onclick="currentSlide(3)">3</span>
 
                 </div>
-                <!-- pop-up login box code -->
-                <input type="checkbox" id="show">
+            </div>
+            <!-- loginpopup -->
+            <input type="checkbox" id="show" >
+            <div id="loginbox">
+                <label for="show" class="close-btn fas fa-times"></label>
 
-                <div id="loginbox">
+                <div class="loginwelcome">
+                    <h1>WELCOME</h1>
+                </div>
+                <form class="login form formactive" action="MainController" method="POST">
+                    <p>Username</p>
+                    <input type="text" name="userID" class="fields" placeholder="Enter Username" required>
+                    <p>Password</p>
+                    <input type="password" name="password" class="fields" placeholder="Enter Password" required><br>
+                    <input type="submit" name="action" value="login"><br>
+                    <div class="google-btn">
+                        <div class="google-icon-wrapper">
+                            <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8084/swp-project-event-management/login-google&response_type=code
+                               &client_id=435275509930-p8hod642g2vq6cig8ln9g9u2oi3r71v0.apps.googleusercontent.com&approval_prompt=force">
+                                <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+                                <span class="ggtext">Login with Gmail</span>                              
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!-- End home content -->
+
+
+    <script type="text/javascript">
+        let but = document.querySelector("#but");
+                let sidebar = document.querySelector(".sidebar");
+                let searchBtn = document.querySelector("#but-search");
+                let userBtn = document.querySelector("#user-search");
+                let editBtn = document.querySelector("#edit-search");
+                let
+        notiBtn = document.querySelector("#noti-search");
+                let
+        logBtn = document.querySelector("#log-out");
+        but.onclick = function () {
+            sidebar.classList.toggle("active");
+        }
+
+        searchBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+        }
+
+        userBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+        }
+
+        editBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+        }
+
+        notiBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+        }
+        logBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+        }
+
+
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("grid-contain");
+            var dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = slides.length
+            }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+    </script>
+
+
+
+
+    <!-- contain stage  -->
+    <!--  <div class="container">
+            
+             main -->
+
+
+
+    <!-- Pop UP login BOx -->
+    <!-- <input type="checkbox" id="show">
+            <div id="loginbox">
 
                     <label for="show" class="close-btn fas fa-times"></label>
 
@@ -81,28 +435,15 @@
                         <a class="btn-google" href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8084/swp-project-event-management/login-google&response_type=code
                            &client_id=435275509930-p8hod642g2vq6cig8ln9g9u2oi3r71v0.apps.googleusercontent.com&approval_prompt=force"><img src="image\Google_icon.png"> LOGIN WITH FPT EMAIL</a>
                     </form>
-
                 </div>
-                <!-- end of login box -->
+            </div> -->
 
-            </div> <br>
+    <!-- end of login box -->
+    <!-- 
+        </div> 
+
 
             <script type="text/javascript">
-                var acc = document.getElementsByClassName("accordion");
-                var i;
-
-                for (i = 0; i < acc.length; i++) {
-                    acc[i].addEventListener("click", function () {
-                        this.classList.toggle("active");
-                        var panel = this.nextElementSibling;
-                        if (panel.style.maxHeight) {
-                            panel.style.maxHeight = null;
-                        } else {
-                            panel.style.maxHeight = panel.scrollHeight + "px";
-                        }
-                    });
-                }
-
 
                 // Set the date we're counting down to
                 var countDownDate = new Date("Jan 5, 2022 15:37:25").getTime();
@@ -124,7 +465,7 @@
 
                     // Output the result in an element with id="demo"
                     document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-                            + minutes + "m " + seconds + "s ";
+                            + minutes + "m " + seconds + "s " + "left";
 
                     // If the count down is over, write some text 
                     if (distance < 0) {
@@ -134,15 +475,9 @@
                 }, 0);
             </script>
 
-            <!-- side -->
-         <!--   <div id="sidebar">
 
-            </div>  --!>
-
-        </div>
-
-        <!-- bottom stage  -->
-        <div class="bottom">
+    <!-- bottom stage  -->
+    <!--         <div class="bottom">
             <div id="bot-nav">
                 <div>
                     <a href="#">
@@ -158,6 +493,7 @@
             </div>
             <h3>@Copyright for fpt university group 2 project</h3>
         </div>
-    </body>
+    -->
+</body>
 
 </html>

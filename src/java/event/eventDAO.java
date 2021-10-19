@@ -28,8 +28,11 @@ public class eventDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "SELECT EVENTID,EVENTNAME,EVENTCREATEDATE,EVENTSTARTDATE,USERID,CATEGORYID,STATUSID,LIMITMEMBER,ROOMID,INTERESTEDID,CONTENT,CLUBID,DMID FROM TblEVENTS "
-                        + " WHERE EVENTIDLIKE ? ";
+                String sql = "SELECT eventID,eventName,eventCreateDate,eventStartDate, "
+                        + " userID,categoryID,statusID,limitMember, "
+                        + " content,clubID,dmID,like "
+                        + " FROM tblEvents "
+                        + " WHERE eventID LIKE ? ";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, "%" + search + "%");
                 rs = stm.executeQuery();
@@ -39,15 +42,13 @@ public class eventDAO {
                     Date eventCreateDate = rs.getDate("eventCreateDate");
                     Date eventStartDate = rs.getDate("eventStartDate");
                     String userID = rs.getString("userID");
-                    String categoryID = rs.getString("categoryID");
                     String statusID = rs.getString("statusID");
-                    int LimitMember = Integer.parseInt(rs.getString("LimitMember"));
-                    int roomID = Integer.parseInt(rs.getString("RoomID"));
-                    String interestID = rs.getString("InterestID");
+                    int limitMember = Integer.parseInt(rs.getString("limitMember"));
                     String content = rs.getString("content");
                     String clubID = rs.getString("clubID");
                     String dmID = rs.getString("dmID");
-                    list.add(new eventDTO(eventID, eventName, eventCreateDate, eventStartDate, userID, categoryID, statusID, LimitMember, roomID, interestID, content, clubID, dmID));
+                    int like = Integer.parseInt(rs.getString("like"));
+                    list.add(new eventDTO(eventID, eventName, eventCreateDate, eventStartDate, userID, statusID, limitMember, content, clubID, dmID, like));
                 }
             }
         } catch (Exception e) {
@@ -75,7 +76,7 @@ public class eventDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = " SELECT eventID, eventName, eventCreateDate, eventStartDate, userID, categoryID, LimitMember, RoomID, interestedID,content, ClubID, DmID"
+                String sql = " eventID,eventName,eventCreateDate,eventStartDate,userID,categoryID,statusID,limitMember,roomID,content,clubID,dmID,like "
                         + " From tblEvents "
                         + " WHERE eventID = ? AND statusID='AC'";
                 stm = conn.prepareStatement(sql);
@@ -86,14 +87,13 @@ public class eventDAO {
                     Date eventCreateDate = rs.getDate("eventCreateDate");
                     Date eventStartDate = rs.getDate("eventStartDate");
                     String userID = rs.getString("userID");
-                    String categoryID = rs.getString("categoryID");
-                    int LimitMember = rs.getInt("LimitMember");
-                    int RoomID = rs.getInt("RoomID");
-                    String interestedID = rs.getString("interestedID");
+                    String statusID = rs.getString("statusID");
+                    int limitMember = rs.getInt("limitMember");               
                     String content = rs.getString("content");
-                    String ClubID = rs.getString("ClubID");
-                    String DmID = rs.getString("DmID");
-                    event = new eventDTO(eventID, eventName, eventCreateDate, eventStartDate, userID, categoryID, "AC", LimitMember, RoomID, interestedID, content, ClubID, DmID);
+                    String clubID = rs.getString("clubID");
+                    String dmID = rs.getString("dmID");
+                    int like = rs.getInt("like");
+                    event = new eventDTO(eventID, eventName, eventCreateDate, eventStartDate, userID, statusID, limitMember, content, clubID, dmID, like);
                 }
             }
         } catch (Exception e) {
@@ -119,7 +119,7 @@ public class eventDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = " SELECT eventID, eventName, eventCreateDate, eventStartDate, categoryID, LimitMember, RoomID, interestedID,content, ClubID, DmID"
+                String sql = " SELECT eventID, eventName, eventCreateDate, eventStartDate, categoryID, LimitMember, interestedID,content, ClubID, DmID, like"
                         + " From tblEvents "
                         + " WHERE eventName like ? AND statusID='AC' ORDER BY eventCreateDate ASC";
                 stm = conn.prepareStatement(sql);
@@ -130,14 +130,14 @@ public class eventDAO {
                     String eventName = rs.getString("eventName");
                     Date eventCreateDate = rs.getDate("eventCreateDate");
                     Date eventStartDate = rs.getDate("eventStartDate");
-                    String categoryID = rs.getString("categoryID");
-                    int LimitMember = rs.getInt("LimitMember");
-                    int RoomID = rs.getInt("RoomID");
-                    String interestedID = rs.getString("interestedID");
+                    String userID = rs.getString("userID");
+                    String statusID = rs.getString("statusID");
+                    int limitMember = rs.getInt("limitMember");               
                     String content = rs.getString("content");
-                    String ClubID = rs.getString("ClubID");
-                    String DmID = rs.getString("DmID");
-                    list.add(new eventDTO(eventID, eventName, eventCreateDate, eventStartDate, null, categoryID, null, LimitMember, RoomID, interestedID, content, ClubID, DmID));
+                    String clubID = rs.getString("clubID");
+                    String dmID = rs.getString("dmID");
+                    int like = rs.getInt("like");
+                    list.add(new eventDTO(eventID, eventName, eventCreateDate, eventStartDate, userID, statusID, limitMember, content, clubID, dmID, like));
                 }
             }
         } catch (Exception e) {
@@ -162,7 +162,8 @@ public class eventDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "DELETE tblUsers "
+                String sql = " UPDATE tblEvents "
+                        + " SET statusID = 'NA' "
                         + " WHERE eventID=? ";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, eventID);
@@ -180,6 +181,72 @@ public class eventDAO {
         return result;
     }
 
+    public String getClubName(String clubID) throws SQLException {
+        String clubName=null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " SELECT clubName "
+                        + " FROM tblCLs "
+                        + " WHERE clubID=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, clubID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    clubName = rs.getString("clubName");
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return clubName;
+    }
+    
+      public String getDMName(String dmID) throws SQLException {
+        String dmName=null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " SELECT dmName "
+                        + " FROM tblDMs "
+                        + " WHERE dmID=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, dmID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    dmName = rs.getString("dmName");
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return dmName;
+    }
+    
     public int getQuantity() throws SQLException {
         int quantity = 0;
         Connection conn = null;
@@ -211,7 +278,7 @@ public class eventDAO {
         return quantity;
     }
 
-    public boolean updateUser(eventDTO event) throws SQLException {
+    public boolean updateEvent(eventDTO event) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement stm = null;
@@ -219,19 +286,15 @@ public class eventDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 String sql = " UPDATE tblEvents "
-                        + " SET eventName=?, eventCreateDate=?, eventStartDate=?, userID=?,categoryID=?, statusID=?, limitMember=?, roomID=?, interestID=?, content=?"
-                        + " WHERE userID=?";
+                        + " SET eventName=?, eventStartDate=?, "
+                        + " limitMember=?, content=?, like=?"
+                        + " WHERE eventID=?";
                 stm = conn.prepareStatement(sql);
-                stm.setString(1, event.getEventName());
-                stm.setDate(2, event.getCreateDate());
-                stm.setDate(3, event.getEventStartDate());
-                stm.setString(4, event.getUserID());
-                stm.setString(5, event.getCategoryID());
-                stm.setString(6, event.getStatusID());
-                stm.setInt(7, event.getLimitMember());
-                stm.setInt(8, event.getRoomID());
-                stm.setString(9, event.getInterestedID());
-                stm.setString(10, event.getContent());
+                stm.setString(1, event.getEventName());             
+                stm.setDate(2, event.getEventStartDate());
+                stm.setInt(3, event.getLimitMember());
+                stm.setString(4, event.getContent());
+                stm.setInt(5, event.getLike());
                 check = stm.executeUpdate() > 0;
             }
         } catch (Exception e) {
@@ -254,22 +317,20 @@ public class eventDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = " Insert INTO tblEvents(EVENTID,EVENTNAME,EVENTCREATEDATE,EVENTSTARTDATE,USERID,CATEGORYID,STATUSID,LIMITMEMBER,ROOMID,INTERESTEDID,CONTENT,ClUBID,DMID) "
-                        + " Values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                String sql = " Insert INTO tblEvents(eventID,eventName,eventCreateDate,eventStartDate,userID,statusID,limitMember,content,clubID,dmID,like) "
+                        + " Values (?,?,?,?,?,?,?,?,?,?,?)";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, event.getEventID());
                 stm.setString(2, event.getEventName());
                 stm.setDate(3, event.getCreateDate());
                 stm.setDate(4, event.getEventStartDate());
-                stm.setString(5, event.getUserID());
-                stm.setString(6, event.getCategoryID());
-                stm.setString(7, event.getStatusID());
-                stm.setInt(8, event.getLimitMember());
-                stm.setInt(9, event.getRoomID());
-                stm.setString(10, event.getInterestedID());
-                stm.setString(11, event.getContent());
-                stm.setString(12, event.getClubID());
-                stm.setString(13, event.getDmID());
+                stm.setString(5, event.getUserID());     
+                stm.setString(6, event.getStatusID());
+                stm.setInt(7, event.getLimitMember());       
+                stm.setString(8, event.getContent());
+                stm.setString(9, event.getClubID());
+                stm.setString(10, event.getDmID());
+                stm.setInt(10, event.getLike());
                 check = stm.executeUpdate() > 0;
             }
 

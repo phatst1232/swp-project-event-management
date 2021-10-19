@@ -52,10 +52,10 @@ public class LoginController extends HttpServlet {
                 } else if ("ST".equals(roleID)) {
                     url = ST_PAGE;
                 } else {
-                    session.setAttribute("ERROR_MESSAGE", "Your role is not support!! ");
+                    session.setAttribute("ERROR_MESSAGE", "Your role is not support in our Database!");
                 }
             } else {
-                session.setAttribute("ERROR_MESSAGE", "Incorrect UserID or Password! ");
+                session.setAttribute("ERROR_MESSAGE", "Incorrect UserID or Password!");
             }
         } catch (Exception e) {
             log("ERROR at LoginController: " + e.toString());

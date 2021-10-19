@@ -31,8 +31,8 @@ public class UserDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 String sql = "SELECT userID, userName, password, roleID, Address,"
-                        + " PhoneNumber, Email, statusID, majorID, reportID, "
-                        + " interestedDetail FROM tblUsers "
+                        + " phoneNumber, email, statusID, majorID,"
+                        + " clubID, dmID, avtLink FROM tblUsers "
                         + " WHERE userName LIKE ? ";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, "%" + search + "%");
@@ -47,10 +47,12 @@ public class UserDAO {
                     String email = rs.getString("Email");
                     String statusID = rs.getString("statusID");
                     String majorID = rs.getString("majorID");
-                    String reportID = rs.getString("reportID");
-                    String interestedDetail = rs.getString("interestedDetail");
+                    String clubID = rs.getString("clubID");
+                    String dmID = rs.getString("dmID");
+                    String avtLink = rs.getString("avtLink");
+                    
                    
-                    list.add(new UserDTO(userID, userName, password, roleID, address, phoneNumber, email, statusID, majorID, reportID, interestedDetail, "", ""));
+                    list.add(new UserDTO(userID, userName, password, roleID, address, phoneNumber, email, statusID, majorID, clubID, dmID, avtLink));
                 }
             }
         } catch (Exception e) {
@@ -76,7 +78,7 @@ public class UserDAO {
         ResultSet rs = null;
         try {
             conn = DBUtils.getConnection();
-            String sql = " SELECT userName, roleID FROM tblUsers "
+            String sql = " SELECT userID, userName, email, phoneNumber, ClubID, DmID, roleID, avtLink FROM tblUsers "
                     + " WHERE userID=? AND Password=? AND statusID = 'AC' ";
             stm = conn.prepareStatement(sql);
             stm.setString(1, userID);
@@ -84,42 +86,16 @@ public class UserDAO {
             rs = stm.executeQuery();
             if (rs.next()) {
                 String userName = rs.getString("userName");
-                String roleID = rs.getString("ROLEID");
-                user = new UserDTO(userID, userName, "", roleID);
+                String email = rs.getString("email");
+                String phone = rs.getString("phoneNumber");
+                String ClubID = rs.getString("ClubID");
+                String DmID = rs.getString("DmID");
+                String roleID = rs.getString("roleID");
+                String avtLink = rs.getString("avtLink");
+                user = new UserDTO(userID, userName, "****", roleID, "", phone, email, "AC", "",ClubID, DmID,   avtLink);
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (stm != null) {
-                stm.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-        }
-        return user;
-    }
-
-    public UserDTO checkRole(String userID) throws SQLException {
-        UserDTO user = null;
-        Connection conn = null;
-        PreparedStatement stm = null;
-        ResultSet rs = null;
-        try {
-            conn = DBUtils.getConnection();
-            String sql = "SELECT roleID FROM tblUsers "
-                    + " WHERE userID=? ";
-            stm = conn.prepareStatement(sql);
-            stm.setString(1, userID);
-            rs = stm.executeQuery();
-            if (rs.next()) {
-                String roleID = rs.getString("roleID");
-                user = new UserDTO(userID, "", roleID, "");
-            }
-        } catch (Exception e) {
         } finally {
             if (rs != null) {
                 rs.close();
@@ -142,9 +118,10 @@ public class UserDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "INSERT INTO tblUsers(USERID, USERNAME, PASSWORD, ROLEID, ADDRESS,PHONENUMBER,"
-                        + "EMAIL,STATUSID,MAJORID,REPORTID,interestedDetail) "
-                        + " VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+                String sql = "INSERT INTO tblUsers(userID, userName, password, roleID, Address,"
+                        + " phoneNumber, email, statusID, majorID,"
+                        + " clubID, dmID, avtLink) "
+                        + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, user.getUserID());
                 stm.setString(2, user.getUserName());
@@ -153,10 +130,12 @@ public class UserDAO {
                 stm.setString(5, user.getAddress());
                 stm.setString(6, user.getPhoneNumber());
                 stm.setString(7, user.getEmail());
-                stm.setString(8, user.getStatusID());
+                stm.setString(8, "AC");
                 stm.setString(9, user.getMajorID());
-                stm.setString(10, user.getReportID());
-                stm.setString(11, user.getInterestedDetail());
+                stm.setString(10, user.getClubID());
+                stm.setString(11, user.getDmID());
+                stm.setString(12, user.getAvtLink());
+                
                 check = stm.executeUpdate() > 0;
             }
         } finally {
@@ -174,7 +153,139 @@ public class UserDAO {
         String regex = "^[a-z][a-z0-9_\\.]{5,32}@fpt.edu.vn\\b$";
         return email.matches(regex);
     }
+    
+    public boolean checkUserExist(String userID) throws SQLException {
+        boolean result=false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " SELECT userID "
+                        + " FROM tblUsers "
+                        + " WHERE userID=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, userID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    result = true;
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return result;
+    }
 
+    public String getClubName(String clubID) throws SQLException {
+        String clubName=null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " SELECT clubName "
+                        + " FROM tblCLs "
+                        + " WHERE clubID=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, clubID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    clubName = rs.getString("clubName");
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return clubName;
+    }
+    
+    public String getDMName(String dmID) throws SQLException {
+        String dmName=null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " SELECT dmName "
+                        + " FROM tblDMs "
+                        + " WHERE dmID=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, dmID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    dmName = rs.getString("dmName");
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return dmName;
+    }
+    
+    public String getRoleName(String roleID) throws SQLException {
+        String roleName=null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " SELECT roleName "
+                        + " FROM tblRoles "
+                        + " WHERE roleID=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, roleID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    roleName = rs.getString("roleName");
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return roleName;
+    }
+    
     public boolean updateUser(UserDTO user) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -184,7 +295,7 @@ public class UserDAO {
             if (conn != null) {
                 String sql = " UPDATE tblUsers "
                         + " SET userName=?, Password=?, roleID=?, address=?, phoneNumber=?,email=?, statusID=?,"
-                        + "majorID=?, reportID=?, interestedDetail=? "
+                        + "majorID=?, clubID=?, dmID=?, avtLink=?"
                         + " WHERE userID=?";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, user.getUserName());
@@ -195,9 +306,10 @@ public class UserDAO {
                 stm.setString(6, user.getEmail());
                 stm.setString(7, user.getStatusID());
                 stm.setString(8, user.getMajorID());
-                stm.setString(9, user.getReportID());
-                stm.setString(10, user.getInterestedDetail());
-                stm.setString(11, user.getUserID());
+                stm.setString(9, user.getClubID());
+                stm.setString(10, user.getDmID());
+                stm.setString(11, user.getAvtLink());
+                stm.setString(12, user.getUserID());
                 check = stm.executeUpdate() > 0;
             }
         } catch (Exception e) {
@@ -220,8 +332,9 @@ public class UserDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "DELETE tblUsers "
-                        + " WHERE USERID=? ";
+                String sql = " UPDATE tblUsers "
+                        + " SET statusID = 'NA' "
+                        + " WHERE userID=? ";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, userID);
                 result = stm.executeUpdate() > 0 ? true : false;
