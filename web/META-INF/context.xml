@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context antiJARLocking="true" path="/swp-project-event-management">
     <Resource name="DBCon" auth="Container" type="javax.sql.DataSource"
-          username="MyConnect" password="phatst1232"
+          username="sa" password="thongminh135"
           driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
           url="jdbc:sqlserver://localhost:1433;databaseName=EventManagement_2">
     </Resource>           

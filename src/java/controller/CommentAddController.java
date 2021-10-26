@@ -5,62 +5,70 @@
  */
 package controller;
 
+import comment.CommentDAO;
+import comment.CommentDTO;
+import comment.CommentError;
+import event.eventDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.Math.random;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import user.UserDAO;
 import user.UserDTO;
 
 /**
  *
  * @author benth
  */
-public class LoginController extends HttpServlet {
+public class CommentAddController extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
-    private static final String ADMIN_PAGE = "enventpagetest.jsp";
-    private static final String CL_DM_PAGE = "LoginPage.jsp";
-    private static final String GU_PAGE = "LoginPage.jsp";
-    private static final String LM_PAGE = "LoginPage.jsp";
-    private static final String ST_PAGE = "LoginPage.jsp";
-
+    public static final String ERROR = "enventpagetest.jsp";
+    public static final String SUCCESS = "enventpagetest.jsp";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        try {
-            String userID = request.getParameter("userID");
-            String password = request.getParameter("password");
-            UserDAO dao = new UserDAO();
-            UserDTO user = dao.checkLogin(userID, password);
-            HttpSession session = request.getSession();
-            if (user != null) {
-                session.setAttribute("LOGIN_USER", user);
-                String roleID = user.getRoleID();
-                if ("AD".equals(roleID)) {
-                    url = ADMIN_PAGE;
-                } else if ("CL".equals(roleID) || "DM".equals(roleID)) {
-                    url = CL_DM_PAGE;
-                } else if ("GU".equals(roleID)) {
-                    url = GU_PAGE;
-                } else if ("LM".equals(roleID)) {
-                    url = LM_PAGE;
-                } else if ("ST".equals(roleID)) {
-                    url = ST_PAGE;
-                } else {
-                    session.setAttribute("ERROR_MESSAGE", "Your role is not support in our Database!");
+        HttpSession session = request.getSession();
+        CommentError commentError = new CommentError("","","","","","");
+        try{
+            // -- Generate CommentID --//
+            UserDTO user = (UserDTO) session.getAttribute("LOGIN_USER");
+            CommentDAO cmtdao = new CommentDAO();
+            String commentID = request.getParameter("commentID");
+            commentID = commentID + String.valueOf(cmtdao.getQuantity()+1);
+            // -- Done --//
+
+            String commentContent = request.getParameter("commentContent");            
+            String repliedTo = request.getParameter("repliedTo");
+            
+            //eventID
+            eventDTO event = (eventDTO) session.getAttribute("CURRENT_EVENT");
+//            String eventID = event.getEventID();
+            String eventID = "Yeah boi";
+            String CommentBy = user.getUserID();
+            boolean check = true;
+            if(commentContent.length()>500){
+                check = false;
+            }
+            if (check) {               
+                CommentDTO comment = new CommentDTO(commentID, commentContent, repliedTo, eventID, 1, CommentBy);
+                boolean checkInsert = cmtdao.insertComment(comment);
+                if (checkInsert) {
+                    request.setAttribute("Comment ERROR", commentError);
                 }
-            } else {
-                session.setAttribute("ERROR_MESSAGE", "Incorrect UserID or Password!");
+            }else{
+                url = ERROR;
             }
         } catch (Exception e) {
-            log("ERROR at LoginController: " + e.toString());
+            log("Error at CreateController: " + e.toString());
         } finally {
-            response.sendRedirect(url);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
