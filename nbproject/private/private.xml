@@ -2,6 +2,16 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+            <file>file:/D:/For%20Coding/Git%20Store/swp-project-event-management/src/java/controller/CommentUpdateController.java</file>
+            <file>file:/D:/For%20Coding/Git%20Store/swp-project-event-management/src/java/comment/CommentDAO.java</file>
+            <file>file:/D:/For%20Coding/Git%20Store/swp-project-event-management/src/java/user/UserDTO.java</file>
+            <file>file:/D:/For%20Coding/Git%20Store/swp-project-event-management/src/java/controller/MainController.java</file>
+            <file>file:/D:/For%20Coding/Git%20Store/swp-project-event-management/src/java/controller/CommentAddController.java</file>
+        </group>
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
     </open-files>
 </project-private>

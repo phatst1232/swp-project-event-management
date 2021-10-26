@@ -30,7 +30,16 @@ public class MainController extends HttpServlet {
     //-- User
     private static final String USER_PROFILE = "ShowProfileController";
     private static final String SEARCH_USER = "SearchUserController";
+<<<<<<< HEAD
 
+=======
+    //-- Comment
+    private static final String COMMENT_VIEW = "CommentViewController";
+    private static final String COMMENT_ADD = "CommentAddController";
+    private static final String COMMENT_UPDATE = "CommentUpdateController";
+    private static final String COMMENT_DELETE = "CommentDeleteController";
+    
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -51,6 +60,17 @@ public class MainController extends HttpServlet {
                 url = SHOW_EVENT;
             } else if ("profile".equals(action)) {
                 url = USER_PROFILE;
+<<<<<<< HEAD
+=======
+            }else if ("View comment".equals(action)) {
+                url = COMMENT_VIEW;
+            }else if ("Add comment".equals(action)) {
+                url = COMMENT_ADD;
+            }else if ("Update comment".equals(action)) {
+                url = COMMENT_UPDATE;
+            }else if ("Delete comment".equals(action)) {
+                url = COMMENT_DELETE;
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
             }else if ("Search user".equals(action)) {
                 url = SEARCH_USER;
             } else {

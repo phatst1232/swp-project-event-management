@@ -47,12 +47,19 @@ public class UserDAO {
                     String email = rs.getString("Email");
                     String statusID = rs.getString("statusID");
                     String majorID = rs.getString("majorID");
+<<<<<<< HEAD
                     String clubID = rs.getString("clubID");
                     String dmID = rs.getString("dmID");
                     String avtLink = rs.getString("avtLink");
                     
                    
                     list.add(new UserDTO(userID, userName, password, roleID, address, phoneNumber, email, statusID, majorID, clubID, dmID, avtLink));
+=======
+                    String reportID = rs.getString("reportID");
+                    String interestedDetail = rs.getString("interestedDetail");
+                   
+                    list.add(new UserDTO(userID, userName, password, roleID, address, phoneNumber, email, statusID, majorID, reportID, interestedDetail, "", ""));
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
                 }
             }
         } catch (Exception e) {
@@ -78,7 +85,11 @@ public class UserDAO {
         ResultSet rs = null;
         try {
             conn = DBUtils.getConnection();
+<<<<<<< HEAD
             String sql = " SELECT userID, userName, email, phoneNumber, ClubID, DmID, roleID, avtLink FROM tblUsers "
+=======
+            String sql = " SELECT userName, roleID FROM tblUsers "
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
                     + " WHERE userID=? AND Password=? AND statusID = 'AC' ";
             stm = conn.prepareStatement(sql);
             stm.setString(1, userID);
@@ -219,6 +230,7 @@ public class UserDAO {
         }
         return clubName;
     }
+<<<<<<< HEAD
     
     public String getDMName(String dmID) throws SQLException {
         String dmName=null;
@@ -286,6 +298,14 @@ public class UserDAO {
         return roleName;
     }
     
+=======
+
+    public boolean isFPTEmail(String email) {
+        String regex = "^[a-z][a-z0-9_\\.]{5,32}@fpt.edu.vn\\b$";
+        return email.matches(regex);
+    }
+
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
     public boolean updateUser(UserDTO user) throws SQLException {
         boolean check = false;
         Connection conn = null;

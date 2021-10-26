@@ -5,16 +5,22 @@
  */
 package controller;
 
+<<<<<<< HEAD
 import comment.CommentDAO;
 import comment.CommentDTO;
 import comment.CommentError;
+=======
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 import javax.servlet.http.HttpSession;
+=======
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
 
 /**
  *
@@ -22,12 +28,18 @@ import javax.servlet.http.HttpSession;
  */
 public class CommentUpdateController extends HttpServlet {
 
+<<<<<<< HEAD
     private static final String ERROR = "eventpage.jsp";
     private static final String SUCCESS = "eventpage.jsp";
+=======
+    public static final String ERROR = "eventpage.jsp";
+    public static final String SUCCESS = "eventpage.jsp";
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+<<<<<<< HEAD
         String url = ERROR;
         HttpSession session = request.getSession();
         CommentError commentError = new CommentError("","");
@@ -54,6 +66,9 @@ public class CommentUpdateController extends HttpServlet {
         } finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
+=======
+        
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

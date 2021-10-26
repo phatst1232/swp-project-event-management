@@ -7,9 +7,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://kit.fontawesome.com/912e671d73.js" crossorigin="anonymous"></script>
+<<<<<<< HEAD
         <script src="js/script.js"></script>
 
         <link rel="stylesheet" href="css/mainpage.css">
+=======
+        <script src="./js/script.js"></script>
+
+        <link rel="stylesheet" href="./css/mainpage.css">
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
     </head>
 
     <body>
@@ -19,6 +25,7 @@
                 search = "";
             }
         %>
+<<<<<<< HEAD
         <!-- navigation bar -->
         <div class="sidebar">
             <div class="logo-content">
@@ -423,6 +430,57 @@
     <!-- Pop UP login BOx -->
     <!-- <input type="checkbox" id="show">
             <div id="loginbox">
+=======
+        <!-- top stage -->
+        <div class="top">
+            <div id="Logo">
+                <img src="image\244351476_224631916395247_2148764225629497919_n.png" 
+                     height="120px"
+                     width="140px">
+            </div>
+            <div id="searchbar">
+                <form action="MainController">
+                    <input type="text" name="search" 
+                           value="<%=search%>" placeholder="Search..." />
+                    <button type="submit" name="action" value="Search event"><img src="image\search.png" width="20px" height="20px" />
+                    </button>
+                </form>
+            </div>        
+
+            <div id="category">
+                <button id="categorybtn">
+                    <img src="image\icons8-listing-24.png" />
+                </button>
+                <div id="category-content">
+                    <a href="">Home</a>
+                    <a href="ListEvent.jsp">Event</a>
+                    <a href=""><label for="show">Login</label></a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- contain stage  -->
+        <div class="container">
+            <!-- main -->
+            <h2>Upcoming! Do not miss!!!</h2>
+            <div class="slideshow-container">
+                <div class="mySlides fade">
+                    <img src="https://img.freepik.com/free-psd/event-planner-landing-page_23-2149104376.jpg?size=626&ext=jpg"
+                         width="100%">
+                </div>
+                <button class="accordion" onclick="function()">
+                    <img src="" 
+                         width="15px">Details </button>
+                <div class="contain">
+                    <p id="demo"></p>
+
+                </div>
+                <!-- pop-up login box code -->
+                <input type="checkbox" id="show">
+
+                <div id="loginbox">
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
 
                     <label for="show" class="close-btn fas fa-times"></label>
 
@@ -436,6 +494,7 @@
                         <a class="btn-google" href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8084/swp-project-event-management/login-google&response_type=code
                            &client_id=435275509930-p8hod642g2vq6cig8ln9g9u2oi3r71v0.apps.googleusercontent.com&approval_prompt=force"><img src="image\Google_icon.png"> LOGIN WITH FPT EMAIL</a>
                     </form>
+<<<<<<< HEAD
                 </div>
             </div> -->
 
@@ -445,6 +504,30 @@
 
 
             <script type="text/javascript">
+=======
+
+                </div>
+                <!-- end of login box -->
+
+            </div> <br>
+
+            <script type="text/javascript">
+                var acc = document.getElementsByClassName("accordion");
+                var i;
+
+                for (i = 0; i < acc.length; i++) {
+                    acc[i].addEventListener("click", function () {
+                        this.classList.toggle("active");
+                        var panel = this.nextElementSibling;
+                        if (panel.style.maxHeight) {
+                            panel.style.maxHeight = null;
+                        } else {
+                            panel.style.maxHeight = panel.scrollHeight + "px";
+                        }
+                    });
+                }
+
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
 
                 // Set the date we're counting down to
                 var countDownDate = new Date("Jan 5, 2022 15:37:25").getTime();
@@ -466,7 +549,11 @@
 
                     // Output the result in an element with id="demo"
                     document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+<<<<<<< HEAD
                             + minutes + "m " + seconds + "s " + "left";
+=======
+                            + minutes + "m " + seconds + "s ";
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
 
                     // If the count down is over, write some text 
                     if (distance < 0) {
@@ -476,9 +563,21 @@
                 }, 0);
             </script>
 
+<<<<<<< HEAD
 
     <!-- bottom stage  -->
     <!--         <div class="bottom">
+=======
+            <!-- side -->
+         <!--   <div id="sidebar">
+
+            </div>  --!>
+
+        </div>
+
+        <!-- bottom stage  -->
+        <div class="bottom">
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
             <div id="bot-nav">
                 <div>
                     <a href="#">
@@ -494,7 +593,11 @@
             </div>
             <h3>@Copyright for fpt university group 2 project</h3>
         </div>
+<<<<<<< HEAD
     -->
 </body>
+=======
+    </body>
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
 
 </html>

@@ -6,40 +6,38 @@
 package controller;
 
 import comment.CommentDAO;
+import comment.CommentDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author benth
  */
-public class CommentDeleteController extends HttpServlet {
+public class CommentViewController extends HttpServlet {
 
     private static final String ERROR = "eventpage.jsp";
     private static final String SUCCESS = "eventpage.jsp";
     
-<<<<<<< HEAD
-=======
-    
->>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String commentID = request.getParameter("commentID");
             CommentDAO dao = new CommentDAO();
-            boolean check = dao.deleteComment(commentID);
-            if (check) {
+            CommentDTO cmt = dao.getComment(request.getParameter("search"));
+            HttpSession session = request.getSession();
+            if (cmt != null) {
+                session.setAttribute("showcmt", cmt);
                 url = SUCCESS;
             }
-
         } catch (Exception e) {
-            log("Error at CommentDeleteController: " + e.toString());
+            log("Error at CommentViewController" + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

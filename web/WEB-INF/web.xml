@@ -33,6 +33,7 @@
         <servlet-class>controller.SearchUserController</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>ViewProfileController</servlet-name>
         <servlet-class>controller.ViewProfileController</servlet-class>
     </servlet>
@@ -43,11 +44,26 @@
     <servlet>
         <servlet-name>CommentDeleteController</servlet-name>
         <servlet-class>controller.CommentDeleteController</servlet-class>
+=======
+        <servlet-name>AddCommentController</servlet-name>
+        <servlet-class>controller.CommentAddController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CommentViewController</servlet-name>
+        <servlet-class>controller.CommentViewController</servlet-class>
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
     </servlet>
     <servlet>
         <servlet-name>CommentUpdateController</servlet-name>
         <servlet-class>controller.CommentUpdateController</servlet-class>
     </servlet>
+<<<<<<< HEAD
+=======
+    <servlet>
+        <servlet-name>CommentDeleteController</servlet-name>
+        <servlet-class>controller.CommentDeleteController</servlet-class>
+    </servlet>
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
     <servlet-mapping>
         <servlet-name>AddEventController</servlet-name>
         <url-pattern>/AddEventController</url-pattern>
@@ -81,6 +97,7 @@
         <url-pattern>/SearchUserController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>ViewProfileController</servlet-name>
         <url-pattern>/ViewProfileController</url-pattern>
     </servlet-mapping>
@@ -91,11 +108,26 @@
     <servlet-mapping>
         <servlet-name>CommentDeleteController</servlet-name>
         <url-pattern>/CommentDeleteController</url-pattern>
+=======
+        <servlet-name>AddCommentController</servlet-name>
+        <url-pattern>/AddCommentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CommentViewController</servlet-name>
+        <url-pattern>/CommentViewController</url-pattern>
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CommentUpdateController</servlet-name>
         <url-pattern>/CommentUpdateController</url-pattern>
     </servlet-mapping>
+<<<<<<< HEAD
+=======
+    <servlet-mapping>
+        <servlet-name>CommentDeleteController</servlet-name>
+        <url-pattern>/CommentDeleteController</url-pattern>
+    </servlet-mapping>
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
     <session-config>
         <session-timeout>
             30

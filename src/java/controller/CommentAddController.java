@@ -5,6 +5,7 @@
  */
 package controller;
 
+<<<<<<< HEAD
 import comment.CommentDAO;
 import comment.CommentDTO;
 import comment.CommentError;
@@ -12,6 +13,11 @@ import event.eventDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.Math.random;
+=======
+import event.eventDTO;
+import java.io.IOException;
+import java.io.PrintWriter;
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +31,7 @@ import user.UserDTO;
  */
 public class CommentAddController extends HttpServlet {
 
+<<<<<<< HEAD
     public static final String ERROR = "enventpagetest.jsp";
     public static final String SUCCESS = "enventpagetest.jsp";
     
@@ -65,6 +72,32 @@ public class CommentAddController extends HttpServlet {
             }else{
                 url = ERROR;
             }
+=======
+    public static final String ERROR = "eventpage.jsp";
+    public static final String SUCCESS = "eventpage.jsp";
+    
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        String url = ERROR;
+        HttpSession session = request.getSession();
+        try {
+            UserDTO user = (UserDTO) session.getAttribute("LOGIN_USER");
+            eventDTO event = (eventDTO) session.getAttribute("CURRENT_EVENT");
+            
+            
+            String commentID = request.getParameter("commentID");
+            String commentDetail = request.getParameter("commentDetail");
+            String replyID;
+            String eventID = event.getEventID();
+            String userID = user.getUserID();
+            
+            
+            boolean check = true;
+            if (commentDetail.length() < 0 && commentDetail.length() > 500) {
+                check = false;
+            }
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
         } catch (Exception e) {
             log("Error at CreateController: " + e.toString());
         } finally {

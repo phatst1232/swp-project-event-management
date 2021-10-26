@@ -10,6 +10,7 @@ package comment;
  * @author benth
  */
 public class CommentDTO {
+<<<<<<< HEAD
     private String commentID;
     private String commentContent;
     private String repliedTo;
@@ -45,6 +46,16 @@ public class CommentDTO {
         this.eventID = eventID;
         this.like = like;
         this.commentBy = commentBy;
+=======
+    private String commentID, commentDetail, replyID, userID, eventID;
+
+    public CommentDTO(String commentID, String commentDetail, String replyID, String userID, String eventID) {
+        this.commentID = commentID;
+        this.commentDetail = commentDetail;
+        this.replyID = replyID;
+        this.userID = userID;
+        this.eventID = eventID;
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
     }
 
     public String getCommentID() {
@@ -55,6 +66,7 @@ public class CommentDTO {
         this.commentID = commentID;
     }
 
+<<<<<<< HEAD
     public String getCommentContent() {
         return commentContent;
     }
@@ -93,6 +105,38 @@ public class CommentDTO {
 
     public void setCommentBy(String commentBy) {
         this.commentBy = commentBy;
+=======
+    public String getCommentDetail() {
+        return commentDetail;
+    }
+
+    public void setCommentDetail(String commentDetail) {
+        this.commentDetail = commentDetail;
+    }
+
+    public String getReplyID() {
+        return replyID;
+    }
+
+    public void setReplyID(String replyID) {
+        this.replyID = replyID;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public String getEventID() {
+        return eventID;
+    }
+
+    public void setEventID(String eventID) {
+        this.eventID = eventID;
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
     }
     
     

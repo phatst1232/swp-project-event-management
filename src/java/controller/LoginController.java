@@ -22,7 +22,11 @@ import user.UserDTO;
 public class LoginController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
+<<<<<<< HEAD
     private static final String ADMIN_PAGE = "enventpagetest.jsp";
+=======
+    private static final String ADMIN_PAGE = "LoginPage.jsp";
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
     private static final String CL_DM_PAGE = "LoginPage.jsp";
     private static final String GU_PAGE = "LoginPage.jsp";
     private static final String LM_PAGE = "LoginPage.jsp";

@@ -40,6 +40,7 @@ public class LoginGoogleServlet extends HttpServlet {
         String accessToken = GoogleUtils.getToken(code);
         GooglePojo googlePojo = GoogleUtils.getUserInfo(accessToken);
         UserDAO dao = new UserDAO();
+<<<<<<< HEAD
         UserDTO user = new UserDTO(googlePojo.getId(), "not yet", "*****", "ST", "", "", googlePojo.getEmail(), "AC", null, null, null, "");
         try {
             if (user!=null && dao.isFPTEmail(googlePojo.getEmail())) {
@@ -53,6 +54,14 @@ public class LoginGoogleServlet extends HttpServlet {
                     user=dao.checkLogin(googlePojo.getId(), "*****");
                     session.setAttribute("LOGIN_USER", user);
                 }
+=======
+        UserDTO user = new UserDTO(googlePojo.getId(), googlePojo.getName(), "*****", "ST", "", "", googlePojo.getEmail(), "AC", "", null, "", "", "");
+        try {
+            if (user!=null && dao.isFPTEmail(googlePojo.getEmail())) {
+                session.setAttribute("LOGIN_USER", user);
+                url = SUCCESS;
+                dao.insertUserNew(user);
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
             }
         } catch (SQLException ex) {
             Logger.getLogger(LoginGoogleServlet.class.getName()).log(Level.SEVERE, null, ex);

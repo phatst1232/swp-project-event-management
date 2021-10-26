@@ -19,7 +19,11 @@ import utils.DBUtils;
  * @author benth
  */
 public class CommentDAO {
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
     public CommentDTO getComment(String search) throws SQLException {
         List<CommentDTO> list = new ArrayList<>();
         Connection conn = null;
@@ -29,13 +33,19 @@ public class CommentDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
+<<<<<<< HEAD
                 String sql = " SELECT commentID, commentContent, repliedTo, eventID, [like] FROM tblComments"
                         + " WHERE commentBy LIKE ? AND eventID LIKE ?  ";
+=======
+                String sql = "SELECT commentID, commentDetail, replyID FROM tblComments "
+                        + " WHERE userID LIKE ? AND eventID LIKE ? ";
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, "%" + search + "%");
                 rs = stm.executeQuery();
                 while (rs.next()) {
                     String commentID = rs.getString("commentID");
+<<<<<<< HEAD
                     String commentContent = rs.getString("commentContent");
                     String repliedTo = rs.getString("repliedTo");
                     String eventID = rs.getString("eventID");
@@ -43,6 +53,14 @@ public class CommentDAO {
                     String commentBy = rs.getString("CommentBy");
 
                     list.add(new CommentDTO(commentID, commentContent, repliedTo, eventID, like, commentBy));
+=======
+                    String commentDetail = rs.getString("commentDetail");
+                    String replyID = rs.getString("replyID");
+                    String userID = rs.getString("userID");
+                    String eventID = rs.getString("eventID");
+
+                    list.add(new CommentDTO(commentID, commentDetail, replyID, userID, eventID));
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
                 }
             }
         } catch (Exception e) {
@@ -59,6 +77,7 @@ public class CommentDAO {
         }
         return cmt;
     }
+<<<<<<< HEAD
     
     public int getQuantity() throws SQLException {
         int quantity = 0;
@@ -91,6 +110,9 @@ public class CommentDAO {
         return quantity;
     }
     
+=======
+
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
     //crud
     public boolean insertComment(CommentDTO comment) throws SQLException, ClassNotFoundException, NamingException {
         boolean check = false;
@@ -99,6 +121,7 @@ public class CommentDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
+<<<<<<< HEAD
                 String sql = "INSERT INTO tblComments(commentID, commentContent, repliedTo, commentBy)"
                         + " VALUES(?,?,?,?)";
                 stm = conn.prepareStatement(sql);
@@ -106,6 +129,16 @@ public class CommentDAO {
                 stm.setString(2, comment.getCommentContent());
                 stm.setString(3, comment.getRepliedTo());
                 stm.setString(4, comment.getCommentBy());
+=======
+                String sql = "INSERT INTO tblComments(commentID, commentDetail, replyID, userID, eventID)"
+                        + " VALUES(?,?,?,?,?)";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, comment.getCommentID());
+                stm.setString(2, comment.getCommentDetail());
+                stm.setString(3, comment.getReplyID());
+                stm.setString(4, comment.getUserID());
+                stm.setString(5, comment.getEventID());
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
                 check = stm.executeUpdate() > 0;
             }
         } finally {
@@ -118,7 +151,11 @@ public class CommentDAO {
         }
         return check;
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
     public boolean updateComment(CommentDTO cmt) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -127,11 +164,22 @@ public class CommentDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 String sql = " UPDATE tblComments "
+<<<<<<< HEAD
                         + " SET commentDetail=? "
                         + " WHERE commentID=? ";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, cmt.getCommentID());
                 stm.setString(2, cmt.getCommentContent());
+=======
+                        + " SET commentID=?, commentDetail=?, replyID=? "
+                        + " WHERE userID=? AND WHERE eventID = ? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, cmt.getCommentID());
+                stm.setString(2, cmt.getCommentDetail());
+                stm.setString(3, cmt.getReplyID());
+                stm.setString(4, cmt.getUserID());
+                stm.setString(5, cmt.getEventID());
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
                 check = stm.executeUpdate() > 0;
             }
         } catch (Exception e) {
@@ -171,6 +219,7 @@ public class CommentDAO {
         }
         return result;
     }
+<<<<<<< HEAD
 
 
     // thêm 1 insertLike ( like +1 )
@@ -178,3 +227,6 @@ public class CommentDAO {
     
     
 }   
+=======
+}
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199

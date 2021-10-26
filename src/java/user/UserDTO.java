@@ -19,15 +19,26 @@ public class UserDTO {
     private String email;
     private String statusID;
     private String majorID;
+<<<<<<< HEAD
     private String clubID;
     private String dmID;
     private String avtLink;
+=======
+    private String reportID;
+    private String interestedDetail;
+    private String clubID;
+    private String dmID;
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
     
 
     public UserDTO() {
     }
 
+<<<<<<< HEAD
     public UserDTO(String userID, String userName, String password, String roleID, String address, String phoneNumber, String email, String statusID, String majorID, String clubID, String dmID, String avtLink) {
+=======
+    public UserDTO(String userID, String userName, String password, String roleID, String address, String phoneNumber, String email, String statusID, String majorID, String reportID, String interestedDetail, String clubID, String dmID) {
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
         this.userID = userID;
         this.userName = userName;
         this.password = password;
@@ -37,10 +48,27 @@ public class UserDTO {
         this.email = email;
         this.statusID = statusID;
         this.majorID = majorID;
+<<<<<<< HEAD
         this.clubID = clubID;
         this.dmID = dmID;
         this.avtLink = avtLink;
     }    
+=======
+        this.reportID = reportID;
+        this.interestedDetail = interestedDetail;
+        this.clubID = clubID;
+        this.dmID = dmID;
+    }
+
+    public UserDTO(String userID, String userName, String password, String roleID) {
+        this.userID = userID;
+        this.userName = userName;
+        this.password = password;
+        this.roleID = roleID;
+    }
+    
+    
+>>>>>>> b7ee3afaeae9bc67af717edc5db030aa29c91199
 
     public String getUserID() {
         return userID;
