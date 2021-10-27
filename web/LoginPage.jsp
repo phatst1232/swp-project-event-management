@@ -155,9 +155,11 @@
                         %>
                         <div class="grid-item" style="background-image: url('<%=Edao.getImageLink(event.getEventID())%>');">
                             <p id="time-box">
-                                <a href="ShowAnEvent.jsp"><%=event.getEventName()%>
-                                    <input type="hidden" name="eventID" value="<%=event.getEventID()%>"/>
-                                </a>
+                            <form action="MainController" id="showEventForm">
+                                <input type="hidden" name="eventID" value="<%=event.getEventID()%>"/>                           
+                                <input type="hidden" name="action" value="show event"/>
+                            </form>  
+                                <a href="#" onclick="document.getElementById('showEventForm').submit()"><%=event.getEventName()%></a>
                             <p id="box"><img src="image/time-regular-24.png">Slot: <%=Edao.getListSlot(event.getEventID())%></p>
                             </p>
                             <p><%=event.getEventStartDate()%></p>
