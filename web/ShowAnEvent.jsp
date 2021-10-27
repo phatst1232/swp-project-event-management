@@ -260,14 +260,14 @@
 
                         </div>
                         <div class="sidebarright-contact">
-                            <button class="joinbutton">
+                            <button class="joinbutton disable">
                                 <h2>Join Now!!!</h2>
                             </button>
                             <div class="followliked">
 
                                 <div class="buttonwrapper">
                                     <span>1000</span><br>
-                                    <button class="followbutton">
+                                    <button class="followbutton disable">
                                         <i><img src="image/notepad-regular-24.png" width="16px" alt=""></i>
                                         Follow
                                     </button>
@@ -275,7 +275,7 @@
                                 </div>
                                 <div class="buttonwrapper">
                                     <span><%=event.getLike()%></span><br>
-                                    <button class="likebutton">
+                                    <button class="likebutton disable">
                                         <i><img src="image/heart-regular-24.png" width="16px" alt=""></i>
                                         <span>Like</span>
                                     </button>
