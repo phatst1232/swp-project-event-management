@@ -27,6 +27,7 @@ public class MainController extends HttpServlet {
     private static final String SEARCH_EVENT = "SearchEventController";
     private static final String CREATE_EVENT = "AddEventController";
     private static final String SHOW_EVENT = "ShowEventController";
+    private static final String COMMENT_EVENT = "CommentEventController"; 
     //-- User
     private static final String USER_PROFILE = "ShowProfileController";
     private static final String SEARCH_USER = "SearchUserController";
@@ -49,6 +50,8 @@ public class MainController extends HttpServlet {
                 url = SEARCH_EVENT;
             } else if ("show event".equals(action)) {
                 url = SHOW_EVENT;
+            } else if ("post comment".equals(action)) {
+                url = COMMENT_EVENT;
             } else if ("profile".equals(action)) {
                 url = USER_PROFILE;
             }else if ("Search user".equals(action)) {

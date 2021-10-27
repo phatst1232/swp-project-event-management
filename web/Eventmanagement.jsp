@@ -32,13 +32,12 @@
             }
         %>
         <%
-
             List<eventDTO> showing_list = (List<eventDTO>) request.getAttribute("LIST_EVENT");
             eventDAO dao = new eventDAO();
             if (showing_list == null && search != null) {
                 showing_list = dao.getListEvent("");
             }
-            eventDTO event = showing_list.get(0);
+            eventDTO newest_event = showing_list.get(0);
         %>
         <!-- navigation bar -->
         <div class="sidebar">
@@ -98,18 +97,18 @@
 
         <!-- Home Content -->
         <div class="home-content">
-            
-            <div class="event-content">
-                <div class="content">
-                    <p class="text"><%=event.getEventName()%></p>
-                    <p class="txt"><img src="image/calendar-7-24.png" width="25px" height="25px"><%=event.getEventStartDate()%></p>
+
+            <div class="event-content" >
+                <div class="content" >
+                    <p class="text"><%=newest_event.getEventName()%></p>
+                    <p class="txt"><img src="image/calendar-7-24.png" width="25px" height="25px"><%=newest_event.getEventStartDate()%></p>
                     <p id="demo"></p>
 
-                    <form action="MainController" id="showEventForm">
-                        <input type="hidden" name="eventID" value="<%=event.getEventID()%>"/>                           
+                    <form action="MainController" id="showNewestEvent">
+                        <input type="hidden" name="eventID" value="<%=newest_event.getEventID()%>"/>                           
                         <input type="hidden" name="action" value="show event"/>
                     </form>  
-                    <a href="#" onclick="document.getElementById('showEventForm').submit()">Join now</a>
+                    <a href="#" id="showNewestEvent" onclick="document.getElementById('showNewestEvent').submit()">Join now</a>
                 </div>
             </div>
 
@@ -122,7 +121,7 @@
 //                        showing_list = dao.getListEvent("");
 //                    }
 //                    eventDTO event = new eventDTO();
-
+                    eventDTO event = new eventDTO();
                     int num_of_slide = 0;
                     if (showing_list != null) {
                         if (showing_list.size() % 6 == 0 && showing_list.size() != 0) {
@@ -130,9 +129,9 @@
                         } else {
                             num_of_slide = showing_list.size() / 6 + 1;
                         }
-
+                        int index = 0;
                         if (!showing_list.isEmpty()) {
-                            int index = 0;
+
                             for (int i = 1; i <= num_of_slide; i++) {
                 %>
                 <div class="grid-contain fade">
@@ -142,14 +141,17 @@
                                 if (index < showing_list.size()) {
                                     event = showing_list.get(index);
                                     index++;
+                                    String eventID = event.getEventID();
                                     String like = String.valueOf(event.getLike());
                                     String follow = String.valueOf(dao.countFollow(event.getEventID()));
                         %>
                         <div class="grid-item" style="background-image: url('<%=dao.getImageLink(event.getEventID())%>');">
                             <p id="time-box">
-                                <a href="ShowAnEvent.jsp"><%=event.getEventName()%>
-                                    <input type="hidden" name="eventID" value="<%=event.getEventID()%>"/>
-                                </a>
+                            <form action="MainController" id="<%=eventID%>">
+                                <input type="hidden" name="eventID" value="<%=eventID%>"/>                           
+                                <input type="hidden" name="action" value="show event"/>
+                            </form>  
+                            <a href="#" id="showAnEvent" onclick="document.getElementById('<%=eventID%>').submit()"><%=event.getEventName()%></a>
                             <p id="box"><img src="image/time-regular-24.png">Slot: <%=dao.getListSlot(event.getEventID())%></p>
                             </p>
                             <p><%=event.getEventStartDate()%></p>
@@ -436,7 +438,7 @@
                     </div>
                 </form>
             </div>
-            
+
         </div>
     </div>
     <!-- End home content -->
