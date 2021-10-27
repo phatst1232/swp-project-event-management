@@ -38,6 +38,7 @@ public class eventDTO {
         this.content=content;
         this.clubID=clubID;
         this.dmID=dmID;
+        this.like=like;
     }
 
     public String getEventID() {

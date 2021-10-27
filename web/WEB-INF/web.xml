@@ -32,10 +32,6 @@
         <servlet-name>SearchUserController</servlet-name>
         <servlet-class>controller.SearchUserController</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>ViewProfileController</servlet-name>
-        <servlet-class>controller.ViewProfileController</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>AddEventController</servlet-name>
         <url-pattern>/AddEventController</url-pattern>
@@ -67,10 +63,6 @@
     <servlet-mapping>
         <servlet-name>SearchUserController</servlet-name>
         <url-pattern>/SearchUserController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ViewProfileController</servlet-name>
-        <url-pattern>/ViewProfileController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
