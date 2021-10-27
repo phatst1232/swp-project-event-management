@@ -28,6 +28,7 @@
         <servlet-name>SearchUserController</servlet-name>
         <servlet-class>controller.SearchUserController</servlet-class>
     </servlet>
+<<<<<<< HEAD
 
     <servlet>
         <servlet-name>ViewProfileController</servlet-name>
@@ -37,15 +38,23 @@
         <servlet-name>CreateEventController</servlet-name>
         <servlet-class>controller.CreateEventController</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>SrEController</servlet-name>
-        <servlet-class>controller.SrEController</servlet-class>
-    </servlet>
+
     <servlet>
         <servlet-name>UpdateUserProfileController</servlet-name>
         <servlet-class>controller.UpdateUserProfileController</servlet-class>
     </servlet>
     <servlet>
+
+    <servlet>
+        <servlet-name>CommentEventController</servlet-name>
+        <servlet-class>controller.CommentEventController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>JoinEventController</servlet-name>
+        <servlet-class>controller.JoinEventController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+
         <servlet-name>AddEventController</servlet-name>
         <servlet-class>controller.AddEventController</servlet-class>
     </servlet>
@@ -78,6 +87,7 @@
         <url-pattern>/SearchUserController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+
         <servlet-name>ViewProfileController</servlet-name>
         <url-pattern>/ViewProfileController</url-pattern>
     </servlet-mapping>
@@ -85,10 +95,7 @@
         <servlet-name>CreateEventController</servlet-name>
         <url-pattern>/CreateEventController</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SrEController</servlet-name>
-        <url-pattern>/SrEController</url-pattern>
-    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>UpdateUserProfileController</servlet-name>
         <url-pattern>/UpdateUserProfileController</url-pattern>
@@ -96,6 +103,14 @@
     <servlet-mapping>
         <servlet-name>AddEventController</servlet-name>
         <url-pattern>/AddEventController</url-pattern>
+
+        <servlet-name>CommentEventController</servlet-name>
+        <url-pattern>/CommentEventController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>JoinEventController</servlet-name>
+        <url-pattern>/JoinEventController</url-pattern>
+
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -288,6 +288,72 @@ public class UserDAO {
         return roleName;
     }
     
+    public String getUserName(String userID) throws SQLException {
+        String userName=null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " SELECT userName "
+                        + " FROM tblUsers "
+                        + " WHERE userID=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, userID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    userName = rs.getString("userName");
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return userName;
+    }
+    
+    public String getAvtLink(String userID) throws SQLException {
+        String avtLink=null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " SELECT avtLink "
+                        + " FROM tblUsers "
+                        + " WHERE userID=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, userID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    avtLink = rs.getString("avtLink");
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return avtLink;
+    }
+    
     public boolean updateUser(UserDTO user) throws SQLException {
         boolean check = false;
         Connection conn = null;

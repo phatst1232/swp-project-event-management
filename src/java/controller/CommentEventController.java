@@ -5,66 +5,54 @@
  */
 package controller;
 
+import event.CommentDTO;
+import event.eventDAO;
+import event.eventDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import user.UserDAO;
-import user.UserDTO;
 
 /**
  *
- * @author benth
+ * @author phats
  */
-public class LoginController extends HttpServlet {
+public class CommentEventController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String ADMIN_PAGE = "LoginPage.jsp";
-    private static final String CL_DM_PAGE = "LoginPage.jsp";
-    private static final String GU_PAGE = "LoginPage.jsp";
-    private static final String LM_PAGE = "LoginPage.jsp";
-    private static final String ST_PAGE = "LoginPage.jsp";
+    private static final String SUCCESS = "ShowAnEvent.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-
+        HttpSession session = request.getSession();
         String url = ERROR;
         try {
-            String userID = request.getParameter("userID");
-            String password = request.getParameter("password");
-            UserDAO dao = new UserDAO();
-            UserDTO user = dao.checkLogin(userID, password);
-            HttpSession session = request.getSession();
-            if (user != null) {              
-                session.setAttribute("LOGIN_USER", user);
-                String roleID = user.getRoleID();
-                if ("AD".equals(roleID)) {
-                    url = ADMIN_PAGE;
-                } else if ("CL".equals(roleID) || "DM".equals(roleID)) {
-                    url = CL_DM_PAGE;
-                } else if ("GU".equals(roleID)) {
-                    url = GU_PAGE;
-                } else if ("LM".equals(roleID)) {
-                    url = LM_PAGE;
-                } else if ("ST".equals(roleID)) {
-                    url = ST_PAGE;
-                } else {
-                    session.setAttribute("ERROR_MESSAGE", "Your role is not support in our Database!");
+            String commentContent = request.getParameter("commentContent");
+            String eventID = request.getParameter("eventID");
+            String commentBy = request.getParameter("commentBy");
+            eventDAO dao = new eventDAO();           
+            CommentDTO comment = new CommentDTO(0, commentContent, null, eventID, 0, null, commentBy);
+            if (comment != null) {
+                dao.postComment(comment);
+                request.setAttribute("eventID", eventID);
+                if (session.getAttribute("LOGIN_USER") != null) {
+                    url = SUCCESS;
                 }
-            } else {
-                session.setAttribute("ERROR_MESSAGE", "Incorrect UserID or Password!");
             }
         } catch (Exception e) {
-            log("ERROR at LoginController: " + e.toString());
+            log("Error at CommentEventController" + e.toString());
         } finally {
-            response.sendRedirect(url);
+            response.sendRedirect("ShowAnEvent.jsp");
         }
     }
 
