@@ -22,7 +22,7 @@ import user.UserDTO;
 public class LoginController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String ADMIN_PAGE = "LoginPage.jsp";
+    private static final String ADMIN_PAGE = "CreateEvent.jsp";
     private static final String CL_DM_PAGE = "LoginPage.jsp";
     private static final String GU_PAGE = "LoginPage.jsp";
     private static final String LM_PAGE = "LoginPage.jsp";
@@ -30,7 +30,8 @@ public class LoginController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+                response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String url = ERROR;
         try {
             String userID = request.getParameter("userID");

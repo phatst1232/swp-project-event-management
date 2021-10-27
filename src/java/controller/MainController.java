@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,11 @@ import javax.servlet.http.HttpSession;
  *
  * @author benth
  */
+@MultipartConfig(
+        fileSizeThreshold = 1024 * 1024 * 10,
+        maxFileSize = 1024 * 1024 * 50,
+        maxRequestSize = 1024 * 1024 * 100
+)
 public class MainController extends HttpServlet {
 
     //--Page
@@ -30,6 +36,10 @@ public class MainController extends HttpServlet {
     //-- User
     private static final String USER_PROFILE = "ShowProfileController";
     private static final String SEARCH_USER = "SearchUserController";
+    private static final String UP_PROFILE = "UpdateUserProfileController";
+    
+    private static final String SearchImg = "SrEController";
+    private static final String TestCreate = "CreateEvent2Controller";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -51,9 +61,15 @@ public class MainController extends HttpServlet {
                 url = SHOW_EVENT;
             } else if ("profile".equals(action)) {
                 url = USER_PROFILE;
-            }else if ("Search user".equals(action)) {
+            } else if ("Search user".equals(action)) {
                 url = SEARCH_USER;
-            } else {
+            }else if ("Create_Event".equals(action)) {
+                url = TestCreate;
+            } else if ("SearchE".equals(action)) {
+                url = SearchImg;
+            }else if ("userpr5".equals(action)) {
+                url = UP_PROFILE;
+            }else {
                 HttpSession session = request.getSession();
                 session.setAttribute("ERROR_MESSAGE", "Function is not avaiable!!!!");
             }

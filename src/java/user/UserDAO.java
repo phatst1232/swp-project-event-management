@@ -78,7 +78,7 @@ public class UserDAO {
         ResultSet rs = null;
         try {
             conn = DBUtils.getConnection();
-            String sql = " SELECT userID, userName, email, phoneNumber, ClubID, DmID, roleID, avtLink FROM tblUsers "
+            String sql = " SELECT userID, userName,address, email, phoneNumber, majorID, ClubID, DmID, roleID, avtLink FROM tblUsers "
                     + " WHERE userID=? AND Password=? AND statusID = 'AC' ";
             stm = conn.prepareStatement(sql);
             stm.setString(1, userID);
@@ -86,13 +86,15 @@ public class UserDAO {
             rs = stm.executeQuery();
             if (rs.next()) {
                 String userName = rs.getString("userName");
+                String address = rs.getString("address");
                 String email = rs.getString("email");
                 String phone = rs.getString("phoneNumber");
+                String majorID = rs.getString("MajorID");
                 String ClubID = rs.getString("ClubID");
                 String DmID = rs.getString("DmID");
                 String roleID = rs.getString("roleID");
                 String avtLink = rs.getString("avtLink");
-                user = new UserDTO(userID, userName, "****", roleID, "", phone, email, "AC", "",ClubID, DmID,   avtLink);
+                user = new UserDTO(userID, userName, "****", roleID, address, phone, email, "AC", majorID,ClubID, DmID,   avtLink);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -324,7 +326,36 @@ public class UserDAO {
         }
         return check;
     }
-
+    public boolean updateprofile(UserDTO user) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " UPDATE tblUsers "
+                        + " SET userName=?, address=?, phoneNumber=?, avtLink = ? "
+                        + " WHERE userID=?";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, user.getUserName());
+                stm.setString(2, user.getAddress());
+                stm.setString(3, user.getPhoneNumber());
+                stm.setString(4, user.getAvtLink());
+                stm.setString(5, user.getUserID());
+                check = stm.executeUpdate() > 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
     public boolean deleteUser(String userID) throws SQLException {
         boolean result = false;
         Connection conn = null;

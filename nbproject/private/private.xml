@@ -3,19 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/GitHub%20test%20space/swp-project-event-management/src/java/controller/LoginController.java</file>
-            <file>file:/D:/GitHub%20test%20space/swp-project-event-management/src/java/user/UserDAO.java</file>
-            <file>file:/D:/GitHub%20test%20space/swp-project-event-management/web/PersonalPorofile.jsp</file>
-            <file>file:/D:/GitHub%20test%20space/swp-project-event-management/src/java/user/UserDTO.java</file>
-            <file>file:/D:/GitHub%20test%20space/swp-project-event-management/nbproject/build-impl.xml</file>
-            <file>file:/D:/GitHub%20test%20space/swp-project-event-management/src/java/controller/LoginGoogleServlet.java</file>
-            <file>file:/D:/GitHub%20test%20space/swp-project-event-management/src/java/google/utils/GoogleUtils.java</file>
-            <file>file:/D:/GitHub%20test%20space/swp-project-event-management/src/java/controller/ViewProfileController.java</file>
-            <file>file:/D:/GitHub%20test%20space/swp-project-event-management/web/Eventmanagement.jsp</file>
-            <file>file:/D:/GitHub%20test%20space/swp-project-event-management/web/ListEvent.jsp</file>
-            <file>file:/D:/GitHub%20test%20space/swp-project-event-management/src/java/google/accountDTO/GooglePojo.java</file>
-            <file>file:/D:/GitHub%20test%20space/swp-project-event-management/src/java/google/constants/Constants.java</file>
-            <file>file:/D:/GitHub%20test%20space/swp-project-event-management/src/java/controller/LogoutController.java</file>
+            <file>file:/E:/khogitpronhat/swp-project-event-management/src/java/user/UserDAO.java</file>
+            <file>file:/E:/khogitpronhat/swp-project-event-management/src/java/event/eventDTO.java</file>
+            <file>file:/E:/khogitpronhat/swp-project-event-management/web/CreateEvent.jsp</file>
+            <file>file:/E:/khogitpronhat/swp-project-event-management/src/java/controller/AddEventController.java</file>
+            <file>file:/E:/khogitpronhat/swp-project-event-management/src/java/controller/MainController.java</file>
+            <file>file:/E:/khogitpronhat/swp-project-event-management/src/java/controller/LoginController.java</file>
+            <file>file:/E:/khogitpronhat/swp-project-event-management/src/java/event/eventDAO.java</file>
         </group>
     </open-files>
 </project-private>

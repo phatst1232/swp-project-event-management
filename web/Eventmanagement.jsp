@@ -38,7 +38,7 @@
                     </form>
                 </li>
                 <li>
-                    <a href="PersonalPorofile.jsp">
+                    <a href="PersonalProfile.jsp">
                         <i id="user-search"><img src="image\icons8-user-24.png"></i>
                         <span class="link-name">User</span>                   
                     <span class="tooltip">User</span>
