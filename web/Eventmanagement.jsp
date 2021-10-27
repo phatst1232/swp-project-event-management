@@ -20,6 +20,7 @@
         <form action="SearchEventController" name="firstSearch">
             <input type="hidden" name="search" value="">
         </form>
+
         <%
             String search = (String) request.getParameter("search");
             if (search == null) {
@@ -40,6 +41,7 @@
             }
             eventDTO event = showing_list.get(0);
         %>
+
         <!-- navigation bar -->
         <div class="sidebar">
             <div class="logo-content">
@@ -51,6 +53,7 @@
             </div>
             <ul class="nav-list">
                 <li>
+
                     <form action="MainController" name="Search Bar">
                         <i id="but-search"><img src="image\search.png"></i>
                         <input type="text" name="search" id="name" value="<%=search%>" placeholder="Search...">
@@ -79,6 +82,7 @@
                                     </a>
                                     <span class="tooltip">Notification</span>
                                 </li>                   -->
+
             </ul>
             <div class="profile-content">
                 <div class="profile">
@@ -98,7 +102,7 @@
 
         <!-- Home Content -->
         <div class="home-content">
-            
+
             <div class="event-content">
                 <div class="content">
                     <p class="text"><%=event.getEventName()%></p>
@@ -110,6 +114,7 @@
                         <input type="hidden" name="action" value="show event"/>
                     </form>  
                     <a href="#" onclick="document.getElementById('showEventForm').submit()">Join now</a>
+
                 </div>
             </div>
 
@@ -409,8 +414,6 @@
                                 </div>
                             </div>                          -->
 
-
-
             <!-- loginpopup -->
             <input type="checkbox" id="show" >
             <div id="loginbox">
@@ -436,14 +439,16 @@
                     </div>
                 </form>
             </div>
-            
+        
         </div>
+
     </div>
     <!-- End home content -->
 
 
     <script type="text/javascript">
         let but = document.querySelector("#but");
+
         let
         sidebar = document.querySelector(".sidebar");
         let
@@ -455,6 +460,7 @@
         let
         notiBtn = document.querySelector("#noti-search");
         let
+
         logBtn = document.querySelector("#log-out");
         but.onclick = function () {
             sidebar.classList.toggle("active");
@@ -496,10 +502,12 @@
             var slides = document.getElementsByClassName("grid-contain");
             var dots = document.getElementsByClassName("dot");
             if (n > slides.length) {
+
                 slideIndex = 1;
             }
             if (n < 1) {
                 slideIndex = slides.length;
+
             }
             for (i = 0; i < slides.length; i++) {
                 slides[i].style.display = "none";
@@ -522,93 +530,8 @@
                 });
 
         showSlides(1);
+
     </script>
-
-
-
-
-    <!-- contain stage  -->
-    <!--  <div class="container">
-            
-             main -->
-
-
-
-    <!-- Pop UP login BOx -->
-    <!-- <input type="checkbox" id="show">
-            <div id="loginbox">
-    
-                    <label for="show" class="close-btn fas fa-times"></label>
-    
-                    <div class="loginwelcome"><h1>WELCOME</h1></div>
-                    <form  class="login form formactive" action="MainController" method="POST" >
-                        <p>Username</p>
-                        <input type="text" name="userID" class="fields" placeholder="Enter Username" required>
-                        <p>Password</p>
-                        <input type="password" name="password" class="fields" placeholder="Enter Password" required><br>
-                        <input type="submit" name="action" value="login"><br>
-                        <a class="btn-google" href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8084/swp-project-event-management/login-google&response_type=code
-                           &client_id=435275509930-p8hod642g2vq6cig8ln9g9u2oi3r71v0.apps.googleusercontent.com&approval_prompt=force"><img src="image\Google_icon.png"> LOGIN WITH FPT EMAIL</a>
-                    </form>
-                </div>
-            </div> -->
-
-    <!-- end of login box -->
-    <!-- 
-        </div> 
-    
-    
-            <script type="text/javascript">
-    
-                // Set the date we're counting down to
-                var countDownDate = new Date("Jan 5, 2022 15:37:25").getTime();
-    
-                // Update the count down every 1 second
-                var x = setInterval(function () {
-    
-                    // Get today's date and time
-                    var now = new Date().getTime();
-    
-                    // Find the distance between now and the count down date
-                    var distance = countDownDate - now;
-    
-                    // Time calculations for days, hours, minutes and seconds
-                    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-                    // Output the result in an element with id="demo"
-                    document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-                            + minutes + "m " + seconds + "s " + "left";
-    
-                    // If the count down is over, write some text 
-                    if (distance < 0) {
-                        clearInterval(x);
-                        document.getElementById("demo").innerHTML = "EXPIRED";
-                    }
-                }, 0);
-            </script>
-    
-    
-    <!-- bottom stage  -->
-    <!--         <div class="bottom">
-            <div id="bot-nav">
-                <div>
-                    <a href="#">
-                        <img src="https://img.icons8.com/ios-filled/50/000000/facebook-new.png" width="65%" /> </a>
-                </div>
-    
-                <div>Contact</div>
-    
-                <div>
-                    <a href="#">
-                        <img src="https://img.icons8.com/ios-glyphs/50/000000/twitter.png" width="65%" /></a>
-                </div>
-            </div>
-            <h3>@Copyright for fpt university group 2 project</h3>
-        </div>
-    -->
 </body>
 
 </html>

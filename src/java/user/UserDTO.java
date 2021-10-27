@@ -27,6 +27,10 @@ public class UserDTO {
     public UserDTO() {
     }
 
+
+ 
+
+    
     public UserDTO(String userID, String userName, String password, String roleID, String address, String phoneNumber, String email, String statusID, String majorID, String clubID, String dmID, String avtLink) {
         this.userID = userID;
         this.userName = userName;
@@ -137,4 +141,5 @@ public class UserDTO {
     public void setAvtLink(String avtLink) {
         this.avtLink = avtLink;
     }
+
 }

@@ -24,6 +24,7 @@ public class eventDTO {
     private String dmID;
     private int like;
 
+
     public eventDTO() {
     }
 
@@ -128,6 +129,4 @@ public class eventDTO {
     public void setContent(String content) {
         this.content = content;
     }
-    
-    
 }

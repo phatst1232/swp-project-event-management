@@ -34,6 +34,8 @@ public class LoginGoogleServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String code = request.getParameter("code");
         HttpSession session = request.getSession();
         String url = ERROR;
@@ -42,15 +44,14 @@ public class LoginGoogleServlet extends HttpServlet {
         UserDAO dao = new UserDAO();
         UserDTO user = new UserDTO(googlePojo.getId(), "not yet", "*****", "ST", "", "", googlePojo.getEmail(), "AC", null, null, null, "");
         try {
-            if (user!=null && dao.isFPTEmail(googlePojo.getEmail())) {
-                
+            if (user != null && dao.isFPTEmail(googlePojo.getEmail())) {
+
                 url = SUCCESS;
                 if (!dao.checkUserExist(user.getUserID())) {
                     dao.insertUserNew(user);
                     session.setAttribute("LOGIN_USER", user);
-                }
-                else {
-                    user=dao.checkLogin(googlePojo.getId(), "*****");
+                } else {
+                    user = dao.checkLogin(googlePojo.getId(), "*****");
                     session.setAttribute("LOGIN_USER", user);
                 }
             }

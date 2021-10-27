@@ -28,6 +28,7 @@ public class ShowEventController extends HttpServlet {
     private static final String ERROR = "error.jsp";
     private static final String SUCCESS = "ShowAnEvent.jsp";
 
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         request.setCharacterEncoding("UTF-8");

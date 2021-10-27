@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.naming.NamingException;
 import utils.DBUtils;
 
 /**
@@ -28,11 +29,13 @@ public class eventDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
+
                 String sql = " SELECT eventID,eventName,eventCreateDate,eventStartDate, "
                         + " userID,statusID,limitMember, "
                         + " content,clubID,dmID,[like] "
                         + " From tblEvents "
                         + " WHERE eventName like ? AND statusID='AC' ORDER BY eventCreateDate ASC";
+
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, "%" + search + "%");
                 rs = stm.executeQuery();
@@ -48,6 +51,7 @@ public class eventDAO {
                     String clubID = rs.getString("clubID");
                     String dmID = rs.getString("dmID");
                     int like = rs.getInt("like");
+
                     list.add(new eventDTO(eventID, eventName, eventCreateDate, eventStartDate, userID, statusID, limitMember, content, clubID, dmID, like));
                 }
             }
@@ -373,7 +377,7 @@ public class eventDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = " Insert INTO tblEvents(eventID,eventName,eventCreateDate,eventStartDate,userID,statusID,limitMember,content,clubID,dmID,like) "
+                String sql = " Insert INTO tblEvents(eventID,eventName,eventCreateDate,eventStartDate,userID,statusID,limitMember,content,clubID,dmID,[like]) "
                         + " Values (?,?,?,?,?,?,?,?,?,?,?)";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, event.getEventID());
@@ -386,7 +390,150 @@ public class eventDAO {
                 stm.setString(8, event.getContent());
                 stm.setString(9, event.getClubID());
                 stm.setString(10, event.getDmID());
-                stm.setInt(10, event.getLike());
+                stm.setInt(11, event.getLike());
+                check = stm.executeUpdate() > 0;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+    public boolean createEvent(String eventID, String eventName, String img, String CmtImg) throws SQLException, NamingException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " Insert INTO testimg(eventID,eventName,img,CmtImg) "
+                        + " Values (?,?,?,?)";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, eventID);
+                stm.setString(2, eventName);
+                stm.setString(3, img);
+                stm.setString(4, CmtImg);
+                int row = stm.executeUpdate();
+                if (row > 0) {
+                    return true;
+                }
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return false;
+    }
+
+
+    public boolean addCate(String eventID, String cate) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " Insert INTO tblEvent_Categories(eventID,categoryID) "
+                        + " Values (?,?) ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, eventID);
+                stm.setString(2, cate);
+                check = stm.executeUpdate() > 0;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+    public boolean addSlot(String eventID, String Slot) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " Insert INTO tblEvent_Slots(eventID,slotID) "
+                        + " Values (?,?) ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, eventID);
+                stm.setString(2, Slot);
+                check = stm.executeUpdate() > 0;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+    public boolean addRoom(String eventID, String Room) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " Insert INTO tblEvent_Rooms(eventID,roomID) "
+                        + " Values (?,?) ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, eventID);
+                stm.setString(2, Room);
+                check = stm.executeUpdate() > 0;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+    public boolean addImage(String eventID, String image) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " Insert INTO tblImages(eventID,link) "
+                        + " Values (?,?) ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, eventID);
+                stm.setString(2, image);
                 check = stm.executeUpdate() > 0;
             }
 

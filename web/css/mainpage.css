@@ -20,6 +20,7 @@ body{
     left: 0;
     height: 100%;
     width: 78px;
+
     background: #455E74;
     padding: 6px 14px;
     transition: all 0.5s ease;
@@ -402,7 +403,6 @@ body{
 .grid  {
     text-align: center;
     display: grid;
-   
     grid-template-columns: auto auto auto;
     padding: 10px;
     margin-left: 65px;
@@ -683,7 +683,6 @@ input[type="checkbox"] {
   .google-btn:active {
     background: blue;
   }
-
   @import url(https://fonts.googleapis.com/css?family=Roboto:500);
 
 
