@@ -32,7 +32,7 @@ import user.UserDTO;
 public class AddEventController extends HttpServlet {
 
     private final static String ERROR = "error.jsp";
-    private final static String SUCCESS = "Eventmanagement.jsp";
+    private final static String SUCCESS = "LoginPage.jsp";
     private static final String UPLOAD_DIR = "event-user-photo";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
