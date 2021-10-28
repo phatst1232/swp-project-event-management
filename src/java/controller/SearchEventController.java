@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -22,12 +23,15 @@ import javax.servlet.http.HttpServletResponse;
 public class SearchEventController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "ListEvent.jsp";
-    
+    private static final String SUCCESS = "Eventmanagement.jsp";
+    private static final String LOGIN_SUCCESS = "LoginPage.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-               response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
         String url = ERROR;
         try {
             String search = request.getParameter("search");
@@ -35,7 +39,11 @@ public class SearchEventController extends HttpServlet {
             List<eventDTO> list = dao.getListEvent(search);
             if (!list.isEmpty()) {
                 request.setAttribute("LIST_EVENT", list);
-                url = SUCCESS;
+                if (session.getAttribute("LOGIN_USER") != null) {
+                    url = LOGIN_SUCCESS;
+                } else {
+                    url = SUCCESS;
+                }
             }
         } catch (Exception e) {
             log("Error at SearchEventController" + e.toString());

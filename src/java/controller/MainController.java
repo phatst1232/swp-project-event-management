@@ -40,7 +40,8 @@ public class MainController extends HttpServlet {
     
     private static final String SearchImg = "SrEController";
     private static final String TestCreate = "CreateEvent2Controller";
-
+    private static final String COMMENT_EVENT = "CommentEventController"; 
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -59,11 +60,13 @@ public class MainController extends HttpServlet {
                 url = SEARCH_EVENT;
             } else if ("show event".equals(action)) {
                 url = SHOW_EVENT;
+            } else if ("post comment".equals(action)) {
+                url = COMMENT_EVENT;
             } else if ("profile".equals(action)) {
                 url = USER_PROFILE;
             } else if ("Search user".equals(action)) {
                 url = SEARCH_USER;
-            }else if ("Create_Event".equals(action)) {
+            } else if ("Create_Event".equals(action)) {
                 url = TestCreate;
             } else if ("SearchE".equals(action)) {
                 url = SearchImg;

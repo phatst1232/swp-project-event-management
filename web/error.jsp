@@ -13,8 +13,6 @@
     </head>
     <body>
         <h1>Error: <%= session.getAttribute("ERROR_MESSAGE")%> </h1>
-        <%
-            session.setAttribute("ERROR_MESSAGE", null);
-        %>
+        <h1>Hello World!</h1>
     </body>
 </html>

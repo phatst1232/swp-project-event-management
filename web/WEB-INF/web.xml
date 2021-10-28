@@ -29,6 +29,14 @@
         <servlet-class>controller.SearchUserController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>CommentEventController</servlet-name>
+        <servlet-class>controller.CommentEventController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>JoinEventController</servlet-name>
+        <servlet-class>controller.JoinEventController</servlet-class>
+    </servlet>
+    <servlet-mapping>
         <servlet-name>ViewProfileController</servlet-name>
         <servlet-class>controller.ViewProfileController</servlet-class>
     </servlet>
@@ -77,6 +85,12 @@
         <url-pattern>/SearchUserController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>CommentEventController</servlet-name>
+        <url-pattern>/CommentEventController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>JoinEventController</servlet-name>
+        <url-pattern>/JoinEventController</url-pattern>
         <servlet-name>ViewProfileController</servlet-name>
         <url-pattern>/ViewProfileController</url-pattern>
     </servlet-mapping>

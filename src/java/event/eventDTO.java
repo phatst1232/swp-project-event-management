@@ -23,22 +23,6 @@ public class eventDTO {
     private String clubID;
     private String dmID;
     private int like;
-    private String img;
-    private String Cmtimg;
-
-    public eventDTO(String eventID, String eventName, String img, String Cmtimg) {
-        this.eventID = eventID;
-        this.eventName = eventName;
-        this.img = img;
-        this.Cmtimg = Cmtimg;
-    }
-
-    public eventDTO(String eventID, String img) {
-        this.eventID = eventID;
-        this.img = img;
-    }
-    
-    
 
     public eventDTO() {
     }
@@ -54,6 +38,7 @@ public class eventDTO {
         this.content=content;
         this.clubID=clubID;
         this.dmID=dmID;
+        this.like=like;
     }
 
     public String getEventID() {
@@ -143,22 +128,5 @@ public class eventDTO {
     public void setContent(String content) {
         this.content = content;
     }
-
-    public String getImg() {
-        return img;
-    }
-
-    public String getCmtimg() {
-        return Cmtimg;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
-
-    public void setCmtimg(String Cmtimg) {
-        this.Cmtimg = Cmtimg;
-    }
-    
     
 }

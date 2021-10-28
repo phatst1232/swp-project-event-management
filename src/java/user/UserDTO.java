@@ -27,20 +27,9 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public UserDTO(String userID, String userName, String address, String phoneNumber,String avtLink) {
-        this.userID = userID;
-        this.userName = userName;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.avtLink = avtLink;
-    }
-
-    
     public UserDTO(String userID, String userName, String password, String roleID, String address, String phoneNumber, String email, String statusID, String majorID, String clubID, String dmID, String avtLink) {
         this.userID = userID;
         this.userName = userName;
-        this.password = password;
-        this.roleID = roleID;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.email = email;
