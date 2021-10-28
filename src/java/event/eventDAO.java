@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import javax.naming.NamingException;
 import utils.DBUtils;
 
 /**
@@ -168,6 +169,94 @@ public class eventDAO {
             }
         }
         return event;
+    }
+
+    public eventDTO getEvent(String eventID) throws SQLException {
+        List<eventDTO> list = new ArrayList();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        eventDTO event = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " eventID,eventName,eventCreateDate,eventStartDate,userID,categoryID,statusID,limitMember,roomID,content,clubID,dmID,like "
+                        + " From tblEvents "
+                        + " WHERE eventID = ? AND statusID='AC'";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, eventID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    String eventName = rs.getString("eventName");
+                    Date eventCreateDate = rs.getDate("eventCreateDate");
+                    Date eventStartDate = rs.getDate("eventStartDate");
+                    String userID = rs.getString("userID");
+                    String statusID = rs.getString("statusID");
+                    int limitMember = rs.getInt("limitMember");
+                    String content = rs.getString("content");
+                    String clubID = rs.getString("clubID");
+                    String dmID = rs.getString("dmID");
+                    int like = rs.getInt("like");
+                    event = new eventDTO(eventID, eventName, eventCreateDate, eventStartDate, userID, statusID, limitMember, content, clubID, dmID, like);
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return event;
+    }
+
+    public List<eventDTO> getListEvent(String search) throws SQLException {
+        List<eventDTO> list = new ArrayList();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " SELECT eventID, eventName, eventCreateDate, eventStartDate, categoryID, LimitMember, interestedID,content, ClubID, DmID, like"
+                        + " From tblEvents "
+                        + " WHERE eventName like ? AND statusID='AC' ORDER BY eventCreateDate ASC";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, "%" + search + "%");
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    String eventID = rs.getString("eventID");
+                    String eventName = rs.getString("eventName");
+                    Date eventCreateDate = rs.getDate("eventCreateDate");
+                    Date eventStartDate = rs.getDate("eventStartDate");
+                    String userID = rs.getString("userID");
+                    String statusID = rs.getString("statusID");
+                    int limitMember = rs.getInt("limitMember");
+                    String content = rs.getString("content");
+                    String clubID = rs.getString("clubID");
+                    String dmID = rs.getString("dmID");
+                    int like = rs.getInt("like");
+                    list.add(new eventDTO(eventID, eventName, eventCreateDate, eventStartDate, userID, statusID, limitMember, content, clubID, dmID, like));
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
     }
 
     public boolean deleteEvent(String eventID) throws SQLException {

@@ -128,6 +128,22 @@ public class eventDTO {
     public void setContent(String content) {
         this.content = content;
     }
+
+    public String getImg() {
+        return img;
+    }
+
+    public String getCmtimg() {
+        return Cmtimg;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public void setCmtimg(String Cmtimg) {
+        this.Cmtimg = Cmtimg;
+    }
     
     
 }
