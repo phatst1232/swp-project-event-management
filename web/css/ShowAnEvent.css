@@ -51,6 +51,23 @@ body{
     
 
 } */
+
+.joinbutton.disable{
+    background-image: linear-gradient(to right, #2b282a 0%, #0b0c0c 51%, #302e2f 100%);
+
+
+    color: #545457;
+}
+.likebutton.disable{
+  background: linear-gradient(to right, #181718, #bbbbb4);
+    
+}
+.followbutton.disable{
+  background: linear-gradient(to right, #181718, #bbbbb4);
+
+}
+
+
 .discriptionwrapper{
     margin: auto;
     width: 100%;

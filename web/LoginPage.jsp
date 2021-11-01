@@ -62,12 +62,25 @@
                     <span class="tooltip">Search</span>
                 </li>
                 <li>
-                    <a href="PersonalPorofile.jsp">
+                    <a href="PersonalProfile.jsp">
                         <i id="user-search"><img src="image\icons8-user-24.png"></i>
                         <span class="link-name">Profile</span>
                     </a>
                     <span class="tooltip">User</span>
                 </li>
+                <%
+                    if (loginUser != null || "AD".equals(loginUser.getRoleID())) {
+                %>
+                <li>
+                    <a href="createEvent.jsp">
+                        <i id="user-search"><img src="image/notepad-regular-24.png" style="width: 24px; height: 24px;"></i>
+                        <span class="link-name">Create Event</span>
+                    </a>
+                    <span class="tooltip">User</span>
+                </li>
+                <%
+                    }
+                %>
                 <li>
                     <a href="#">
                         <i id="noti-search"><img src="image\bell-solid-24.png"></i>
@@ -153,13 +166,13 @@
                                     String like = String.valueOf(event.getLike());
                                     String follow = String.valueOf(Edao.countFollow(event.getEventID()));
                         %>
-                        <div class="grid-item" style="background-image: url('<%=Edao.getImageLink(event.getEventID())%>');">
+                        <div class="grid-item" style="background-image: url('event-user-photo/<%=Edao.getImageLink(event.getEventID())%>');">
                             <p id="time-box">
-                            <form action="MainController" id="showEventForm">
+                            <form action="MainController" id="<%=event.getEventID()%>">
                                 <input type="hidden" name="eventID" value="<%=event.getEventID()%>"/>                           
                                 <input type="hidden" name="action" value="show event"/>
                             </form>  
-                                <a href="#" onclick="document.getElementById('showEventForm').submit()"><%=event.getEventName()%></a>
+                            <a href="#" onclick="document.getElementById('<%=event.getEventID()%>').submit()"><%=event.getEventName()%></a>
                             <p id="box"><img src="image/time-regular-24.png">Slot: <%=Edao.getListSlot(event.getEventID())%></p>
                             </p>
                             <p><%=event.getEventStartDate()%></p>

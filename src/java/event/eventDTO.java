@@ -129,5 +129,4 @@ public class eventDTO {
         this.content = content;
     }
     
-    
 }

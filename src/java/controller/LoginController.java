@@ -30,8 +30,6 @@ public class LoginController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
@@ -40,7 +38,7 @@ public class LoginController extends HttpServlet {
             UserDAO dao = new UserDAO();
             UserDTO user = dao.checkLogin(userID, password);
             HttpSession session = request.getSession();
-            if (user != null) {              
+            if (user != null) {
                 session.setAttribute("LOGIN_USER", user);
                 String roleID = user.getRoleID();
                 if ("AD".equals(roleID)) {
@@ -54,10 +52,10 @@ public class LoginController extends HttpServlet {
                 } else if ("ST".equals(roleID)) {
                     url = ST_PAGE;
                 } else {
-                    session.setAttribute("ERROR_MESSAGE", "Your role is not support in our Database!");
+                    session.setAttribute("ERROR_MESSAGE", "Your role is not support!! ");
                 }
             } else {
-                session.setAttribute("ERROR_MESSAGE", "Incorrect UserID or Password!");
+                session.setAttribute("ERROR_MESSAGE", "Incorrect UserID or Password! ");
             }
         } catch (Exception e) {
             log("ERROR at LoginController: " + e.toString());

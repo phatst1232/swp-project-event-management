@@ -92,7 +92,7 @@ public class UserDAO {
                 String DmID = rs.getString("DmID");
                 String roleID = rs.getString("roleID");
                 String avtLink = rs.getString("avtLink");
-                user = new UserDTO(userID, userName, "****", roleID, "", phone, email, "AC", "",ClubID, DmID,   avtLink);
+                user = new UserDTO(userID, userName, "****", roleID, "", phone, email, "AC", "",ClubID, DmID, avtLink);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -376,6 +376,36 @@ public class UserDAO {
                 stm.setString(10, user.getDmID());
                 stm.setString(11, user.getAvtLink());
                 stm.setString(12, user.getUserID());
+                check = stm.executeUpdate() > 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+    public boolean updateprofile(UserDTO user) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " UPDATE tblUsers "
+                        + " SET userName=?, address=?, phoneNumber=?, avtLink = ? "
+                        + " WHERE userID=?";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, user.getUserName());
+                stm.setString(2, user.getAddress());
+                stm.setString(3, user.getPhoneNumber());
+                stm.setString(4, user.getAvtLink());
+                stm.setString(5, user.getUserID());
                 check = stm.executeUpdate() > 0;
             }
         } catch (Exception e) {

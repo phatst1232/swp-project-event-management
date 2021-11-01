@@ -1,65 +1,63 @@
 body{
-    background-color: #F2CED8;
+    background-color: rgba(248, 165, 194,0.2);
 }
 .top {
     background-color: whitesmoke;
     width: 100%;
     font-family: 'Open Sans', sans-serif;
-    height: 130px;
+    height: 110px;
+    padding: auto;
     bottom: 5px;
     border-radius: 12px;
     box-shadow: 10px 10px 8px #888888;
 }
 
 #Logo {
-    left: 100px;
+    border: 2px solid black;
     position: absolute;
+    height: 100px;
+    width: 350px;
+    text-align: center;
 }
 #searchbar {
     top: 20px;
     position: absolute;
-    right: 400px;
+    right: 200px;
     border: none;
+    border-radius: 12px;
 }
 
 .top input[type=text] {
-    font-size: 20px;
+    font-size: 15px;
     padding: 5px;
-    width:500px;
+    border-radius: 12px;
+    width: 600px;
     margin-top: 5px;
+    box-shadow: 3px 3px 3px ;
 }
 
-.top button { 
+.top button {
+    margin: 7px; 
     cursor: pointer;
-    font-size: 20px;
-    padding: 5px;
+    font-size: 15px;
+    padding: 7px;
     border-radius: 10px;
-    background-color: #F288AF;
-    width: 80px;
+    box-shadow: 2px 2px 2px;
 }
 
 .top button:hover {
     background: orange;
 }
-
 #category {
     float: right;
+    overflow: hidden;
 }
 
-#category {   
-    height: 35px;  
+#category {     
     color: black;
-    padding: 8px 10px 0;
-    margin-right: 50px;
-    margin-top: 8px;   
+    padding: 8px 10px;
+    margin-right: 40px;   
 }
- #categorybtn {
-    padding-bottom: 0;
-    background-color: whitesmoke;
-    box-shadow: none;
-    border-radius: 20px;
-    width: 40px ;
- }
 
 #category-content {
     display: none;
@@ -82,16 +80,14 @@ body{
 }
 
 #category-content a:hover{
-    background-color: #F288AF;
+    background-color: #ddd;
 }
 
 #category:hover #category-content {
-    display: block;
+    display: block; 
 }
 
-#categorybtn:hover {
-    background-color: #F288AF;
-}
+
 
 /*contain mid page */
 h2 { 
@@ -132,6 +128,7 @@ img {
     outline: none;
     font-size: 25px;
     transition: 0.5s;
+    box-shadow: 2px 2px 2px;
     float: right;
 }
 
@@ -174,7 +171,7 @@ img {
 
 }
 
-/*side bar here*/
+
 #sidebar {    
     position: absolute;
     box-sizing: border-box;
@@ -182,14 +179,14 @@ img {
     right: 60px;
     height: 500px;
     width: 18%;
-    top: 300px;   
+    top: 230px;   
 }
 
 
 
 /*bot nav*/
 .bottom {
-    border-top: 2px solid #732424;
+    border-top: 1px solid black;
     top: 200px;
     position: relative;
     height: 40px;
@@ -197,7 +194,6 @@ img {
 }
 
 #bot-nav {
-    color:#732424 ;
     padding: 10px;
     display: flex;
     flex-direction: row;
@@ -206,10 +202,9 @@ img {
     font-size: 20px;
 }
 
-
 .bottom h3 {
-    color: #732424 ;
     text-align: center;
     padding-bottom: 30px;
     font-style: italic ;
 }
+

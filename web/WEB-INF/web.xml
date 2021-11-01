@@ -5,12 +5,20 @@
         <servlet-class>controller.AddEventController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>CreateEventController</servlet-name>
+        <servlet-class>controller.CreateEventController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>DeleteEventController</servlet-name>
         <servlet-class>controller.DeleteEventController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginController</servlet-name>
         <servlet-class>controller.LoginController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginGoogleServlet</servlet-name>
+        <servlet-class>controller.LoginGoogleServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LogoutController</servlet-name>
@@ -25,16 +33,24 @@
         <servlet-class>controller.SearchEventController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ShowEventController</servlet-name>
-        <servlet-class>controller.ShowEventController</servlet-class>
+        <servlet-name>UpdateUserProfileController</servlet-name>
+        <servlet-class>controller.UpdateUserProfileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewProfileController</servlet-name>
+        <servlet-class>controller.ViewProfileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CommentEventController</servlet-name>
+        <servlet-class>controller.CommentEventController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SearchUserController</servlet-name>
         <servlet-class>controller.SearchUserController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CommentEventController</servlet-name>
-        <servlet-class>controller.CommentEventController</servlet-class>
+        <servlet-name>ShowEventController</servlet-name>
+        <servlet-class>controller.ShowEventController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>JoinEventController</servlet-name>
@@ -45,12 +61,20 @@
         <url-pattern>/AddEventController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>CreateEventController</servlet-name>
+        <url-pattern>/CreateEventController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>DeleteEventController</servlet-name>
         <url-pattern>/DeleteEventController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginGoogleServlet</servlet-name>
+        <url-pattern>/LoginGoogleServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LogoutController</servlet-name>
@@ -65,16 +89,24 @@
         <url-pattern>/SearchEventController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ShowEventController</servlet-name>
-        <url-pattern>/ShowEventController</url-pattern>
+        <servlet-name>UpdateUserProfileController</servlet-name>
+        <url-pattern>/UpdateUserProfileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewProfileController</servlet-name>
+        <url-pattern>/ViewProfileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CommentEventController</servlet-name>
+        <url-pattern>/CommentEventController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SearchUserController</servlet-name>
         <url-pattern>/SearchUserController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CommentEventController</servlet-name>
-        <url-pattern>/CommentEventController</url-pattern>
+        <servlet-name>ShowEventController</servlet-name>
+        <url-pattern>/ShowEventController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>JoinEventController</servlet-name>

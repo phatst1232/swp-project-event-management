@@ -145,7 +145,7 @@
                                     String like = String.valueOf(event.getLike());
                                     String follow = String.valueOf(dao.countFollow(event.getEventID()));
                         %>
-                        <div class="grid-item" style="background-image: url('<%=dao.getImageLink(event.getEventID())%>');">
+                        <div class="grid-item" style="background-image: url('event-user-photo/<%=dao.getImageLink(event.getEventID())%>');">
                             <p id="time-box">
                             <form action="MainController" id="<%=eventID%>">
                                 <input type="hidden" name="eventID" value="<%=eventID%>"/>                           
@@ -188,6 +188,9 @@
                 <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
                 <div style="text-align: center;">
+                    <script>
+                        currentSlide(1);
+                    </script>                  
                     <%
                         for (int i = 1; i <= num_of_slide; i++) {
                     %>
@@ -523,7 +526,7 @@
                     }
                 });
 
-        showSlides(1);
+        
     </script>
 
 

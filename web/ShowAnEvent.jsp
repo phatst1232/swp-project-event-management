@@ -20,6 +20,11 @@
         <%
             UserDAO dao = new UserDAO();
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+
+            String search = (String) request.getParameter("search");
+            if (search == null) {
+                search = "";
+            }
         %>
         <div class="sidebar">
             <div class="logo-content">
@@ -31,24 +36,33 @@
             </div>
             <ul class="nav-list">
                 <li>
-                    <i id="but-search"><img src="image\search.png"></i>
-                    <input type="text" placeholder="Search...">
+                    <form action="MainController" name="Search Bar">
+                        <i id="but-search"><img src="image\search.png"></i>
+                        <input type="text" name="search" id="name" value="<%=search%>" placeholder="Search...">
+                        <input type="hidden" name="action" value="Search event">
+                    </form>    
                     <span class="tooltip">Search</span>
                 </li>
                 <li>
-                    <a href="Eventmanagement.jsp">
-                        <i id="user-search"><img src="image\home-solid-24.png" width="24px" height="24px"></i>
-                        <span class="link-name">Home</span>
+                    <a href="PersonalProfile.jsp">
+                        <i id="user-search"><img src="image\icons8-user-24.png"></i>
+                        <span class="link-name">Profile</span>
                     </a>
-                    <span class="tooltip">Home</span>
+                    <span class="tooltip">User</span>
                 </li>
-                <!-- <li>
-                    <a href="#">
-                        <i id="edit-search"><img src="image\pencil-solid-24.png"></i>
-                        <span class="link-name">Edit</span>
+                <%
+                    if (loginUser != null || "AD".equals(loginUser.getRoleID())) {
+                %>
+                <li>
+                    <a href="createEvent.jsp">
+                        <i id="user-search"><img src="image/notepad-regular-24.png" style="width: 24px; height: 24px;"></i>
+                        <span class="link-name">Create Event</span>
                     </a>
-                    <span class="tooltip">Edit</span>
-                </li> -->
+                    <span class="tooltip">User</span>
+                </li>
+                <%
+                    }
+                %>
                 <li>
                     <a href="#">
                         <i id="noti-search"><img src="image\bell-solid-24.png"></i>
@@ -119,8 +133,8 @@
 
                     <div class="wrapperbackground">
                         <div class="backgroundimg">
-<!--                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvCnBhDsLFBB5ljN-wSUMniM1PJzACAJ3sDA&usqp=CAU" width="100%" height="80%" alt="">-->
-                            <img src="<%=Edao.getImageLink(event.getEventID())%>" width="100%" height="80%" alt="">
+                            <!--                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvCnBhDsLFBB5ljN-wSUMniM1PJzACAJ3sDA&usqp=CAU" width="100%" height="80%" alt="">-->
+                            <img src="event-user-photo/<%=Edao.getImageLink(event.getEventID())%>" width="100%" height="80%" alt="">
                         </div>
                     </div>
 
@@ -189,7 +203,7 @@
                             %>
                             <div class="eachothercomment">
                                 <div class="otherguestavatar">
-                                    <img src="<%=dao.getAvtLink(comment.getCommentBy())%>" alt="">
+                                    <img src="event-user-photo/<%=dao.getAvtLink(comment.getCommentBy())%>" alt="">
                                 </div>
                                 <div class="otherguestcontent">
                                     <div class="otherguestcontentname"><a href=""><%=dao.getUserName(comment.getCommentBy())%></a></div>
@@ -260,14 +274,14 @@
 
                         </div>
                         <div class="sidebarright-contact">
-                            <button class="joinbutton disable">
+                            <button class="joinbutton contactbtn">
                                 <h2>Join Now!!!</h2>
                             </button>
                             <div class="followliked">
 
                                 <div class="buttonwrapper">
                                     <span>1000</span><br>
-                                    <button class="followbutton disable">
+                                    <button class="followbutton contactbtn">
                                         <i><img src="image/notepad-regular-24.png" width="16px" alt=""></i>
                                         Follow
                                     </button>
@@ -275,7 +289,7 @@
                                 </div>
                                 <div class="buttonwrapper">
                                     <span><%=event.getLike()%></span><br>
-                                    <button class="likebutton disable">
+                                    <button class="likebutton contactbtn">
                                         <i><img src="image/heart-regular-24.png" width="16px" alt=""></i>
                                         <span>Like</span>
                                     </button>
@@ -330,7 +344,24 @@
             logBtn.onclick = function () {
                 sidebar.classList.toggle("active");
             }
+            
+            $(".contactbtn").click(function () {
+            if($(this).hasClass('disable')){
+                $(this).removeClass('disable');
+            }else{
+                $(this).addClass('disable');
+            }
+        });
         </script>
+        <script>
+        $(".contactbtn").click(function () {
+            if($(this).hasClass('disable')){
+                $(this).removeClass('disable');
+            }else{
+                $(this).addClass('disable');
+            }
+        });
+    </script>
     </body>
 
 </html>
