@@ -43,6 +43,9 @@
                     </form>    
                     <span class="tooltip">Search</span>
                 </li>
+                <%
+                    if (loginUser != null) {
+                %>
                 <li>
                     <a href="PersonalProfile.jsp">
                         <i id="user-search"><img src="image\icons8-user-24.png"></i>
@@ -51,7 +54,7 @@
                     <span class="tooltip">User</span>
                 </li>
                 <%
-                    if (loginUser != null || "AD".equals(loginUser.getRoleID())) {
+                    if ("AD".equals(loginUser.getRoleID()) || "CL".equals(loginUser.getRoleID()) || "DM".equals(loginUser.getRoleID())) {
                 %>
                 <li>
                     <a href="createEvent.jsp">
@@ -70,6 +73,9 @@
                     </a>
                     <span class="tooltip">Notification</span>
                 </li>
+                <%
+                    }
+                %>
             </ul>
             <%
                 if (loginUser == null) {
@@ -344,24 +350,24 @@
             logBtn.onclick = function () {
                 sidebar.classList.toggle("active");
             }
-            
+
             $(".contactbtn").click(function () {
-            if($(this).hasClass('disable')){
-                $(this).removeClass('disable');
-            }else{
-                $(this).addClass('disable');
-            }
-        });
+                if ($(this).hasClass('disable')) {
+                    $(this).removeClass('disable');
+                } else {
+                    $(this).addClass('disable');
+                }
+            });
         </script>
         <script>
-        $(".contactbtn").click(function () {
-            if($(this).hasClass('disable')){
-                $(this).removeClass('disable');
-            }else{
-                $(this).addClass('disable');
-            }
-        });
-    </script>
+            $(".contactbtn").click(function () {
+                if ($(this).hasClass('disable')) {
+                    $(this).removeClass('disable');
+                } else {
+                    $(this).addClass('disable');
+                }
+            });
+        </script>
     </body>
 
 </html>
