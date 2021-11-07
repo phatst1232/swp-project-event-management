@@ -133,7 +133,7 @@
                         if (!showing_list.isEmpty()) {
 
                             for (int i = 1; i <= num_of_slide; i++) {
-                %>
+                %>  
                 <div class="grid-contain fade">
                     <div class="grid">
                         <%
@@ -448,43 +448,21 @@
 
 
     <script type="text/javascript">
-        let but = document.querySelector("#but");
-        let
-        sidebar = document.querySelector(".sidebar");
-        let
-        searchBtn = document.querySelector("#but-search");
-        let
-        userBtn = document.querySelector("#user-search");
-        let
-        editBtn = document.querySelector("#edit-search");
-        let
-        notiBtn = document.querySelector("#noti-search");
-        let
-        logBtn = document.querySelector("#log-out");
-        but.onclick = function () {
-            sidebar.classList.toggle("active");
-        }
+                let but = document.querySelector("#but");
+                let sidebar = document.querySelector(".sidebar");
+                let searchBtn = document.querySelector("#but-search");   
+                let logBtn = document.querySelector("#log-out");
+                but.onclick = function(){
+                    sidebar.classList.toggle("active");
+                }
 
-        searchBtn.onclick = function () {
-            sidebar.classList.toggle("active");
-        }
-
-        userBtn.onclick = function () {
-            sidebar.classList.toggle("active");
-        }
-
-        editBtn.onclick = function () {
-            sidebar.classList.toggle("active");
-        }
-
-        notiBtn.onclick = function () {
-            sidebar.classList.toggle("active");
-        }
-        logBtn.onclick = function () {
-            sidebar.classList.toggle("active");
-        }
-
-
+                searchBtn.onclick = function(){
+                    sidebar.classList.toggle("active");
+                }  
+                logBtn.onclick = function(){
+                    sidebar.classList.toggle("active");
+                }
+        
         var slideIndex = 1;
         showSlides(slideIndex);
 

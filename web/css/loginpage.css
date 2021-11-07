@@ -101,7 +101,7 @@ body{
     transition: 0s;
     opacity: 0;
     pointer-events: none;
-    display: none;
+    display: block;
 }
 
 .sidebar.active ul li .tooltip {
@@ -246,7 +246,7 @@ body{
     left: 88%;
 }
 .sidebar.active .profile #log-out  {
-    background: none; 
+    background: #8afcfd; 
 }
 
 
@@ -271,6 +271,7 @@ body{
     width: 100%;
     height: 800px;
     left: 78px;
+    
 }
 
 

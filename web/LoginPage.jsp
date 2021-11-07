@@ -106,12 +106,13 @@
                         </div>                           
                     </div>
                     <i id="log-out">
-                        <button id="bt" style="background-color:#8afcfd; outline: none; border: none;">
+                        <button id="bt" style="background-color:#455E74; outline: none; border: none;">
                             <a href="LogoutController">
                                 <img src="image\log-out-regular-24.png">
                             </a>
                         </button>
                     </i>
+
                 </div>
             </div>
         </div>
@@ -218,7 +219,6 @@
                     %>                         
                 </div>
             </div>
-
 
         </div>
 
