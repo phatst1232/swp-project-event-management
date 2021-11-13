@@ -10,7 +10,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <link rel="stylesheet" type="text/css" href="./css/PersonalProfile.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/PersonalProfile1.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="stylesheet" href="js/PersonalProfile.js">
 
@@ -111,7 +111,7 @@
                             </div>                           
                         </div>
                         <i id="log-out">
-                            <button id="bt" style="background-color:#8afcfd; outline: none; border: none;">
+                            <button id="bt" style="background-color:transparent; outline: none; border: none;">
                                 <a href="LogoutController">
                                     <img src="image\log-out-regular-24.png">
                                 </a>

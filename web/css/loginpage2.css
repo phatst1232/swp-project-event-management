@@ -83,7 +83,7 @@ body{
     margin: 0 5px;
     line-height: 50px;
     list-style: none;
-    
+
 }
 
 .sidebar ul li .tooltip{
@@ -215,7 +215,14 @@ body{
 }
 
 .profile .profile-detail .name-job{
-    margin-left: 10px;   
+    margin-left: 10px;
+    max-width: 130px;
+}
+
+.profile .profile-detail .name, .profile .profile-detail .job {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .profile .profile-detail .name {
@@ -239,7 +246,7 @@ body{
     border-radius: 12px;
     text-align: center;
     transition: all 0.5s ease;
-    
+
 
 }
 .sidebar.active .profile #log-out  {
@@ -271,7 +278,7 @@ body{
     width: 100%;
     height: 800px;
     left: 78px;
-    
+
 }
 
 
@@ -346,58 +353,58 @@ body{
 }
 
 .prev, .next {
-  cursor: pointer;
-  top: 50%;
-  position: absolute;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: black;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
+    cursor: pointer;
+    top: 50%;
+    position: absolute;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
 }
 
 .show-slide .next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
+    right: 0;
+    border-radius: 3px 0 0 3px;
 }
 
 .show-slide .prev:hover, .next:hover {
-  background-color: rgb(38, 166, 154);
+    background-color: rgb(38, 166, 154);
 }
 
 .dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
 }
 
 .active, .dot:hover {
-  background-color: rgb(38, 166, 154);
+    background-color: rgb(38, 166, 154);
 }
 
 
 .fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
 }
 
 @-webkit-keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
+    from {opacity: .4} 
+    to {opacity: 1}
 }
 
 @keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
+    from {opacity: .4} 
+    to {opacity: 1}
 }
 
 .grid  {

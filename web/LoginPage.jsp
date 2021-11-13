@@ -9,7 +9,7 @@
     <head>
         <title>User Page</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/loginpage.css">
+        <link rel="stylesheet" href="css/loginpage2.css">
     </head>
 
     <body>
@@ -225,18 +225,24 @@
 
 
         <script type="text/javascript">
+//            window.onload = function () {
+//                console.log(123);
+//                var slides = Array.from(document.getElementsByClassName("grid-contain"));
+//                slides.forEach(ele => {
+//                    ele.style.display = "none";
+//                });
+//                slides[0].style.display = 'block';
+//            };
             let
-            but = document.querySelector("#but");
+                    but = document.querySelector("#but");
             let
-            sidebar = document.querySelector(".sidebar");
+                    sidebar = document.querySelector(".sidebar");
             let
-            searchBtn = document.querySelector("#but-search");
+                    searchBtn = document.querySelector("#but-search");
             let
-            userBtn = document.querySelector("#user-search");
+                    userBtn = document.querySelector("#user-search");
             let
-            editBtn = document.querySelector("#edit-search");
-            let
-            notiBtn = document.querySelector("#noti-search");
+                    notiBtn = document.querySelector("#noti-search");
             but.onclick = function () {
                 sidebar.classList.toggle("active");
             }
@@ -248,11 +254,7 @@
             userBtn.onclick = function () {
                 sidebar.classList.toggle("active");
             }
-
-            editBtn.onclick = function () {
-                sidebar.classList.toggle("active");
-            }
-
+            
             notiBtn.onclick = function () {
                 sidebar.classList.toggle("active");
             }
@@ -327,17 +329,17 @@
 
     <script type="text/javascript">
         let
-        but = document.querySelector("#but");
+                but = document.querySelector("#but");
         let
-        sidebar = document.querySelector(".sidebar");
+                sidebar = document.querySelector(".sidebar");
         let
-        searchBtn = document.querySelector("#but-search");
+                searchBtn = document.querySelector("#but-search");
         let
-        userBtn = document.querySelector("#user-search");
+                userBtn = document.querySelector("#user-search");
         let
-        editBtn = document.querySelector("#edit-search");
+                editBtn = document.querySelector("#edit-search");
         let
-        notiBtn = document.querySelector("#noti-search");
+                notiBtn = document.querySelector("#noti-search");
         but.onclick = function () {
             sidebar.classList.toggle("active");
         }

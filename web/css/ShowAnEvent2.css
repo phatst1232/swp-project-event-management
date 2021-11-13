@@ -29,18 +29,18 @@ body{
 }
 
 .eventname{
-    padding: 20px;
+    padding: 20px 20px 10px;
     margin-left: 40px;
 }
 
 /* content chính */
 .content{
     width: 55%;
-    background-color: rgb(43, 41, 41);
+    background-color: rgb(196,185,185);
     margin-left: 20%;
 }
 .backgroundimg{
-    width: 100%;
+    width: 85%;
     height: 100%;
     margin: auto;
 }
@@ -76,27 +76,30 @@ body{
     padding-bottom: 20px;
 }
 .eventname{
-    color: #fff;
+    color: #151111;
     font-size: 30px;
-    font-weight: 400;
+    font-weight: 600;
     text-transform: uppercase;
 }
 .tags{
-    margin-left: 100px;
+    margin-left: 60px;
+    display: flex;
+    align-items: center;
+    gap: 0 10px;
 }
 .tags a{
-    background-color: #eee;
-    margin-right: 10px;    
-    padding: 0 10px;    
+    padding: 5px 15px;    
     border-radius: 20px;    
     display: inline-block;    
-    margin-bottom: 10px;
     color: inherit;
     text-decoration: none;
-    padding-bottom: 5px;
+    border: 1px solid #151111;
+    background: transparent;
+    color: #151111;
+    font-size: 0.7rem;
 }
 .tags span{
-    margin-right: 10px;
+    /*margin-right: 10px;*/
 }
 .tags img{
     margin-top: 5px;   
@@ -104,7 +107,7 @@ body{
 }
 .gachchan{
     width: 90%;
-    margin: auto;
+    margin: 1rem auto;
     border-bottom: 0.5px solid rgb(177, 167, 167);
 }
 
@@ -164,6 +167,13 @@ body{
 .sidebarheader{
     display: flex;
     font-family: OpenSans;
+    position: relative;
+}
+
+.sidebarheader span {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* buttons */
@@ -372,14 +382,12 @@ body{
 /* sidebar */
 
 .sidebar {
-    
-
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
     width: 78px;
-    background: rgb(38, 166, 154);
+    background: #455E74;
     padding: 6px 14px;
     transition: all 0.5s ease;
     z-index: 1;
@@ -387,6 +395,7 @@ body{
 
 .sidebar.active {
     width: 240px ;
+    background: rgb(38, 166, 154);
 }
 
 .sidebar .logo-content .logo {
@@ -462,7 +471,7 @@ body{
     transition: 0s;
     opacity: 0;
     pointer-events: none;
-    display: none;
+    display: block;
     z-index: 2;
 }
 
@@ -579,16 +588,23 @@ body{
 }
 
 .profile .profile-detail .name-job{
-    margin-left: 10px;   
+    margin-left: 10px;
+    max-width: 135px;
 }
 
 .profile .profile-detail .name {
     font-size: 20px;
     font-weight: 400;   
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .profile .profile-detail .job {
     font-size: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .profile #log-out {

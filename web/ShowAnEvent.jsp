@@ -12,7 +12,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <link rel="stylesheet" href="css/ShowAnEvent.css">
+        <link rel="stylesheet" href="css/ShowAnEvent2.css">
     </head>
 
     <body>
@@ -112,7 +112,7 @@
                         </div>                           
                     </div>
                     <i id="log-out">
-                        <button id="bt" style="background-color:#8afcfd; outline: none; border: none;">
+                        <button id="bt" style="background-color:transparent; outline: none; border: none;">
                             <a href="LogoutController">
                                 <img src="image\log-out-regular-24.png">
                             </a>
@@ -138,6 +138,23 @@
                 <div class="content">
 
                     <div class="wrapperbackground">
+                        <div class="event-title">
+                            <h1 class="eventname"><%=event.getEventName()%></h1>
+                            <div class="tags"> 
+                                <span> <img src="image/purchase-tag-alt-regular-24.png" width="24px" height="24px"  alt=""></span> 
+                                <a href="">Dảk</a> <a href="">bủh</a> <a href="">Lmao</a>
+                                <%
+                                    List<String> listCategory = Edao.getListCategoty(event.getEventID());
+                                    for (String category : listCategory) {
+                                %>
+                                <a href=""><%=category%></a>
+                                <%
+                                    }
+                                %>
+                            </div>
+                            <div class="gachchan">
+                            </div>
+                        </div>
                         <div class="backgroundimg">
                             <!--                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvCnBhDsLFBB5ljN-wSUMniM1PJzACAJ3sDA&usqp=CAU" width="100%" height="80%" alt="">-->
                             <img src="event-user-photo/<%=Edao.getImageLink(event.getEventID())%>" width="100%" height="80%" alt="">
@@ -145,21 +162,6 @@
                     </div>
 
                     <div class="discriptionwrapper">
-
-                        <h1 class="eventname"><%=event.getEventName()%></h1>
-                        <div class="tags"> 
-                            <span> <img src="image/purchase-tag-alt-regular-24.png" width="24px" height="24px"  alt="">
-                                <%
-                                    List<String> listCategory = Edao.getListCategoty(event.getEventID());
-                                    for (String category : listCategory) {
-                                %>
-                            </span> <a href=""><%=category%></a> 
-                            <%
-                                }
-                            %>
-                        </div>
-                        <div class="gachchan">
-                        </div>
                         <div class="discription">
                             <div class="discriptiontitle">
                                 <h3>Description</h3>
@@ -317,17 +319,17 @@
         <script>
             let but = document.querySelector("#but");
             let
-            sidebar = document.querySelector(".sidebar");
+                    sidebar = document.querySelector(".sidebar");
             let
-            searchBtn = document.querySelector("#but-search");
+                    searchBtn = document.querySelector("#but-search");
             let
-            userBtn = document.querySelector("#user-search");
+                    userBtn = document.querySelector("#user-search");
             let
-            editBtn = document.querySelector("#edit-search");
+                    editBtn = document.querySelector("#edit-search");
             let
-            notiBtn = document.querySelector("#noti-search");
+                    notiBtn = document.querySelector("#noti-search");
             let
-            logBtn = document.querySelector("#log-out");
+                    logBtn = document.querySelector("#log-out");
             but.onclick = function () {
                 sidebar.classList.toggle("active");
             }

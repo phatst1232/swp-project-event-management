@@ -134,18 +134,18 @@ body{
     min-height: 100vh;
     width: 100%;
     overflow: auto;
-    
+
 }
 
 .sidebar {
-    
+
 
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
     width: 78px;
-    background: rgb(38, 166, 154);
+    background: #455E74;
     padding: 6px 14px;
     transition: all 0.5s ease;
     z-index: 1;
@@ -153,6 +153,7 @@ body{
 
 .sidebar.active {
     width: 240px ;
+    background: rgb(38, 166, 154);
 }
 
 .sidebar .logo-content .logo {
@@ -203,14 +204,14 @@ body{
 }
 
 .sidebar ul li {  
-    
+
     height: 50px;
     width: 100%;
     position: relative;
     margin: 0 5px;
     line-height: 50px;
     list-style: none;
-    
+
 }
 
 .sidebar ul li .tooltip{
@@ -346,11 +347,17 @@ body{
 
 .profile .profile-detail .name-job{
     margin-left: 10px;   
+    max-width: 130px;
 }
 
+.profile .profile-detail .name, .profile .profile-detail .job {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .profile .profile-detail .name {
     font-size: 20px;
-    font-weight: 400;   
+    font-weight: 400; 
 }
 
 .profile .profile-detail .job {
@@ -458,7 +465,7 @@ body{
     margin: 5px;
 }
 .navigate button.active{
-    
+
 
 }
 
@@ -585,7 +592,7 @@ body{
     height: 150px;
     position: absolute;
     margin-bottom: 15px;
-    
+
 }
 a {
     text-decoration: none;
@@ -604,7 +611,7 @@ a {
 
 .article-title {
     font-size:21px;
-    
+
 }
 
 .article-title :hover {
@@ -665,4 +672,32 @@ a {
     text-align: center;
     padding-bottom: 30px;
     font-style: italic ;
+}
+
+/*
+   code moi
+*/ 
+.eventbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.article-border {
+    /*flex: 1;*/
+    max-height: 390px;
+    overflow: auto;
+    width: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+    height: 5px;
+    background-color: #c8ccdb;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background: #9c9c9c;
 }

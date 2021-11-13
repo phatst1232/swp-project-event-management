@@ -119,7 +119,7 @@
                                     String follow = String.valueOf(dao.countFollow(event.getEventID()));
                         %>
                         <div class="grid-item" style="background-image: url('<%=dao.getImageLink(event.getEventID())%>');">
-                            <p id="time-box">
+                                <p id="time-box">
                                 <a href="ShowEventController"><%=event.getEventName()%>
                                     <input type="hidden" name="eventID" value="<%=event.getEventID()%>"/>
                                 </a>
