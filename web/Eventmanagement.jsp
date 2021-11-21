@@ -114,6 +114,35 @@
 
 
             <div class="show-slide">
+
+                <!-- filter button -->
+
+                 <div class="dropdown-fitler">
+                        <button class="dropdown-btn" onclick="myFunction1()"></button>
+                        <div class="dropdown-filter-content" id="myDropdown">
+                            <form class="checkbox-form">
+                                <label class="checkbox-content-title">All Event
+                                    <input type="checkbox" class="larger" checked >
+                                </label > 
+                                    <label class="checkbox-content" ><span>Event Upcoming</span>
+                                        <input type="checkbox" class="larger" >
+                                    </label > 
+                                    <label class="checkbox-content"><span>Newest Event</span> 
+                                        <input type="checkbox" class="larger" >
+                                    </label>
+                                    <label class="checkbox-content"><span>Most Popular</span> 
+                                        <input type="checkbox" class="larger">
+                                    </label>
+                                <label class="checkbox-content-title" >Event Expired
+                                    <input type="checkbox" class="larger" >
+                                </label > 
+                            </form>
+                        </div>
+                    </div>
+
+
+
+
                 <%
 //                    List<eventDTO> showing_list = (List<eventDTO>) request.getAttribute("LIST_EVENT");
 //                    eventDAO dao = new eventDAO();
