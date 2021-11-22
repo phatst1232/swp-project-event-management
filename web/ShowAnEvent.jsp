@@ -43,6 +43,13 @@
                     </form>    
                     <span class="tooltip">Search</span>
                 </li>
+                <li>
+                    <a href="LoginPage.jsp">
+                        <i id="user-search"><img src="image\home+24px-131985192429179046_24.png"></i>
+                        <span class="link-name">Home</span>
+                    </a>
+                    <span class="tooltip">User</span>
+                </li>
                 <%
                     if (loginUser != null) {
                 %>
@@ -64,6 +71,17 @@
                     <span class="tooltip">User</span>
                 </li>
                 <%
+                    if ("AD".equals(loginUser.getRoleID())) {
+                %>
+                <li>
+                    <a href="adminPage.jsp">
+                        <i id="user-search"><img src="image/favourite.png" style="width: 24px; height: 24px;"></i>
+                        <span class="link-name">Admin Page</span>
+                    </a>
+                    <span class="tooltip">User</span>
+                </li>
+                <%
+                        }
                     }
                 %>
                 <li>

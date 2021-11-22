@@ -12,7 +12,7 @@
         <script src="https://kit.fontawesome.com/912e671d73.js" crossorigin="anonymous"></script>
         <script src="js/script.js"></script>
 
-        <link rel="stylesheet" href="css/mainpage.css">
+        <link rel="stylesheet" href="css/mainpage1.css">
     </head>
 
     <body>
@@ -117,30 +117,48 @@
 
                 <!-- filter button -->
 
-                 <div class="dropdown-fitler">
-                        <button class="dropdown-btn" onclick="myFunction1()"></button>
-                        <div class="dropdown-filter-content" id="myDropdown">
-                            <form class="checkbox-form">
-                                <label class="checkbox-content-title">All Event
-                                    <input type="checkbox" class="larger" checked >
-                                </label > 
-                                    <label class="checkbox-content" ><span>Event Upcoming</span>
-                                        <input type="checkbox" class="larger" >
-                                    </label > 
-                                    <label class="checkbox-content"><span>Newest Event</span> 
-                                        <input type="checkbox" class="larger" >
-                                    </label>
-                                    <label class="checkbox-content"><span>Most Popular</span> 
-                                        <input type="checkbox" class="larger">
-                                    </label>
-                                <label class="checkbox-content-title" >Event Expired
-                                    <input type="checkbox" class="larger" >
-                                </label > 
-                            </form>
-                        </div>
+                <div class="dropdown-fitler">
+                    <button class="dropdown-btn" onclick="myFunction1()"></button>
+                    <div class="dropdown-filter-content" id="myDropdown">
+                        <form class="checkbox-form">
+                            <label class="checkbox-content-title">All Event
+                                <input type="checkbox" class="larger" checked >
+                            </label > 
+                            <label class="checkbox-content" ><span>Event Upcoming</span>
+                                <input type="checkbox" class="larger" >
+                            </label > 
+                            <label class="checkbox-content"><span>Newest Event</span> 
+                                <input type="checkbox" class="larger" >
+                            </label>
+                            <label class="checkbox-content"><span>Most Popular</span> 
+                                <input type="checkbox" class="larger">
+                            </label>
+                            <label class="checkbox-content-title" >Event Expired
+                                <input type="checkbox" class="larger" >
+                            </label > 
+                        </form>
                     </div>
+                </div>
 
+                <script>
+                    function myFunction1() {
+                        document.getElementById("myDropdown").classList.toggle("show");
+                    }
 
+                    // Close the dropdown if the user clicks outside of it
+                    window.onclick = function (event) {
+                        if (!event.target.matches('.dropdown-btn')) {
+                            var dropdowns = document.getElementsByClassName("dropdown-filter-content");
+                            var i;
+                            for (i = 0; i < dropdowns.length; i++) {
+                                var openDropdown = dropdowns[i];
+                                if (openDropdown.classList.contains('show')) {
+                                    openDropdown.classList.remove('show');
+                                }
+                            }
+                        }
+                    }
+                </script>
 
 
                 <%
@@ -478,12 +496,13 @@
 
     <script type="text/javascript">
         let but = document.querySelector("#but");
-        let sidebar = document.querySelector(".sidebar");
-        let searchBtn = document.querySelector("#but-search");
-        let logBtn = document.querySelector("#log-out");
-        but.onclick = function () {
-            sidebar.classList.toggle("active");
-        }
+                let sidebar = document.querySelector(".sidebar");
+                let searchBtn = document.querySelector("#but-search");
+                let
+        logBtn = document.querySelector("#log-out");
+                but.onclick = function () {
+                    sidebar.classList.toggle("active");
+                }
 
         searchBtn.onclick = function () {
             sidebar.classList.toggle("active");

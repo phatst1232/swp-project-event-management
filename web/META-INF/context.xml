@@ -3,7 +3,7 @@
 <!--phatst1232-->
 <Context antiJARLocking="true" path="/swp-project-event-management">
     <Resource name="DBCon" auth="Container" type="javax.sql.DataSource"
-              username="swp391" password="123"
+              username="MyConnect" password="phatst1232"
               driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
               url="jdbc:sqlserver://localhost:1433;databaseName=EventManagement_2">
     </Resource>           

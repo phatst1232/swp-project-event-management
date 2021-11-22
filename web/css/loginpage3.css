@@ -25,10 +25,6 @@ body{
     transition: all 0.5s ease;
 }
 
-.disable {
-    background: grey;
-}
-
 .sidebar.active {
     width: 240px ;
 }
@@ -87,7 +83,7 @@ body{
     margin: 0 5px;
     line-height: 50px;
     list-style: none;
-    
+
 }
 
 .sidebar ul li .tooltip{
@@ -105,11 +101,8 @@ body{
     transition: 0s;
     opacity: 0;
     pointer-events: none;
-    display: none;
-    z-index: 2;
+    display: block;
 }
-
-
 
 .sidebar.active ul li .tooltip {
     display: none;
@@ -185,7 +178,7 @@ body{
 .sidebar .profile-content {
     position: absolute;
     color: black;
-    bottom: 15px;
+    bottom: 20px;
     left: 0;
     width: 100%;
 }
@@ -214,7 +207,7 @@ body{
     pointer-events: auto;
 }
 
-.profile .profile-detail img{
+.profile .profile-detail img {
     height: 40px;
     width: 40px;
     object-fit: cover;
@@ -222,22 +215,30 @@ body{
 }
 
 .profile .profile-detail .name-job{
-    margin-left: 10px;   
+    margin-left: 10px;
+    max-width: 130px;
+}
+
+.profile .profile-detail .name, .profile .profile-detail .job {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .profile .profile-detail .name {
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 400;   
 }
 
 .profile .profile-detail .job {
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .profile #log-out {
+    background: none;
     position: absolute;
     left: 50%;
-    bottom: 0.3px;
+    bottom: 1px;
     transform: translateX(-50%);
     min-width: 50px;
     line-height: 50px;
@@ -245,16 +246,18 @@ body{
     border-radius: 12px;
     text-align: center;
     transition: all 0.5s ease;
+
+
 }
-.sidebar.active .profile #log-out {
+.sidebar.active .profile #log-out  {
     left: 88%;
 }
-.sidebar.active .profile #log-out {
-    background: none;
+.sidebar.active .profile #log-out  {
+    background: #8afcfd; 
 }
 
-/*home content*/
 
+/* home content  */
 .home-content {
     position: relative;
     height: 1000px;
@@ -275,6 +278,7 @@ body{
     width: 100%;
     height: 800px;
     left: 78px;
+
 }
 
 
@@ -340,6 +344,7 @@ body{
 }
 
 
+
 .show-slide {
     position: relative;
     width: 100%;
@@ -348,140 +353,58 @@ body{
 }
 
 .prev, .next {
-  cursor: pointer;
-  top: 50%;
-  position: absolute;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: black;
-  background-color: cadetblue;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
+    cursor: pointer;
+    top: 50%;
+    position: absolute;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
 }
 
 .show-slide .next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
+    right: 0;
+    border-radius: 3px 0 0 3px;
 }
 
 .show-slide .prev:hover, .next:hover {
-  background-color: rgb(38, 166, 154);
+    background-color: rgb(38, 166, 154);
 }
-
-/*filter button*/
-
-.dropdown-btn {
-    background-image: url('../image/sort.png');
-    background-color: pink;
-    background-repeat: no-repeat;
-    background-position: center;
-    padding: 28px;
-    border: none;
-    cursor: pointer;
-}
-
-.dropdown-btn:hover, .dropdown-btn:focus {
-  background-color: #3e8e41;
-  opacity: 0.7;
-}
-
-.dropdown-fitler {
-    margin: 5px 20px 0 0 ;
-    float: right;
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-filter-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 220px;
-  min-height: 150px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  right: 0;
-  z-index: 1;
-  border-radius: 6px;
-  opacity: 0.9;
-}
-
-.dropdown-filter-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-fitler a:hover {
-    background-color: #ddd;
-}
-
-.show {
-    display: block;
-}
-
-input.larger {
-    width: 20px;
-    height: 20px;
-}
-
-.dropdown-filter-content .checkbox-form {
-    display: inline-grid;
-    margin: 5px 0px 5px 5px;
-
-}
-
-.dropdown-filter-content .checkbox-content {
-    margin: 12px 12px 10px 12px;
-} 
-
-.dropdown-filter-content .checkbox-content span {
-    font-size: 20px;
-    margin: 0 0 0 10px;
-}
-
-.dropdown-filter-content .checkbox-content-title {
-    font-weight: bold;
-    font-style: italic;
-    font-size: 25px;
-    margin: 2px 0 2px 5px;
-}
-
 
 .dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
 }
 
 .active, .dot:hover {
-  background-color: rgb(38, 166, 154);
+    background-color: rgb(38, 166, 154);
 }
 
 
 .fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
 }
 
 @-webkit-keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
+    from {opacity: .4} 
+    to {opacity: 1}
 }
 
 @keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
+    from {opacity: .4} 
+    to {opacity: 1}
 }
 
 .grid  {
@@ -496,17 +419,18 @@ input.larger {
 .grid-contain .grid-item {
     width: 300px;
     height: 300px;
-    padding: 20px;
     border-radius: 12px;
+    padding: 20px;
     font-size: 20px;
     margin: 40px;
+    -webkit-transition: 0.5s ease;
+
 }
 
 .grid-contain .grid-item:hover {
     -webkit-transition: 0.5s ease;
     box-shadow: 5px 5px 5px 5px #C1A4AC;
 }
-
 
 .grid-item a , p {
     text-decoration: none;
@@ -559,227 +483,34 @@ input.larger {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-/*bottom nav*/
-/* .bottom-content {
-    top: 100%;
-    border-top: 1px solid #732424;
-    left: 40%;
-    position: absolute;
-    margin-left: 20px;
-}
-
-.bottom-content .bottom-contact {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 0 85px;
-    font-size: 15px;
-}
-
-.bottom-contact > div {
-    margin: 5px;
-}
-
-#contact {
-    margin-top: 10px;
-}
-
-.bottom-copyright {
-    justify-content: center;
-    width: 100%
-}
-
-.bottom-copyright h3 {
-    font-style: italic;
-    margin-top: 10px;
-    text-align: center;
-}
-
-*/
-
-    /* CSS của login */
-
-/* CSS của login */
-#loginbox{
-    display: none;
-    
-    /* background-color: #F2ACC6; */
-    background-image: url("https://a-static.besthdwallpaper.com/keep-it-simple-wallpaper-3840x2160-30135_54.jpg");
-    
-    opacity: 0.95;
-    background-size: 500px 600px;
-    border-radius: 30px;
-    width: 400px;
-    height: 550px;
-    position: fixed;
-    left: 37%;
-    margin-top: 150px;
-    padding: 20px;
-    transition-duration: 2s;
-}
-#show:checked ~ #loginbox{
-    display: block;
-    box-shadow: 0 0 0 9999px rgba(0,0,0,0.75);
-}
-input[type="checkbox"] {
+/*
+#show:checked ~ #popup{
     display: none;
 }
-.close-btn{
+ .close-btn{
     position: absolute;
     right: 20px;
     top: 15px;
-    font-size: 18px;
-    cursor: pointer;
-}
-.close-btn:hover{
-    color: white;
-
-}
-/* .changebox{
-    width: 220px;
-    margin: 10px auto 30px auto;
-    position: relative;
-    box-shadow: 0 0 20px 9px orangered;
-    border-radius: 30px;
-}
-.changebutton{
-    padding: 10px 30px;
-    cursor: pointer;
-    background: transparent;
-    border: 0;
-    outline: none;
-    position: relative;
-} */
-.loginwelcome {
-    width: 40%;
-    margin: auto;
-    left: 48%;
-    color: whitesmoke;
-    
-}
-#btn{
-    top: 0;
-    left: 0;
-    position: absolute;
-    width: 110px;
-    height: 100%;
-    background: linear-gradient(to right, orange, white);
-    border-radius: 30px;
-    transition: .3s;
-}
-
-.formactive{
-    margin-top: 30px;
-}
-
-.fields{
-    margin-top: 30px;
-    width: 95%;
-    color: whitesmoke;
-    border: none;
-    border-bottom: 1px solid #fff;
-    background: transparent;
-    outline: none;
-    background: transparent;
-}
-#loginbox input[type="submit"]{
-    
-    font-weight: 500;
     font-size: 20px;
-  flex: 1 1 auto;
-  margin-top: 80px;
-  margin-left: 18px;
-  width: 90%;
-  padding: 15px;
-  text-align: center;
-  text-transform: uppercase;
-  transition: 0.5s;
-  background-size: 200% auto;
-  color: black;
- text-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-  box-shadow: 0 0 20px #eee;
-  border-radius: 30px;
-  background-image: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);
-  justify-content: center;
+    cursor: pointer;
 } 
-
-#loginbox input[type="submit"]:hover{
-    background-position: right center;
+#show{
+    display: none;
 }
-#loginbox p{
-    
-    color: whitesmoke;
-    font-size: 22px;
-    padding-bottom: none;
-    margin-top: none;
-    font-weight: 900;
+#popup h2{
+    margin-bottom: 20px;
 }
-.google-btn {
-    bottom: 10%;
-    width: 184px;
-    height: 42px;
-    background-color: #4285f4;
-    border-radius: 2px;
-    box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
+.popupokay{
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: rgb(253, 252, 252);
+    border: 2px solid rgb(61, 57, 57);
+    padding-top: 5px;
     margin: auto;
-    position: absolute;
-    left: 27%;
-  }
-  .google-icon-wrapper {
-    margin-top: 1px;
-    margin-left: 1px;
-    width: 40px;
-    height: 40px;
-    border-radius: 2px;
-    background-color: white;
-  }
-  .google-icon {
-    margin-top: 11px;
-    margin-left: 11px;
-    width: 18px;
-    height: 18px;
-    position: relative;
-  }
-  .google-btn span{
-    margin: 11px 11px 0 0;
-    color: white;
-    font-size: 14px;
-    letter-spacing: 0.2px;
-    font-family: "Roboto";
-    float: right;
-    position: absolute;
-    left: 30%;
-    font-weight: 900;
-  }
-  .google-btn:hover {
-    box-shadow: 0 0 6px #4285f4;
-  }
-  .google-btn:active {
-    background: blue;
-  }
-  @import url(https://fonts.googleapis.com/css?family=Roboto:500);
-
-
-/* dropbox */
-#loginbox{
-    top: -400px;
-    animation: drop 0.5s ease forwards;
 }
-@keyframes drop{
-    0%{}
-    70%{transform: translateY(430px);}
-    100%{transform: translateY(350px);}
-}
-
-
-/* end login box css */
+.popupokay:hover{
+    cursor: pointer;
+    background-color: rgb(121, 113, 113);
+    color: whitesmoke;
+}*/

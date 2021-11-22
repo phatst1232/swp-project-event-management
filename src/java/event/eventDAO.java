@@ -67,6 +67,65 @@ public class eventDAO {
         }
         return list;
     }
+    
+    //Get list user with filter
+    public List<eventDTO> getListEvent(String search, String OrderBy, String ended) throws SQLException {
+        List<eventDTO> list = new ArrayList();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " SELECT eventID,eventName,eventCreateDate,eventStartDate, "
+                        + " userID,statusID,limitMember, "
+                        + " content,clubID,dmID,[like] "
+                        + " From tblEvents "
+                        + " WHERE eventName like ? AND statusID='AC' ";
+                if (ended.equals("no")) {
+                    sql = sql + " eventStartDate >= GETDATE() ";
+                }
+                if (OrderBy.equals("eventCreateDate_asc")) {
+                    sql = sql + " ORDER BY eventCreateDate ASC ";
+                } else if (OrderBy.equals("eventCreateDate_desc")) {
+                    sql = sql + " ORDER BY eventCreateDate DESC ";
+                } else if (OrderBy.equals("eventName_asc")) {
+                    sql = sql + " ORDER BY eventName ASC ";
+                }else if (OrderBy.equals("eventName_desc")) {
+                    sql = sql + " ORDER BY eventName DESC ";
+                } 
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, "%" + search + "%");
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    String eventID = rs.getString("eventID");
+                    String eventName = rs.getString("eventName");
+                    Date eventCreateDate = rs.getDate("eventCreateDate");
+                    Date eventStartDate = rs.getDate("eventStartDate");
+                    String userID = rs.getString("userID");
+                    String statusID = rs.getString("statusID");
+                    int limitMember = rs.getInt("limitMember");
+                    String content = rs.getString("content");
+                    String clubID = rs.getString("clubID");
+                    String dmID = rs.getString("dmID");
+                    int like = rs.getInt("like");
+                    list.add(new eventDTO(eventID, eventName, eventCreateDate, eventStartDate, userID, statusID, limitMember, content, clubID, dmID, like));
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
+    }
 
     public boolean postComment(CommentDTO comment) throws SQLException {
         boolean check = false;
@@ -432,6 +491,70 @@ public class eventDAO {
             }
         }
         return count;
+    }
+    
+    public int countEventOfThisMonth() throws SQLException {
+        int sum = 0;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " SELECT COUNT(*) as sum "
+                        + " FROM tblEvents "
+                        + " WHERE MONTH(eventStartDate) = MONTH(GETDATE()) ";
+                stm = conn.prepareStatement(sql);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    sum = rs.getInt("sum");
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return sum;
+    }
+    
+    public int countEventOfLastMonth() throws SQLException {
+        int sum = 0;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " SELECT COUNT(*) as sum "
+                        + " FROM tblEvents "
+                        + " WHERE MONTH(eventStartDate) = MONTH(DATEADD(month, -1, DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE())))) ";
+                stm = conn.prepareStatement(sql);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    sum = rs.getInt("sum");
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return sum;
     }
 
     public int getQuantity() throws SQLException {

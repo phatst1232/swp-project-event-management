@@ -74,6 +74,16 @@
                         <span class="tooltip">Search</span>
                     </li>
                     <li>
+                        <a href="LoginPage.jsp">
+                            <i id="user-search"><img src="image\home+24px-131985192429179046_24.png"></i>
+                            <span class="link-name">Home</span>
+                        </a>
+                        <span class="tooltip">User</span>
+                    </li>
+                    <%
+                        if (loginUser != null) {
+                    %>
+                    <li>
                         <a href="PersonalProfile.jsp">
                             <i id="user-search"><img src="image\icons8-user-24.png"></i>
                             <span class="link-name">Profile</span>
@@ -81,7 +91,7 @@
                         <span class="tooltip">User</span>
                     </li>
                     <%
-                        if (loginUser != null || "AD".equals(loginUser.getRoleID())) {
+                        if ("AD".equals(loginUser.getRoleID()) || "CL".equals(loginUser.getRoleID()) || "DM".equals(loginUser.getRoleID())) {
                     %>
                     <li>
                         <a href="createEvent.jsp">
@@ -91,6 +101,17 @@
                         <span class="tooltip">User</span>
                     </li>
                     <%
+                        if ("AD".equals(loginUser.getRoleID())) {
+                    %>
+                    <li>
+                        <a href="adminPage.jsp">
+                            <i id="user-search"><img src="image/favourite.png" style="width: 24px; height: 24px;"></i>
+                            <span class="link-name">Admin Page</span>
+                        </a>
+                        <span class="tooltip">User</span>
+                    </li>
+                    <%
+                            }
                         }
                     %>
                     <li>
@@ -100,7 +121,12 @@
                         </a>
                         <span class="tooltip">Notification</span>
                     </li>
+                    <%
+                        }
+                    %>
                 </ul>
+
+
                 <div class="profile-content">
                     <div class="profile">
                         <div class="profile-detail">
@@ -299,11 +325,13 @@ qua chốt đều đáp ứng các điều kiện, không cần làm xét nghi�
         <!-- script navigation -->
         <script>
             let but = document.querySelector("#but");
-                    let sidebar = document.querySelector(".sidebar");
-                    let searchBtn = document.querySelector("#but-search");
                     let
+            sidebar = document.querySelector(".sidebar");
+                    let
+            searchBtn = document.querySelector("#but-search");
+            let
             userBtn = document.querySelector("#user-search");
-                    let
+            let
             editBtn = document.querySelector("#edit-search");
             let
             notiBtn = document.querySelector("#noti-search");

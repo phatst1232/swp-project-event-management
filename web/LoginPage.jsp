@@ -9,10 +9,29 @@
     <head>
         <title>User Page</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/loginpage2.css">
+        <link rel="stylesheet" href="css/loginpage3.css">
+
+        <!--        <link href="Notification.js">-->
+
     </head>
 
     <body>
+        <!--        Login notification
+                <input type="checkbox" id="show">
+                <div id="popup">
+                    <div>
+                        <h2>Thank you for joining with us!</h2>
+        
+                        <div class="popupokay">
+                            <label for="show" >OKAY
+        
+                            </label>
+                        </div>
+        
+                    </div>
+                </div>       
+        -->
+
         <%
             UserDAO dao = new UserDAO();
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
@@ -62,6 +81,16 @@
                     <span class="tooltip">Search</span>
                 </li>
                 <li>
+                    <a href="LoginPage.jsp">
+                        <i id="user-search"><img src="image\home+24px-131985192429179046_24.png"></i>
+                        <span class="link-name">Home</span>
+                    </a>
+                    <span class="tooltip">User</span>
+                </li>
+                <%
+                    if (loginUser != null) {
+                %>
+                <li>
                     <a href="PersonalProfile.jsp">
                         <i id="user-search"><img src="image\icons8-user-24.png"></i>
                         <span class="link-name">Profile</span>
@@ -69,7 +98,7 @@
                     <span class="tooltip">User</span>
                 </li>
                 <%
-                    if (loginUser != null || "AD".equals(loginUser.getRoleID())) {
+                    if ("AD".equals(loginUser.getRoleID()) || "CL".equals(loginUser.getRoleID()) || "DM".equals(loginUser.getRoleID())) {
                 %>
                 <li>
                     <a href="createEvent.jsp">
@@ -79,6 +108,17 @@
                     <span class="tooltip">User</span>
                 </li>
                 <%
+                    if ("AD".equals(loginUser.getRoleID())) {
+                %>
+                <li>
+                    <a href="adminPage.jsp">
+                        <i id="user-search"><img src="image/favourite.png" style="width: 24px; height: 24px;"></i>
+                        <span class="link-name">Admin Page</span>
+                    </a>
+                    <span class="tooltip">User</span>
+                </li>
+                <%
+                        }
                     }
                 %>
                 <li>
@@ -88,6 +128,9 @@
                     </a>
                     <span class="tooltip">Notification</span>
                 </li>
+                <%
+                    }
+                %>
             </ul>
             <div class="profile-content">
                 <div class="profile">
@@ -234,15 +277,15 @@
 //                slides[0].style.display = 'block';
 //            };
             let
-                    but = document.querySelector("#but");
+            but = document.querySelector("#but");
             let
-                    sidebar = document.querySelector(".sidebar");
+            sidebar = document.querySelector(".sidebar");
             let
-                    searchBtn = document.querySelector("#but-search");
+            searchBtn = document.querySelector("#but-search");
             let
-                    userBtn = document.querySelector("#user-search");
+            userBtn = document.querySelector("#user-search");
             let
-                    notiBtn = document.querySelector("#noti-search");
+            notiBtn = document.querySelector("#noti-search");
             but.onclick = function () {
                 sidebar.classList.toggle("active");
             }
@@ -254,7 +297,7 @@
             userBtn.onclick = function () {
                 sidebar.classList.toggle("active");
             }
-            
+
             notiBtn.onclick = function () {
                 sidebar.classList.toggle("active");
             }
@@ -328,21 +371,16 @@
     </div>
 
     <script type="text/javascript">
-        let
-                but = document.querySelector("#but");
-        let
-                sidebar = document.querySelector(".sidebar");
-        let
-                searchBtn = document.querySelector("#but-search");
-        let
-                userBtn = document.querySelector("#user-search");
-        let
-                editBtn = document.querySelector("#edit-search");
-        let
-                notiBtn = document.querySelector("#noti-search");
-        but.onclick = function () {
-            sidebar.classList.toggle("active");
-        }
+        let but = document.querySelector("#but");
+                let sidebar = document.querySelector(".sidebar");
+                let searchBtn = document.querySelector("#but-search");
+                let userBtn = document.querySelector("#user-search");
+                let editBtn = document.querySelector("#edit-search");
+                let
+        notiBtn = document.querySelector("#noti-search");
+                but.onclick = function () {
+                    sidebar.classList.toggle("active");
+                }
 
         searchBtn.onclick = function () {
             sidebar.classList.toggle("active");

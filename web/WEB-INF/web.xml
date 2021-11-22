@@ -37,10 +37,6 @@
         <servlet-class>controller.UpdateUserProfileController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ViewProfileController</servlet-name>
-        <servlet-class>controller.ViewProfileController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>CommentEventController</servlet-name>
         <servlet-class>controller.CommentEventController</servlet-class>
     </servlet>
@@ -91,10 +87,6 @@
     <servlet-mapping>
         <servlet-name>UpdateUserProfileController</servlet-name>
         <url-pattern>/UpdateUserProfileController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ViewProfileController</servlet-name>
-        <url-pattern>/ViewProfileController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CommentEventController</servlet-name>
