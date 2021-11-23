@@ -12,9 +12,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <link rel="stylesheet" href="css/ShowAnEvent2.css">
+        <link rel="stylesheet" href="css/showanevent.css">
     </head>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <body>
 
         <%
@@ -131,7 +131,7 @@
                     </div>
                     <i id="log-out">
                         <button id="bt" style="background-color:transparent; outline: none; border: none;">
-                            <a href="LogoutController">
+                            <a href="LogoutController" onclick="return confirm('Are you sure you want to logout?');">
                                 <img src="image\log-out-regular-24.png">
                             </a>
                         </button>
@@ -160,7 +160,7 @@
                             <h1 class="eventname"><%=event.getEventName()%></h1>
                             <div class="tags"> 
                                 <span> <img src="image/purchase-tag-alt-regular-24.png" width="24px" height="24px"  alt=""></span> 
-                                <a href="">Dảk</a> <a href="">bủh</a> <a href="">Lmao</a>
+                                
                                 <%
                                     List<String> listCategory = Edao.getListCategoty(event.getEventID());
                                     for (String category : listCategory) {

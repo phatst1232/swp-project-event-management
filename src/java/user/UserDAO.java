@@ -50,8 +50,7 @@ public class UserDAO {
                     String clubID = rs.getString("clubID");
                     String dmID = rs.getString("dmID");
                     String avtLink = rs.getString("avtLink");
-                    
-                   
+
                     list.add(new UserDTO(userID, userName, password, roleID, address, phoneNumber, email, statusID, majorID, clubID, dmID, avtLink));
                 }
             }
@@ -92,7 +91,7 @@ public class UserDAO {
                 String DmID = rs.getString("DmID");
                 String roleID = rs.getString("roleID");
                 String avtLink = rs.getString("avtLink");
-                user = new UserDTO(userID, userName, "****", roleID, "", phone, email, "AC", "",ClubID, DmID, avtLink);
+                user = new UserDTO(userID, userName, "****", roleID, "", phone, email, "AC", "", ClubID, DmID, avtLink);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -135,7 +134,7 @@ public class UserDAO {
                 stm.setString(10, user.getClubID());
                 stm.setString(11, user.getDmID());
                 stm.setString(12, user.getAvtLink());
-                
+
                 check = stm.executeUpdate() > 0;
             }
         } finally {
@@ -153,9 +152,9 @@ public class UserDAO {
         String regex = "^[a-z][a-z0-9_\\.]{5,32}@fpt.edu.vn\\b$";
         return email.matches(regex);
     }
-    
+
     public boolean checkUserExist(String userID) throws SQLException {
-        boolean result=false;
+        boolean result = false;
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -188,7 +187,7 @@ public class UserDAO {
     }
 
     public String getClubName(String clubID) throws SQLException {
-        String clubName=null;
+        String clubName = null;
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -219,9 +218,9 @@ public class UserDAO {
         }
         return clubName;
     }
-    
+
     public String getDMName(String dmID) throws SQLException {
-        String dmName=null;
+        String dmName = null;
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -252,9 +251,9 @@ public class UserDAO {
         }
         return dmName;
     }
-    
+
     public String getRoleName(String roleID) throws SQLException {
-        String roleName=null;
+        String roleName = null;
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -285,9 +284,9 @@ public class UserDAO {
         }
         return roleName;
     }
-    
+
     public String getUserName(String userID) throws SQLException {
-        String userName=null;
+        String userName = null;
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -318,9 +317,9 @@ public class UserDAO {
         }
         return userName;
     }
-    
+
     public String getAvtLink(String userID) throws SQLException {
-        String avtLink=null;
+        String avtLink = null;
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -351,7 +350,7 @@ public class UserDAO {
         }
         return avtLink;
     }
-    
+
     public boolean updateUser(UserDTO user) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -360,22 +359,19 @@ public class UserDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 String sql = " UPDATE tblUsers "
-                        + " SET userName=?, Password=?, roleID=?, address=?, phoneNumber=?,email=?, statusID=?,"
-                        + "majorID=?, clubID=?, dmID=?, avtLink=?"
-                        + " WHERE userID=?";
+                        + " SET userName=?, roleID=?, address=?, phoneNumber=?, email=?, statusID=?, "
+                        + " clubID=?, dmID=? "
+                        + " WHERE userID=? ";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, user.getUserName());
-                stm.setString(2, user.getPassword());
-                stm.setString(3, user.getRoleID());
-                stm.setString(4, user.getAddress());
-                stm.setString(5, user.getPhoneNumber());
-                stm.setString(6, user.getEmail());
-                stm.setString(7, user.getStatusID());
-                stm.setString(8, user.getMajorID());
-                stm.setString(9, user.getClubID());
-                stm.setString(10, user.getDmID());
-                stm.setString(11, user.getAvtLink());
-                stm.setString(12, user.getUserID());
+                stm.setString(2, user.getRoleID());
+                stm.setString(3, user.getAddress());
+                stm.setString(4, user.getPhoneNumber());
+                stm.setString(5, user.getEmail());
+                stm.setString(6, user.getStatusID());
+                stm.setString(7, user.getClubID());
+                stm.setString(8, user.getDmID());
+                stm.setString(9, user.getUserID());
                 check = stm.executeUpdate() > 0;
             }
         } catch (Exception e) {
@@ -390,6 +386,7 @@ public class UserDAO {
         }
         return check;
     }
+
     public boolean updateprofile(UserDTO user) throws SQLException {
         boolean check = false;
         Connection conn = null;

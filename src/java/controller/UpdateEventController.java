@@ -8,8 +8,7 @@ package controller;
 import event.eventDAO;
 import event.eventDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,38 +19,30 @@ import javax.servlet.http.HttpSession;
  *
  * @author phats
  */
-public class SearchEventController extends HttpServlet {
+public class UpdateEventController extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "Eventmanagement.jsp";
-    private static final String LOGIN_SUCCESS = "LoginPage.jsp";
-    private static final String ADMIN_SUCCESS = "eventManagePage.jsp";
+    public static final String ERROR = "error.jsp";
+    public static final String SUCCESS = "eventManagePage.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
         String url = ERROR;
+        HttpSession session = request.getSession();
         try {
-            String from = request.getParameter("from");
-            String search = request.getParameter("search");
+            String eventID = request.getParameter("eventID");
+            String eventName = request.getParameter("eventName");
+            Date eventStartDate = Date.valueOf(request.getParameter("eventStartDate"));
+            int limitMember = Integer.parseInt(request.getParameter("limitMember"));
+            int like = Integer.parseInt(request.getParameter("like"));
             eventDAO dao = new eventDAO();
-            List<eventDTO> list = dao.getListEvent(search);
-
-            request.setAttribute("LIST_EVENT", list);
-            if (session.getAttribute("LOGIN_USER") != null) {
-                url = LOGIN_SUCCESS;
-                if (from.equals("eventManagePage")) {
-                    url = ADMIN_SUCCESS;
-                }
-            } else {
+            eventDTO event = new eventDTO(eventID, eventName, eventStartDate, eventStartDate, eventID, eventID, limitMember, eventID, eventID, url, like);
+            if (event != null) {
+                dao.updateEvent(event);
                 url = SUCCESS;
             }
-
         } catch (Exception e) {
-            log("Error at SearchEventController" + e.toString());
+            log("Error at UpdateEventController" + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

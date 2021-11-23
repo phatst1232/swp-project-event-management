@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="event.eventDTO"%>
 <%@page import="user.UserDTO"%>
 <%@page import="event.eventDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -30,30 +32,24 @@
             <!-- tu add url toi 2 cai trang kia nha -->
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="adminPage.jsp">
                         <span >DashBoard</span>
                         <i><img src="image/left-arrow.png"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="eventManagePage.jsp">
                         <span >Event Manager</span>
                         <i><img src="image/left-arrow.png"></i>
                     </a>
 
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="userManagePage.jsp">
                         <span >User Manager</span>
                         <i><img src="image/left-arrow.png"></i>
                     </a>
 
-                </li>
-                <li>
-                    <a href="#">
-                        <span>Create Request</span>
-                        <i><img src="image/left-arrow.png"></i>
-                    </a>
                 </li>
             </ul>
 
@@ -72,10 +68,10 @@
                 </button>
                 <div id="category-content" class="dropdown-content">
                     <a href="PersonalProfile.jsp">Edit</a>
-                    <a href="LogoutController">Log Out</a>
+                    <a href="LogoutController" onclick="return confirm('Are you sure you want to logout?');">Log Out</a>
                 </div>
             </div>
-            <img src="image/bell-solid-24.png" width="30px" height="30px">
+<!--            <img src="image/bell-solid-24.png" width="30px" height="30px">-->
             <script type="text/javascript">
                 /* When the user clicks on the button, 
                  toggle between hiding and showing the dropdown content */
@@ -148,13 +144,48 @@
                     chart.render();
                 }
             </script>
+            <%
+                List<eventDTO> interact_list = Edao.getListEvent("", "like_desc", "no");
+            %>
             <div class="contain-list-event">
                 <p>List event has most interact</p>
+                <%
+                    if (interact_list.size() >= 5) {
+                        for (int i = 0; i <= 5; i++) {
+                %>
+                <p><%=i + 1%>. <%=interact_list.get(i).getEventName()%></p>
+                <%
+                    }
+                } else {
+                    for (int i = 0; i <= interact_list.size() - 1; i++) {
+                %>
+                <p><%=i + 1%>. <%=interact_list.get(i).getEventName()%></p>
+                <%
+                        }
+                    }
+                %>
             </div>
-
+            <%
+                List<eventDTO> justCreate_list = Edao.getListEvent("", "eventCreateDate_desc", "no");
+            %>
             <div class="grid-2">
                 <div class="grid-item-2">
                     <p>List event just start to create</p>
+                    <%
+                        if (justCreate_list.size() >= 5) {
+                            for (int i = 0; i <= 5; i++) {
+                    %>
+                    <p><%=i + 1%>. <%=justCreate_list.get(i).getEventName()%></p>
+                    <%
+                        }
+                    } else {
+                        for (int i = 0; i <= justCreate_list.size() - 1; i++) {
+                    %>
+                    <p><%=i + 1%>. <%=justCreate_list.get(i).getEventName()%></p>
+                    <%
+                            }
+                        }
+                    %>
                 </div>
                 <div class="grid-item-2">
                     <p>List user just start to create</p>

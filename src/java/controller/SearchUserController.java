@@ -23,8 +23,8 @@ import user.UserDTO;
 public class SearchUserController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "UserManagement.jsp";
-   
+    private static final String SUCCESS = "userManagePage.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -36,10 +36,10 @@ public class SearchUserController extends HttpServlet {
             String search = request.getParameter("search");
             UserDAO dao = new UserDAO();
             List<UserDTO> list = dao.getListUser(search);
-            if (!list.isEmpty()) {
-                request.setAttribute("LIST_USER", list);
-                url = SUCCESS;
-            }
+
+            request.setAttribute("LIST_USER", list);
+            url = SUCCESS;
+
         } catch (Exception e) {
             log("Error at SearchEventController" + e.toString());
             session.setAttribute("ERROR_MESSAGE", "Error when getListUser");

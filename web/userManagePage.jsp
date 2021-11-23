@@ -1,9 +1,21 @@
+<%-- 
+    Document   : userManagePage
+    Created on : Nov 23, 2021, 10:42:45 AM
+    Author     : phats
+--%>
+
+<%@page import="user.UserDAO"%>
+<%@page import="user.UserDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="event.eventDTO"%>
+<%@page import="event.eventDAO"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <title>
-            EventManagement
+            User Management
         </title>
         <link rel="stylesheet" type="text/css" href="./css/eventPage.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
@@ -16,6 +28,32 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     </head>
     <body style="background-color: #F2CED8;">
+
+        <!--Search all user to show for the first time access page-->
+        <form action="SearchUserController" name="firstSearch">
+            <input type="hidden" name="search" value="">
+            <input type="hidden" name="from" value="userManagePage">
+        </form>
+        <%
+            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+            if (loginUser == null || !"AD".equals(loginUser.getRoleID())) {
+                response.sendRedirect("Eventmanagement.jsp");
+                return;
+            }
+
+            String search = (String) request.getParameter("search");
+            if (search == null) {
+                search = "";
+        %>
+        <script type="text/javascript">
+            document.firstSearch.submit();
+        </script>
+        <%
+            }
+        %>
+
+
+
         <div class="sidebar">
             <!-- Logo Admin Page -->
             <div class="logo-content">
@@ -25,36 +63,30 @@
             <!--Content element to another admin section  -->
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="adminPage.jsp">
                         <span >DashBoard</span>
                         <i><img src="image/left-arrow.png"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="eventManagePage.jsp">
                         <span >Event Manager</span>
                         <i><img src="image/left-arrow.png"></i>
                     </a>
 
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="userManagePage.jsp">
                         <span >User Manager</span>
                         <i><img src="image/left-arrow.png"></i>
                     </a>
 
                 </li>
-                <li>
-                    <a href="#">
-                        <span>Create Request</span>
-                        <i><img src="image/left-arrow.png"></i>
-                    </a>
-                </li>
             </ul>
 
             <!-- button to click back to mainPage -->
             <button class="btn-main">
-                <a href="#">Main Page</a>
+                <a href="LoginPage.jsp">Main Page</a>
             </button>
         </div>
 
@@ -71,10 +103,12 @@
                 </div>
             </div>
 
-            <form class="search-bar">
-                <input type="text" name="name" id="name" placeholder="Search...">
-                <button>Search</button>
-                <img src="image/bell-solid-24.png" width="30px" height="30px">
+            <form action="MainController" class="search-bar">
+                <input type="text" name="search" id="name" value="<%=search%>" placeholder="Search...">
+                <input type="submit" name="action" value="Search user">
+                <input type="hidden" name="from" value="userManagePage">
+
+                <!--                <img src="image/bell-solid-24.png" width="30px" height="30px">    -->
             </form>
 
 
@@ -110,7 +144,7 @@
                         <div class="table-title">
                             <div class="row">
                                 <div class="col-sm-5">
-                                    <h2>Event <b>Management</b></h2>
+                                    <h2>User <b>Management</b></h2>
                                 </div>
 
                             </div>
@@ -118,70 +152,67 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Name</th>
+                                    <th>No</th>
                                     <th>ID</th>
+                                    <th>Name</th>
                                     <th>Password</th>
                                     <th>Role</th>
                                     <th>Address</th>
                                     <th>Phone Number</th>
-                                    <th>Email</th>
-                                    <th>Major</th>
-                                    <th>Report ID</th>
-                                    <th>Interested Detail</th>
+                                    <th>Email</th>                      
                                     <th>Club ID</th>
-                                    <th>DM ID</th>
+                                    <th>Department Manager ID</th>
                                     <th>Status</th>
+                                    <th>Update User</th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <%
+                                    List<UserDTO> list = (List<UserDTO>) request.getAttribute("LIST_USER");
+                                    if (list != null) {
+                                        if (!list.isEmpty()) {
+                                            int count = 1;
+                                            for (UserDTO user : list) {
+                                %>  
+                            <form action="MainController">
+
                                 <tr>
-                                    <td>2</td>
-                                    <td><a href="#" class="name"><img src="image/UserPicture.png" class="avatar" alt="Avatar">
-                                            Michael Holz</a></td>
-                                    <td>SE151199</td>
-                                    <td>yousohandsome</td>
-                                    <td>Admin</td>
-                                    <td>Biên Hòa</td>
-                                    <td>0373020457</td>
-                                    <td>huyhunghang@gmail.com</td>
-                                    <td>SE</td>
-                                    <td>null</td>
-                                    <td>sport</td>
-                                    <td>Japan A Video</td>
-                                    <td>null</td>
-
+                                    <td><%=count++%></td>
+                                    <td><%=user.getUserID()%></td>
+                                    <td><input type="text" name="userName" value="<%=user.getUserName()%>"/></td>
+                                    <td><%=user.getPassword()%></td>
+                                    <td><input type="text" name="roleID" value="<%=user.getRoleID()%>"/></td>
+                                    <td><input type="text" name="address" value="<%=user.getAddress()%>"/></td>
+                                    <td><input type="text" name="phoneNumber" value="<%=user.getPhoneNumber()%>"/></td>
+                                    <td><input type="text" name="email" value="<%=user.getEmail()%>"/></td>
+                                    <td><input type="text" name="clubID" value="<%=user.getClubID()%>"/></td>
+                                    <td><input type="text" name="dmID" value="<%=user.getDmID()%>"/></td>
+                                    <td><input type="text" name="statusID" value="<%=user.getStatusID()%>"/></td>
                                     <td>
-
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input default" type="checkbox" id="flexSwitchCheckDefault" />
-                                            <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-                                        </div>
+                                        <input type="hidden" name="userID" value="<%=user.getUserID()%>">
+                                        <input type="hidden" name="from" value="userManagePage">
+                                        <input type="submit" name="action" value="Update user"/> 
+                                    </td>
+                                    <td>                                       
+                                        <a href="MainController?action=Delete user&from=userManagePage&userID=<%=user.getUserID()%>&search=<%=search%>">Delete</a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td><a href="#" class="name"><img src="image/UserPicture.png" class="avatar" alt="Avatar">
-                                            Michael Holz</a></td>
-                                    <td>SE151199</td>
-                                    <td>yousohandsome</td>
-                                    <td>Admin</td>
-                                    <td>Biên Hòa</td>
-                                    <td>0373020457</td>
-                                    <td>huyhunghang@gmail.com</td>
-                                    <td>SE</td>
-                                    <td>null</td>
-                                    <td>sport</td>
-                                    <td>Japan A Video</td>
-                                    <td>null</td>
-
-                                    <td>
-
-                                        <label><input type="checkbox"></label>
-                                    </td>
-                                </tr>                                     
+                            </form>
+                            <%
+                                }
+                            } else {
+                            %>
+                            <h3>List event is empty!!!</h3>
+                            <%
+                                }
+                            } else {
+                            %>
+                            <h3>Not thing found!!!</h3>
+                            <%
+                                }
+                            %>
                             </tbody>
-
                         </table>
                     </div>
                 </div>

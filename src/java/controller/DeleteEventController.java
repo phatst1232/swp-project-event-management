@@ -21,6 +21,7 @@ public class DeleteEventController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
     private static final String SUCCESS = "LoginPage.jsp";
+    private static final String ADMIN_SUCCESS = "eventManagePage.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -29,10 +30,14 @@ public class DeleteEventController extends HttpServlet {
         String url = ERROR;
         try {
             String eventID = request.getParameter("eventID");
+            String from = request.getParameter("from");
             eventDAO dao = new eventDAO();
             boolean check = dao.deleteEvent(eventID);
             if (check) {
                 url = SUCCESS;
+                if (from.equals("eventManagePage")) {
+                    url = ADMIN_SUCCESS;
+                }
             }
 
         } catch (Exception e) {

@@ -60,7 +60,7 @@
             if (showing_list == null && search != null) {
                 showing_list = Edao.getListEvent("");
             }
-            eventDTO event = showing_list.get(0);
+            eventDTO event = Edao.getListEvent("", "eventStartDate_asc", "no").get(0);
         %>
         <!-- navigation bar -->
         <div class="sidebar">
@@ -150,7 +150,7 @@
                     </div>
                     <i id="log-out">
                         <button id="bt" style="background-color:#455E74; outline: none; border: none;">
-                            <a href="LogoutController">
+                            <a href="LogoutController" onclick="return confirm('Are you sure you want to logout?');">
                                 <img src="image\log-out-regular-24.png">
                             </a>
                         </button>

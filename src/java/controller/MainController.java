@@ -33,15 +33,18 @@ public class MainController extends HttpServlet {
     private static final String SEARCH_EVENT = "SearchEventController";
     private static final String CREATE_EVENT = "AddEventController";
     private static final String SHOW_EVENT = "ShowEventController";
+    private static final String DELETE_EVENT = "DeleteEventController";
+    private static final String UPDATE_EVENT = "UpdateEventController";
     //-- User
     private static final String USER_PROFILE = "ShowProfileController";
     private static final String SEARCH_USER = "SearchUserController";
     private static final String UP_PROFILE = "UpdateUserProfileController";
-    
+    private static final String DELETE_USER = "DeleteUserController";
+    private static final String UPDATE_USER = "UpdateUserController";
+
     private static final String SearchImg = "SrEController";
-    private static final String TestCreate = "CreateEvent2Controller";
-    private static final String COMMENT_EVENT = "CommentEventController"; 
-    
+    private static final String COMMENT_EVENT = "CommentEventController";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -58,6 +61,10 @@ public class MainController extends HttpServlet {
                 url = CREATE_EVENT;
             } else if ("Search event".equals(action)) {
                 url = SEARCH_EVENT;
+            } else if ("Delete event".equals(action)) {
+                url = DELETE_EVENT;
+            } else if ("Update event".equals(action)) {
+                url = UPDATE_EVENT;
             } else if ("show event".equals(action)) {
                 url = SHOW_EVENT;
             } else if ("post comment".equals(action)) {
@@ -66,13 +73,17 @@ public class MainController extends HttpServlet {
                 url = USER_PROFILE;
             } else if ("Search user".equals(action)) {
                 url = SEARCH_USER;
+            } else if ("Update user".equals(action)) {
+                url = UPDATE_USER;
+            }else if ("Delete user".equals(action)) {
+                url = DELETE_USER;
             } else if ("Create_Event".equals(action)) {
                 url = CREATE_EVENT;
             } else if ("SearchE".equals(action)) {
                 url = SearchImg;
-            }else if ("userpr5".equals(action)) {
+            } else if ("userpr5".equals(action)) {
                 url = UP_PROFILE;
-            }else {
+            } else {
                 HttpSession session = request.getSession();
                 session.setAttribute("ERROR_MESSAGE", "Function is not avaiable!!!!");
             }

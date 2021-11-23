@@ -138,7 +138,7 @@
                         </div>
                         <i id="log-out">
                             <button id="bt" style="background-color:transparent; outline: none; border: none;">
-                                <a href="LogoutController">
+                                <a href="LogoutController" onclick="return confirm('Are you sure you want to logout?');">
                                     <img src="image\log-out-regular-24.png">
                                 </a>
                             </button>
@@ -162,9 +162,9 @@
                                                 class="icon"
                                                 src="./image/Account.PNG"
                                                 alt=""></i><span class="label">Account Setting</span></button></li>
-                                <li class=" tab"><button class="tablink" onclick="opentab('tabac', this)"><i><img class="icon"
+<!--                                <li class=" tab"><button class="tablink" onclick="opentab('tabac', this)"><i><img class="icon"
                                                                                                                   src="./image/calendar.PNG" alt=""></i><span
-                                            class="label">Activities</span></button></li>
+                                            class="label">Activities</span></button></li>-->
 
                             </ul>
                         </div>
@@ -222,75 +222,81 @@
                             <div class="profile value"> <%=loginUser.getPhoneNumber()%></div>
                         </div>
                         <div class="profile fields"><span>Club</span>
-                            <div class="profile value"> <%=loginUser.getClubID()%></div>
+                            <%
+                                String club = loginUser.getClubID();
+                                if (club == null) {
+                                    club = "Not yet";
+                                }
+                            %>
+                            <div class="profile value"> <%=club%></div>
                         </div>
                         <div class="profile fields"><span>Role</span>
-                            <div class="profile value"> <%=loginUser.getRoleID()%></div>
+                            <div class="profile value"> <%=dao.getRoleName(loginUser.getRoleID())%></div>
                         </div>
 
                     </div>
-                    <div id="tabac" class=" activitiescontent tabcontent">
-                        <div class="eventbox">
-                            <h1 class="tabtitle">Events</h1>
-                            <section class="article-border">
-                                <article class="article-item">
-
-                                    <p class="thumbnail"><img src=".\image\3959220.jpg" width="120px" height="120px"></p>
-                                    <header contain>
-                                        <p class="article-title">
-                                            <a href="#">HealthCare Event for all member</a>
-                                        </p>
-                                        <p class="article-meta">
-                                            <span class="active">
-                                                <span>15:21</span>
-                                                <span>9/10/2021</span>
-                                            </span>
-                                        </p>
-                                        <textarea class="article-summary">
- "Hôm nay, tại chốt kiểm soát gần trạm thu phí Long Phước trên cao tốc TP HCM - Long Thành - Dầu Giây 
-(TP Thủ Đức), cảnh sát chỉ yêu cầu người vào thành phố khai thông tin di chuyển nội địa qua ứng dụng VNEID, 
-kèm chứng nhận tiêm vaccine phòng Covid-19. Một cán bộ tại chốt cho hay chỉ những người chưa tiêm vaccine; 
-tiêm mũi một nhưng chưa đủ 14 ngày hoặc khỏi Covid-19 chưa đủ 6 tháng mới cần giấy xét nghiệm. Phần lớn người 
-qua chốt đều đáp ứng các điều kiện, không cần làm xét nghiệm.
-                                        </textarea>
-                                    </header>
-                                </article>
-
-                                <article class="article-item">
-
-                                    <p class="thumbnail"><img src=".\image\3959220.jpg" width="120px" height="120px"></p>
-                                    <header contain>
-                                        <p class="article-title">
-                                            <a href="#">HealthCare Event for all member</a>
-                                        </p>
-                                        <p class="article-meta">
-                                            <span class="active">
-                                                <span>15:21</span>
-                                                <span>9/10/2021</span>
-                                            </span>
-                                        </p>
-                                        <textarea class="article-summary">
-                                    "This event help student espcially one who
-                                    alwaysdhdhshfhsdhfshdfhshfhsdfhdshfhsdfhshdfhsdfhsdh
-                                    dhhdfhhdsfhsdhfhsdfhsdhf
-                                    couch potato and also for the one who love sport and fitness want to show there
-                                    strength to orther people"
-
-                                    jdjsdhshdhsdhshdhssadahsdhashdhas
-                                    sajdasjdjasjdjsajdasjdjasjdjas
-                                    ksdkkdsfkskdfksdkfdks dasjdhashdahsdhsahdhashdahsdhashdhasdhahsdhasd
-                                    ashdhashdhashdahsdhashdhashdhasd ashdhashdahsdhahsdh
-                                        </textarea>
-                                    </header>
-                                </article>
-
-                            </section>
-                        </div>
-                        <!-- <div class="commentbox">
-                            <h1>Comments</h1>
-                            <div class="commentcontent"></div>
-                        </div> -->
-                    </div>
+                    <!--                    <div id="tabac" class=" activitiescontent tabcontent">
+                                            <div class="eventbox">
+                                                <h1 class="tabtitle">Events</h1>
+                                                <section class="article-border">
+                                                    <article class="article-item">
+                    
+                                                        <p class="thumbnail"><img src=".\image\3959220.jpg" width="120px" height="120px"></p>
+                                                        <header contain>
+                                                            <p class="article-title">
+                                                                <a href="#">HealthCare Event for all member</a>
+                                                            </p>
+                                                            <p class="article-meta">
+                                                                <span class="active">
+                                                                    <span>15:21</span>
+                                                                    <span>9/10/2021</span>
+                                                                </span>
+                                                            </p>
+                                                            <textarea class="article-summary">
+                     "Hôm nay, tại chốt kiểm soát gần trạm thu phí Long Phước trên cao tốc TP HCM - Long Thành - Dầu Giây 
+                    (TP Thủ Đức), cảnh sát chỉ yêu cầu người vào thành phố khai thông tin di chuyển nội địa qua ứng dụng VNEID, 
+                    kèm chứng nhận tiêm vaccine phòng Covid-19. Một cán bộ tại chốt cho hay chỉ những người chưa tiêm vaccine; 
+                    tiêm mũi một nhưng chưa đủ 14 ngày hoặc khỏi Covid-19 chưa đủ 6 tháng mới cần giấy xét nghiệm. Phần lớn người 
+                    qua chốt đều đáp ứng các điều kiện, không cần làm xét nghiệm.
+                                                            </textarea>
+                                                        </header>
+                                                    </article>
+                    
+                                                    <article class="article-item">
+                    
+                                                        <p class="thumbnail"><img src=".\image\3959220.jpg" width="120px" height="120px"></p>
+                                                        <header contain>
+                                                            <p class="article-title">
+                                                                <a href="#">HealthCare Event for all member</a>
+                                                            </p>
+                                                            <p class="article-meta">
+                                                                <span class="active">
+                                                                    <span>15:21</span>
+                                                                    <span>9/10/2021</span>
+                                                                </span>
+                                                            </p>
+                                                            <textarea class="article-summary">
+                                                        "This event help student espcially one who
+                                                        alwaysdhdhshfhsdhfshdfhshfhsdfhdshfhsdfhshdfhsdfhsdh
+                                                        dhhdfhhdsfhsdhfhsdfhsdhf
+                                                        couch potato and also for the one who love sport and fitness want to show there
+                                                        strength to orther people"
+                    
+                                                        jdjsdhshdhsdhshdhssadahsdhashdhas
+                                                        sajdasjdjasjdjsajdasjdjasjdjas
+                                                        ksdkkdsfkskdfksdkfdks dasjdhashdahsdhsahdhashdahsdhashdhasdhahsdhasd
+                                                        ashdhashdhashdahsdhashdhashdhasd ashdhashdahsdhahsdh
+                                                            </textarea>
+                                                        </header>
+                                                    </article>
+                    
+                                                </section>
+                                            </div>
+                                             <div class="commentbox">
+                                                <h1>Comments</h1>
+                                                <div class="commentcontent"></div>
+                                            </div> 
+                                        </div>-->
                 </div>
 
             </div>
@@ -325,9 +331,9 @@ qua chốt đều đáp ứng các điều kiện, không cần làm xét nghi�
         <!-- script navigation -->
         <script>
             let but = document.querySelector("#but");
-                    let
+            let
             sidebar = document.querySelector(".sidebar");
-                    let
+            let
             searchBtn = document.querySelector("#but-search");
             let
             userBtn = document.querySelector("#user-search");

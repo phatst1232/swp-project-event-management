@@ -8,50 +8,48 @@ package controller;
 import event.eventDAO;
 import event.eventDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import user.UserDAO;
+import user.UserDTO;
 
 /**
  *
  * @author phats
  */
-public class SearchEventController extends HttpServlet {
+public class UpdateUserController extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "Eventmanagement.jsp";
-    private static final String LOGIN_SUCCESS = "LoginPage.jsp";
-    private static final String ADMIN_SUCCESS = "eventManagePage.jsp";
+     public static final String ERROR = "error.jsp";
+    public static final String SUCCESS = "userManagePage.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
         String url = ERROR;
+        HttpSession session = request.getSession();
         try {
-            String from = request.getParameter("from");
-            String search = request.getParameter("search");
-            eventDAO dao = new eventDAO();
-            List<eventDTO> list = dao.getListEvent(search);
-
-            request.setAttribute("LIST_EVENT", list);
-            if (session.getAttribute("LOGIN_USER") != null) {
-                url = LOGIN_SUCCESS;
-                if (from.equals("eventManagePage")) {
-                    url = ADMIN_SUCCESS;
-                }
-            } else {
+            String userID = request.getParameter("userID");
+            String userName = request.getParameter("userName");
+            String roleID = request.getParameter("roleID");
+            String address = request.getParameter("address");
+            String phoneNumber = request.getParameter("phoneNumber");
+            String email = request.getParameter("email");
+            String clubID = request.getParameter("clubID");
+            String dmID = request.getParameter("dmID");
+            String statusID = request.getParameter("statusID");
+            
+            UserDAO dao = new UserDAO();
+            UserDTO user = new UserDTO(userID, userName, "***", roleID, address, phoneNumber, email, statusID, "", clubID, dmID, "");
+            if (user != null) {
+                dao.updateUser(user);
                 url = SUCCESS;
             }
-
         } catch (Exception e) {
-            log("Error at SearchEventController" + e.toString());
+            log("Error at UpdateEventController" + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

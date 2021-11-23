@@ -67,7 +67,7 @@ public class eventDAO {
         }
         return list;
     }
-    
+
     //Get list user with filter
     public List<eventDTO> getListEvent(String search, String OrderBy, String ended) throws SQLException {
         List<eventDTO> list = new ArrayList();
@@ -83,7 +83,7 @@ public class eventDAO {
                         + " From tblEvents "
                         + " WHERE eventName like ? AND statusID='AC' ";
                 if (ended.equals("no")) {
-                    sql = sql + " eventStartDate >= GETDATE() ";
+                    sql = sql + " AND eventStartDate >= GETDATE() ";
                 }
                 if (OrderBy.equals("eventCreateDate_asc")) {
                     sql = sql + " ORDER BY eventCreateDate ASC ";
@@ -91,9 +91,17 @@ public class eventDAO {
                     sql = sql + " ORDER BY eventCreateDate DESC ";
                 } else if (OrderBy.equals("eventName_asc")) {
                     sql = sql + " ORDER BY eventName ASC ";
-                }else if (OrderBy.equals("eventName_desc")) {
+                } else if (OrderBy.equals("eventName_desc")) {
                     sql = sql + " ORDER BY eventName DESC ";
-                } 
+                } else if (OrderBy.equals("like_asc")) {
+                    sql = sql + " ORDER BY [like] ASC ";
+                } else if (OrderBy.equals("like_desc")) {
+                    sql = sql + " ORDER BY [like] DESC ";
+                } else if (OrderBy.equals("eventStartDate_asc")) {
+                    sql = sql + " ORDER BY eventStartDate ASC ";
+                } else if (OrderBy.equals("eventStartDate_desc")) {
+                    sql = sql + " ORDER BY eventStartDate DESC ";
+                }
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, "%" + search + "%");
                 rs = stm.executeQuery();
@@ -134,14 +142,14 @@ public class eventDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = " Insert INTO tblComments(commentContent,repliedTo,eventID,[like],commentBy) " +
-                                " Values (?,?,?,?,?)";
+                String sql = " Insert INTO tblComments(commentContent,repliedTo,eventID,[like],commentBy) "
+                        + " Values (?,?,?,?,?)";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, comment.getCommentContent());
                 stm.setString(2, comment.getRepliedTo());
                 stm.setString(3, comment.getEventID());
                 stm.setInt(4, comment.getLike());
-                stm.setString(5, comment.getCommentBy());             
+                stm.setString(5, comment.getCommentBy());
                 check = stm.executeUpdate() > 0;
             }
         } catch (Exception e) {
@@ -156,19 +164,19 @@ public class eventDAO {
         }
         return check;
     }
-    
-    public boolean joinEvent(String eventID , String userID) throws SQLException {
+
+    public boolean joinEvent(String eventID, String userID) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement stm = null;
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = " Insert INTO tblJoins(eventID,userID) " +
-                                " Values (?,?)";
+                String sql = " Insert INTO tblJoins(eventID,userID) "
+                        + " Values (?,?)";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, eventID);
-                stm.setString(2, userID);                         
+                stm.setString(2, userID);
                 check = stm.executeUpdate() > 0;
             }
         } catch (Exception e) {
@@ -321,7 +329,7 @@ public class eventDAO {
         }
         return dmName;
     }
-    
+
     public String getImageLink(String eventID) throws SQLException {
         String imageLink = null;
         Connection conn = null;
@@ -431,7 +439,7 @@ public class eventDAO {
             if (conn != null) {
                 String sql = " SELECT commentID,commentContent,repliedTo,[like],commentDate,commentBy "
                         + " FROM tblComments "
-                        + " WHERE eventID = ? ORDER BY commentDate ASC " ;          //or DESC
+                        + " WHERE eventID = ? ORDER BY commentDate ASC ";          //or DESC
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, eventID);
                 rs = stm.executeQuery();
@@ -442,7 +450,7 @@ public class eventDAO {
                     Timestamp commentDate = rs.getTimestamp("commentDate");
                     int like = rs.getInt("like");
                     String commentBy = rs.getString("commentBy");
-                    listComment.add(new CommentDTO(commentID, commentContent, repliedTo, eventID, like,commentDate, commentBy));
+                    listComment.add(new CommentDTO(commentID, commentContent, repliedTo, eventID, like, commentDate, commentBy));
                 }
             }
         } catch (Exception e) {
@@ -492,7 +500,7 @@ public class eventDAO {
         }
         return count;
     }
-    
+
     public int countEventOfThisMonth() throws SQLException {
         int sum = 0;
         Connection conn = null;
@@ -524,7 +532,7 @@ public class eventDAO {
         }
         return sum;
     }
-    
+
     public int countEventOfLastMonth() throws SQLException {
         int sum = 0;
         Connection conn = null;
@@ -597,15 +605,17 @@ public class eventDAO {
             if (conn != null) {
                 String sql = " UPDATE tblEvents "
                         + " SET eventName=?, eventStartDate=?, "
-                        + " limitMember=?, content=?, like=?"
+                        + " limitMember=?, [like]=?"
                         + " WHERE eventID=?";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, event.getEventName());
                 stm.setDate(2, event.getEventStartDate());
                 stm.setInt(3, event.getLimitMember());
-                stm.setString(4, event.getContent());
-                stm.setInt(5, event.getLike());
+                stm.setInt(4, event.getLike());
+                stm.setString(5, event.getEventID());
+
                 check = stm.executeUpdate() > 0;
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -620,8 +630,8 @@ public class eventDAO {
         return check;
     }
 
-     public String getEventImage(String eventID) throws SQLException {
-        String imageLink=null;
+    public String getEventImage(String eventID) throws SQLException {
+        String imageLink = null;
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -652,9 +662,9 @@ public class eventDAO {
         }
         return imageLink;
     }
-    
+
     public String getUserName(String userID) throws SQLException {
-        String userName=null;
+        String userName = null;
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -685,7 +695,7 @@ public class eventDAO {
         }
         return userName;
     }
-    
+
     public boolean AddEvent(eventDTO event) throws SQLException {
         boolean check = false;
         Connection conn = null;

@@ -5,53 +5,43 @@
  */
 package controller;
 
-import event.eventDAO;
-import event.eventDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import user.UserDAO;
 
 /**
  *
  * @author phats
  */
-public class SearchEventController extends HttpServlet {
+public class DeleteUserController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "Eventmanagement.jsp";
-    private static final String LOGIN_SUCCESS = "LoginPage.jsp";
-    private static final String ADMIN_SUCCESS = "eventManagePage.jsp";
-
+    private static final String SUCCESS = "LoginPage.jsp";
+    private static final String ADMIN_SUCCESS = "userManagePage.jsp";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+                response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
         String url = ERROR;
         try {
+            String userID = request.getParameter("userID");
             String from = request.getParameter("from");
-            String search = request.getParameter("search");
-            eventDAO dao = new eventDAO();
-            List<eventDTO> list = dao.getListEvent(search);
-
-            request.setAttribute("LIST_EVENT", list);
-            if (session.getAttribute("LOGIN_USER") != null) {
-                url = LOGIN_SUCCESS;
-                if (from.equals("eventManagePage")) {
+            UserDAO dao = new UserDAO();
+            boolean check = dao.deleteUser(userID);
+            if (check) {
+                url = SUCCESS;
+                if (from.equals("userManagePage")) {
                     url = ADMIN_SUCCESS;
                 }
-            } else {
-                url = SUCCESS;
             }
 
         } catch (Exception e) {
-            log("Error at SearchEventController" + e.toString());
+            log("Error at DeleteController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

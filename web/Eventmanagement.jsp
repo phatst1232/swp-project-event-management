@@ -37,7 +37,7 @@
             if (showing_list == null && search != null) {
                 showing_list = dao.getListEvent("");
             }
-            eventDTO newest_event = showing_list.get(0);
+            eventDTO newest_event = dao.getListEvent("", "eventStartDate_asc", "no").get(0);
         %>
         <!-- navigation bar -->
         <div class="sidebar">
