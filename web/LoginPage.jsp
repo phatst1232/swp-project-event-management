@@ -180,6 +180,24 @@
 
 
             <div class="show-slide">
+                <!-- filter button -->
+                <div class="dropdown-fitler">
+                    <button class="dropdown-btn" onclick="myFunction1()"></button>
+                    <div class="dropdown-filter-content" id="myDropdown">
+                        <form class="checkbox-form">
+                            <label class="checkbox-content-title"><a href="">All Event</a>
+                            </label > 
+                                <label class="checkbox-content" ><a href="#">Event Upcoming</a>
+                                </label > 
+                                <label class="checkbox-content"><a href="#">Newest Event</a> 
+                                </label>
+                                <label class="checkbox-content"><a href="#">Most Popular</a> 
+                                </label>
+                            <label class="checkbox-content-title" ><a href="">Event Expired</a>
+                            </label > 
+                        </form>
+                    </div>
+                </div>
                 <%
 //                    List<eventDTO> showing_list = (List<eventDTO>) request.getAttribute("LIST_EVENT");
 //                    eventDAO dao = new eventDAO();
@@ -302,7 +320,24 @@
                 sidebar.classList.toggle("active");
             }
 
+            //when user
+            function myFunction1() {
+              document.getElementById("myDropdown").classList.toggle("show");
+            }
 
+            // Close the dropdown if the user clicks outside of it
+            window.onclick = function(event) {
+              if (!event.target.matches('.dropdown-btn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-filter-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                  var openDropdown = dropdowns[i];
+                  if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                  }
+                }
+              }
+            }
 
             var slideIndex = 1;
             showSlides(slideIndex);

@@ -367,6 +367,78 @@ body{
   background-color: rgb(38, 166, 154);
 }
 
+/*filter button*/
+
+.dropdown-btn {
+    background-image: url('../image/sort.png');
+    background-color: pink;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-btn:hover, .dropdown-btn:focus {
+  background-color: #3e8e41;
+  opacity: 0.7;
+}
+
+.dropdown-fitler {
+    margin: 5px 20px 0 0 ;
+    float: right;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-filter-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 220px;
+  min-height: 150px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  right: 0;
+  z-index: 1;
+  border-radius: 6px;
+  opacity: 0.9;
+}
+
+.dropdown-filter-content a {
+  color: black;
+  padding:8px 10px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-fitler a:hover {
+    background-color: #ddd;
+}
+
+.show {
+    display: block;
+}
+
+.dropdown-filter-content .checkbox-form {
+    display: inline-grid;
+    margin: 5px 0px 5px 5px;
+
+}
+
+.dropdown-filter-content .checkbox-content {
+    margin: 12px 12px 10px 25px;
+} 
+
+
+.dropdown-filter-content .checkbox-content-title {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 25px;
+    margin: 2px 0 2px 5px;
+}
+
+
 .dot {
   cursor: pointer;
   height: 15px;

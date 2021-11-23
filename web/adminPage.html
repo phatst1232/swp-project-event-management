@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Admin Page</title>
-	<link rel="stylesheet" type="text/css" href="./css/admin.css">
+	<link rel="stylesheet" type="text/css" href="./css/admin (fixed to justify content) .css">
     <script  src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </head>
 <body>
@@ -56,26 +56,24 @@
 
     <!-- container element  -->
         <header>     
-            <div id="category">
-                <button type="hidden" onclick="myFunction()" class="categorybtn">
-                    <img src="image/icons8-user-24.png">
-                </button>
-                <div id="category-content" class="dropdown-content">
-                    <a href="#">Edit</a>
-                    <a href="#">Log Out</a>
-                </div>
+            <div class="dropdown">
+              <button onclick="myFunction()" class="dropbtn"></button>
+              <div id="myDropdown" class="dropdown-content">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+              </div>
             </div>
-            <img src="image/bell-solid-24.png" width="30px" height="30px">
             <script type="text/javascript">
                 /* When the user clicks on the button, 
                 toggle between hiding and showing the dropdown content */
                 function myFunction() {
-                  document.getElementById("category-content").classList.toggle("show");
+                  document.getElementById("myDropdown").classList.toggle("show");
                 }
 
                 // Close the dropdown if the user clicks outside of it
                 window.onclick = function(event) {
-                  if (!event.target.matches('.categorybtn')) {
+                  if (!event.target.matches('.dropbtn')) {
                     var dropdowns = document.getElementsByClassName("dropdown-content");
                     var i;
                     for (i = 0; i < dropdowns.length; i++) {
@@ -102,11 +100,15 @@
                     <span>????????</span>
                     <p>so với tháng trước</p>
                 </div>
-                <!--pie chart  -->
-                <div id="chartContainer" style="height: 380px; width: 525px;">
-                </div>
 
+                <!--pie chart  -->
+                <div id="chartContainer">
+                </div>
            </div>
+
+
+
+
            <!-- Script pie chart -->
                <script type="text/javascript">
                    window.onload = function () {
@@ -137,16 +139,15 @@
                     chart.render();
                    }
                </script>
-            <div class="contain-list-event">
-                <p>List event has most interact</p>
-            </div>
 
-            <div class="grid-2">
-                <div class="grid-item-2">
-                    <p>List event just start to create</p>
+
+            <div class="contain-list-event">
+                <div class="list-event">
+                <p>List event has most interact</p>
                 </div>
-                <div class="grid-item-2">
-                    <p>List user just start to create</p>
+
+                <div class="list-event">
+                <p>List event has most interact</p>
                 </div>
             </div>
         </div>
