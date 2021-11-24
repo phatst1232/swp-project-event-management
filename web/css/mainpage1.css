@@ -393,8 +393,13 @@ body{
     margin: 5px 20px 0 0 ;
     float: right;
     position: relative;
-    display: inline-block;
+    display: flex;
 }
+
+.checkbox-content  {
+    margin-right: 10px;
+}
+
 
 .dropdown-filter-content {
   display: none;
@@ -618,9 +623,14 @@ body{
     padding: 20px;
     transition-duration: 2s;
 }
+
 #show:checked ~ #loginbox{
     display: block;
     box-shadow: 0 0 0 9999px rgba(0,0,0,0.75);
+}
+
+#show {
+    display: none;
 }
 
 .close-btn{

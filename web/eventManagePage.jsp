@@ -92,11 +92,9 @@
         <!-- home content -->
         <!-- header to login -->
         <header>     
-            <div id="category">
-                <button type="hidden" onclick="myFunction()" class="categorybtn">
-                    <img src="image/icons8-user-24.png">
-                </button>
-                <div id="category-content" class="dropdown-content">
+            <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn"></button>
+                <div id="myDropdown" class="dropdown-content">
                     <a href="PersonalProfile.jsp">Edit</a>
                     <a href="LogoutController" onclick="return confirm('Are you sure you want to logout?');">Log Out</a>
                 </div>
@@ -116,12 +114,12 @@
                 /* When the user clicks on the button, 
                  toggle between hiding and showing the dropdown content */
                 function myFunction() {
-                    document.getElementById("category-content").classList.toggle("show");
+                    document.getElementById("myDropdown").classList.toggle("show");
                 }
 
                 // Close the dropdown if the user clicks outside of it
                 window.onclick = function (event) {
-                    if (!event.target.matches('.categorybtn')) {
+                    if (!event.target.matches('.dropbtn')) {
                         var dropdowns = document.getElementsByClassName("dropdown-content");
                         var i;
                         for (i = 0; i < dropdowns.length; i++) {

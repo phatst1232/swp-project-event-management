@@ -31,6 +31,7 @@ public class MainController extends HttpServlet {
     private static final String LOGOUT = "LogoutController";
     //-- Event
     private static final String SEARCH_EVENT = "SearchEventController";
+    private static final String SEARCH_WITH_FILTER = "SearchEventWithFilterController";
     private static final String CREATE_EVENT = "AddEventController";
     private static final String SHOW_EVENT = "ShowEventController";
     private static final String DELETE_EVENT = "DeleteEventController";
@@ -61,6 +62,8 @@ public class MainController extends HttpServlet {
                 url = CREATE_EVENT;
             } else if ("Search event".equals(action)) {
                 url = SEARCH_EVENT;
+            } else if ("filter".equals(action)) {
+                url = SEARCH_WITH_FILTER;
             } else if ("Delete event".equals(action)) {
                 url = DELETE_EVENT;
             } else if ("Update event".equals(action)) {
@@ -75,7 +78,7 @@ public class MainController extends HttpServlet {
                 url = SEARCH_USER;
             } else if ("Update user".equals(action)) {
                 url = UPDATE_USER;
-            }else if ("Delete user".equals(action)) {
+            } else if ("Delete user".equals(action)) {
                 url = DELETE_USER;
             } else if ("Create_Event".equals(action)) {
                 url = CREATE_EVENT;

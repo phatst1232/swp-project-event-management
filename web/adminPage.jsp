@@ -62,26 +62,24 @@
 
         <!-- container element  -->
         <header>     
-            <div id="category">
-                <button type="hidden" onclick="myFunction()" class="categorybtn">
-                    <img src="image/icons8-user-24.png">
-                </button>
-                <div id="category-content" class="dropdown-content">
+            <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn"></button>
+                <div id="myDropdown" class="dropdown-content">
                     <a href="PersonalProfile.jsp">Edit</a>
                     <a href="LogoutController" onclick="return confirm('Are you sure you want to logout?');">Log Out</a>
                 </div>
             </div>
-<!--            <img src="image/bell-solid-24.png" width="30px" height="30px">-->
+
             <script type="text/javascript">
                 /* When the user clicks on the button, 
                  toggle between hiding and showing the dropdown content */
                 function myFunction() {
-                    document.getElementById("category-content").classList.toggle("show");
+                    document.getElementById("myDropdown").classList.toggle("show");
                 }
 
                 // Close the dropdown if the user clicks outside of it
                 window.onclick = function (event) {
-                    if (!event.target.matches('.categorybtn')) {
+                    if (!event.target.matches('.dropbtn')) {
                         var dropdowns = document.getElementsByClassName("dropdown-content");
                         var i;
                         for (i = 0; i < dropdowns.length; i++) {
@@ -110,7 +108,7 @@
                     <p>so với tháng trước</p>
                 </div>
                 <!--pie chart  -->
-                <div id="chartContainer" style="height: 380px; width: 525px;">
+                <div id="chartContainer"">
                 </div>
 
             </div>
@@ -144,32 +142,33 @@
                     chart.render();
                 }
             </script>
+
             <%
                 List<eventDTO> interact_list = Edao.getListEvent("", "like_desc", "no");
-            %>
-            <div class="contain-list-event">
-                <p>List event has most interact</p>
-                <%
-                    if (interact_list.size() >= 5) {
-                        for (int i = 0; i <= 5; i++) {
-                %>
-                <p><%=i + 1%>. <%=interact_list.get(i).getEventName()%></p>
-                <%
-                    }
-                } else {
-                    for (int i = 0; i <= interact_list.size() - 1; i++) {
-                %>
-                <p><%=i + 1%>. <%=interact_list.get(i).getEventName()%></p>
-                <%
-                        }
-                    }
-                %>
-            </div>
-            <%
                 List<eventDTO> justCreate_list = Edao.getListEvent("", "eventCreateDate_desc", "no");
             %>
-            <div class="grid-2">
-                <div class="grid-item-2">
+
+            <div class="contain-list-event">
+                <div class="list-event">
+                    <p>List event has most interact</p>
+                    <%
+                        if (interact_list.size() >= 5) {
+                            for (int i = 0; i <= 5; i++) {
+                    %>
+                    <p><%=i + 1%>. <%=interact_list.get(i).getEventName()%></p>
+                    <%
+                        }
+                    } else {
+                        for (int i = 0; i <= interact_list.size() - 1; i++) {
+                    %>
+                    <p><%=i + 1%>. <%=interact_list.get(i).getEventName()%></p>
+                    <%
+                            }
+                        }
+                    %>
+                </div>
+
+                <div class="list-event">
                     <p>List event just start to create</p>
                     <%
                         if (justCreate_list.size() >= 5) {
@@ -186,11 +185,9 @@
                             }
                         }
                     %>
-                </div>
-                <div class="grid-item-2">
-                    <p>List user just start to create</p>
-                </div>
-            </div>
+                </div>   
+
+            </div>                     
         </div>
 
 

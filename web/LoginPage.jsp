@@ -181,20 +181,35 @@
 
             <div class="show-slide">
                 <!-- filter button -->
+                
                 <div class="dropdown-fitler">
+                    <form action="MainController">
+                        <input type="hidden" name="OrderBy" value="<%=request.getParameter("OrderBy")%>"/>
+                        <input type="hidden" name="search" value="<%=request.getParameter("search")%>"/>
+                        <label class="checkbox-content"><input type="checkbox" id="ended-check" name="ended" value="no"/> Show ended event</label>
+                        </label > 
+                        <label class="checkbox-content"><input type="submit" name="action" value="filter"/></label>
+                        </label > 
+                    </form>
+
+
                     <button class="dropdown-btn" onclick="myFunction1()"></button>
                     <div class="dropdown-filter-content" id="myDropdown">
                         <form class="checkbox-form">
-                            <label class="checkbox-content-title"><a href="">All Event</a>
+                            <label class="checkbox-content"><a href="SearchEventController?search=<%=""%>">All Event</a>
                             </label > 
-                                <label class="checkbox-content" ><a href="#">Event Upcoming</a>
-                                </label > 
-                                <label class="checkbox-content"><a href="#">Newest Event</a> 
-                                </label>
-                                <label class="checkbox-content"><a href="#">Most Popular</a> 
-                                </label>
-                            <label class="checkbox-content-title" ><a href="">Event Expired</a>
+                            <label class="checkbox-content" ><a href="SearchEventWithFilterController?OrderBy=eventStartDate_asc&search=<%=""%>">Start date ascend</a>
+                            </label >
+                            <label class="checkbox-content" ><a href="SearchEventWithFilterController?OrderBy=eventStartDate_desc&search=<%=""%>">Start date descend</a>
                             </label > 
+                            <label class="checkbox-content"><a href="SearchEventWithFilterController?OrderBy=eventCreateDate_asc&search=<%=""%>">Create date ascend</a> 
+                            </label>
+                            <label class="checkbox-content"><a href="SearchEventWithFilterController?OrderBy=eventCreateDate_desc&search=<%=""%>">Create date descend</a> 
+                            </label>
+                            <!--                            <label class="checkbox-content"><a href="#">Most Popular</a> 
+                                                        </label>
+                                                        <label class="checkbox-content" ><a href="">Event Expired</a>
+                                                        </label > -->
                         </form>
                     </div>
                 </div>
@@ -322,21 +337,21 @@
 
             //when user
             function myFunction1() {
-              document.getElementById("myDropdown").classList.toggle("show");
+                document.getElementById("myDropdown").classList.toggle("show");
             }
 
             // Close the dropdown if the user clicks outside of it
-            window.onclick = function(event) {
-              if (!event.target.matches('.dropdown-btn')) {
-                var dropdowns = document.getElementsByClassName("dropdown-filter-content");
-                var i;
-                for (i = 0; i < dropdowns.length; i++) {
-                  var openDropdown = dropdowns[i];
-                  if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
-                  }
+            window.onclick = function (event) {
+                if (!event.target.matches('.dropdown-btn')) {
+                    var dropdowns = document.getElementsByClassName("dropdown-filter-content");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('show')) {
+                            openDropdown.classList.remove('show');
+                        }
+                    }
                 }
-              }
             }
 
             var slideIndex = 1;
@@ -410,12 +425,13 @@
                 let sidebar = document.querySelector(".sidebar");
                 let searchBtn = document.querySelector("#but-search");
                 let userBtn = document.querySelector("#user-search");
-                let editBtn = document.querySelector("#edit-search");
+                let
+        editBtn = document.querySelector("#edit-search");
                 let
         notiBtn = document.querySelector("#noti-search");
-                but.onclick = function () {
-                    sidebar.classList.toggle("active");
-                }
+        but.onclick = function () {
+            sidebar.classList.toggle("active");
+        }
 
         searchBtn.onclick = function () {
             sidebar.classList.toggle("active");

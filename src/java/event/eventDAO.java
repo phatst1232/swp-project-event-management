@@ -34,7 +34,7 @@ public class eventDAO {
                         + " userID,statusID,limitMember, "
                         + " content,clubID,dmID,[like] "
                         + " From tblEvents "
-                        + " WHERE eventName like ? AND statusID='AC' ORDER BY eventCreateDate ASC";
+                        + " WHERE eventName like ? AND statusID='AC' ORDER BY eventStartDate ASC";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, "%" + search + "%");
                 rs = stm.executeQuery();
@@ -82,7 +82,7 @@ public class eventDAO {
                         + " content,clubID,dmID,[like] "
                         + " From tblEvents "
                         + " WHERE eventName like ? AND statusID='AC' ";
-                if (ended.equals("no")) {
+                if (ended != null) {
                     sql = sql + " AND eventStartDate >= GETDATE() ";
                 }
                 if (OrderBy.equals("eventCreateDate_asc")) {

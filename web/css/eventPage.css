@@ -32,6 +32,54 @@ body{
     padding: 10px 20px 5px 30px;
 }
 
+/*nut dropdown user*/
+.dropbtn {
+    margin: 2px 10px 0 0;
+    background-image: url('../image/icons8-user-24.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #3498DB;
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 22px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+.dropdown {
+    float: right;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    right: 15px;
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 100px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {
+    display: block;
+}
 
 /*element admin css*/
 .sidebar ul {
