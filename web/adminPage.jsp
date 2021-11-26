@@ -35,7 +35,7 @@
             <!-- tu add url toi 2 cai trang kia nha -->
             <ul>
                 <li>
-                    <a href="adminPage.jsp">
+                    <a href="adminPage.jsp" style="background-color: orange;">
                         <span >DashBoard</span>
                         <i><img src="image/left-arrow.png"></i>
                     </a>
@@ -157,7 +157,7 @@
 
             <div class="contain-list-event">
                 <div class="list-event">
-                    <p>List event has most interact</p>
+                    <p>List event has most interact:</p>
                     <%
                         if (interact_list.size() >= 5) {
                             for (int i = 0; i <= 5; i++) {
@@ -176,7 +176,7 @@
                 </div>
 
                 <div class="list-event">
-                    <p>List event just start to create</p>
+                    <p>List event just start to create:</p>
                     <%
                         if (justCreate_list.size() >= 5) {
                             for (int i = 0; i <= 5; i++) {

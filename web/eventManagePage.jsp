@@ -68,7 +68,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="eventManagePage.jsp">
+                    <a href="eventManagePage.jsp" style="background-color: orange;">
                         <span >Event Manager</span>
                         <i><img src="image/left-arrow.png"></i>
                     </a>
@@ -189,7 +189,7 @@
                                         <input type="text" name="limitMember" value="<%=event.getLimitMember()%>"/>
                                     </td>
                                     <td>
-                                        <input type="text" name="like" value="<%=event.getLike()%>"/>
+                                        <input type="text" name="like" value="<%=event.getLike()%>" readonly=""/>
                                     </td>
                                     <td><%=event.getClubID()%></td>
                                     <td><%=event.getDmID()%></td>
@@ -197,10 +197,10 @@
                                     <td>
                                         <input type="hidden" name="eventID" value="<%=event.getEventID()%>">
                                         <input type="hidden" name="from" value="eventManagePage">
-                                        <input type="submit" name="action" value="Update event"/> 
+                                        <input type="submit" name="action" value="Update event" onclick="return confirm('Save change?');"/> 
                                     </td>
                                     <td>                                       
-                                        <a href="MainController?action=Delete event&from=eventManagePage&eventID=<%=event.getEventID()%>&search=<%=search%>">Delete</a>
+                                        <a href="MainController?action=Delete event&from=eventManagePage&eventID=<%=event.getEventID()%>" onclick="return confirm('Are you sure delete this event?');">Delete</a>
                                     </td>
                                 </tr>
                             </form>

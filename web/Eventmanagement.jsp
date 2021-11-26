@@ -123,7 +123,7 @@
                         <form action="MainController">
                             <input type="hidden" name="OrderBy" value="<%=request.getParameter("OrderBy")%>"/>
                             <input type="hidden" name="search" value="<%=request.getParameter("search")%>"/>
-                            <label class="checkbox-content"><input type="checkbox" id="ended-check" name="ended" value="no" /> Show ended event </label>
+                            <label class="checkbox-content"><input type="checkbox" id="ended-check" name="ended" value="no" /> Not show ended event </label>
                             </label > 
                             <label class="checkbox-content"><input type="submit" id="btn-filter" name="action" value="filter"/>    </label>
                             </label > 

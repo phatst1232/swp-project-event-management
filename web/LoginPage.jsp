@@ -7,7 +7,7 @@
 <html>
 
     <head>
-        <title>User Page</title>
+        <title>demo</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="css/loginpage3.css">
 
@@ -60,7 +60,7 @@
             if (showing_list == null && search != null) {
                 showing_list = Edao.getListEvent("");
             }
-            eventDTO event = Edao.getListEvent("", "eventStartDate_asc", "no").get(0);
+            eventDTO newest_event = Edao.getListEvent("", "eventStartDate_asc", "no").get(0);
         %>
         <!-- navigation bar -->
         <div class="sidebar">
@@ -121,13 +121,13 @@
                         }
                     }
                 %>
-                <li>
+<!--                <li>
                     <a href="#">
                         <i id="noti-search"><img src="image\bell-solid-24.png"></i>
                         <span class="link-name">Notification</span>
                     </a>
                     <span class="tooltip">Notification</span>
-                </li>
+                </li>-->
                 <%
                     }
                 %>
@@ -166,12 +166,12 @@
 
             <div class="event-content">
                 <div class="content">
-                    <p class="text"><%=event.getEventName()%></p>
-                    <p class="txt"><img src="image/calendar-7-24.png" width="25px" height="25px"><%=event.getEventStartDate()%></p>
+                    <p class="text"><%=newest_event.getEventName()%></p>
+                    <p class="txt"><img src="image/calendar-7-24.png" width="25px" height="25px"><%=newest_event.getEventStartDate()%></p>
                     <p id="demo"></p>
 
                     <form action="MainController" id="showEventForm">
-                        <input type="hidden" name="eventID" value="<%=event.getEventID()%>"/>                           
+                        <input type="hidden" name="eventID" value="<%=newest_event.getEventID()%>"/>                           
                         <input type="hidden" name="action" value="show event"/>
                     </form>  
                     <a href="#" onclick="document.getElementById('showEventForm').submit()">Join now</a>
@@ -181,12 +181,12 @@
 
             <div class="show-slide">
                 <!-- filter button -->
-                
+
                 <div class="dropdown-fitler">
                     <form action="MainController">
                         <input type="hidden" name="OrderBy" value="<%=request.getParameter("OrderBy")%>"/>
                         <input type="hidden" name="search" value="<%=request.getParameter("search")%>"/>
-                        <label class="checkbox-content"><input type="checkbox" id="ended-check" name="ended" value="no"/> Show ended event</label>
+                        <label class="checkbox-content"><input type="checkbox" id="ended-check" name="ended" value="no"/> Not show ended event</label>
                         </label > 
                         <label class="checkbox-content"><input type="submit" name="action" value="filter"/></label>
                         </label > 
@@ -220,7 +220,7 @@
 //                        showing_list = dao.getListEvent("");
 //                    }
 //                    eventDTO event = new eventDTO();
-
+                    eventDTO event = new  eventDTO();
                     int num_of_slide = 0;
                     if (showing_list != null) {
                         if (showing_list.size() % 6 == 0 && showing_list.size() != 0) {
@@ -317,8 +317,8 @@
             searchBtn = document.querySelector("#but-search");
             let
             userBtn = document.querySelector("#user-search");
-            let
-            notiBtn = document.querySelector("#noti-search");
+//            let
+//            notiBtn = document.querySelector("#noti-search");
             but.onclick = function () {
                 sidebar.classList.toggle("active");
             }
@@ -331,9 +331,9 @@
                 sidebar.classList.toggle("active");
             }
 
-            notiBtn.onclick = function () {
-                sidebar.classList.toggle("active");
-            }
+//            notiBtn.onclick = function () {
+//                sidebar.classList.toggle("active");
+//            }
 
             //when user
             function myFunction1() {
@@ -387,7 +387,7 @@
 
 
             // Set the date we're counting down to
-            var countDownDate = new Date("Jan 5, 2022 15:37:25").getTime();
+            var countDownDate = new Date("<%=newest_event.getEventStartDate()%>").getTime();
 
             // Update the count down every 1 second
             var x = setInterval(function () {
@@ -420,15 +420,16 @@
 
     </div>
 
-    <script type="text/javascript">
+<!--    <script type="text/javascript">
         let but = document.querySelector("#but");
                 let sidebar = document.querySelector(".sidebar");
                 let searchBtn = document.querySelector("#but-search");
-                let userBtn = document.querySelector("#user-search");
+                let
+        userBtn = document.querySelector("#user-search");
                 let
         editBtn = document.querySelector("#edit-search");
-                let
-        notiBtn = document.querySelector("#noti-search");
+//        let
+//        notiBtn = document.querySelector("#noti-search");
         but.onclick = function () {
             sidebar.classList.toggle("active");
         }
@@ -445,11 +446,11 @@
             sidebar.classList.toggle("active");
         }
 
-        notiBtn.onclick = function () {
-            sidebar.classList.toggle("active");
-        }
+//        notiBtn.onclick = function () {
+//            sidebar.classList.toggle("active");
+//        }
 
-    </script>
+    </script>-->
 
     <!-- SCript time countdown 
     <script type="text/javascript">

@@ -69,14 +69,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="eventManagePage.jsp">
+                    <a href="eventManagePage.jsp" >
                         <span >Event Manager</span>
                         <i><img src="image/left-arrow.png"></i>
                     </a>
 
                 </li>
                 <li>
-                    <a href="userManagePage.jsp">
+                    <a href="userManagePage.jsp" style="background-color: orange;">
                         <span >User Manager</span>
                         <i><img src="image/left-arrow.png"></i>
                     </a>
@@ -102,7 +102,7 @@
             </div>
 
             <form action="MainController" class="search-bar">
-                <input type="text" name="search" id="name" value="<%=search%>" placeholder="Search...">
+                <input type="text" name="search" id="name" value="<%=request.getParameter("search")%>" placeholder="Search...">
                 <input type="submit" name="action" value="Search user">
                 <input type="hidden" name="from" value="userManagePage">
 
@@ -162,7 +162,7 @@
                                     <th>Department Manager ID</th>
                                     <th>Status</th>
                                     <th>Update User</th>
-                                    <th>Delete</th>
+                                    <th>Block</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -190,10 +190,10 @@
                                     <td>
                                         <input type="hidden" name="userID" value="<%=user.getUserID()%>">
                                         <input type="hidden" name="from" value="userManagePage">
-                                        <input type="submit" name="action" value="Update user"/> 
+                                        <input type="submit" name="action" value="Update user" onclick="return confirm('Save change?');"/> 
                                     </td>
                                     <td>                                       
-                                        <a href="MainController?action=Delete user&from=userManagePage&userID=<%=user.getUserID()%>&search=<%=search%>">Delete</a>
+                                        <a href="MainController?action=Delete user&from=userManagePage&userID=<%=user.getUserID()%>" onclick="return confirm('Are you sure delete this user?');">Block</a>
                                     </td>
                                 </tr>
                             </form>
