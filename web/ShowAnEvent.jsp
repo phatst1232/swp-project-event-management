@@ -1,3 +1,4 @@
+<%@page import="event.RoomDTO"%>
 <%@page import="user.UserDAO"%>
 <%@page import="user.UserDTO"%>
 <%@page import="event.CommentDTO"%>
@@ -5,16 +6,19 @@
 <%@page import="event.eventDTO"%>
 <%@page import="event.eventDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page autoFlush="true" buffer="1094kb"%>
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
         <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <link rel="stylesheet" href="css/showanevent.css">
+
     </head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>
     <body>
 
         <%
@@ -160,7 +164,7 @@
                             <h1 class="eventname"><%=event.getEventName()%></h1>
                             <div class="tags"> 
                                 <span> <img src="image/purchase-tag-alt-regular-24.png" width="24px" height="24px"  alt=""></span> 
-                                
+
                                 <%
                                     List<String> listCategory = Edao.getListCategoty(event.getEventID());
                                     for (String category : listCategory) {
@@ -281,9 +285,9 @@
                                     %>
                                     style="font-size: 20px; margin-top: 8px; color: white; font-weight: 700;"><%=cldmName%></span><br>
                             </div>
-                            <h3>Time</h3>
+                            <h3>Begin Time</h3>
                             <div class="contentfield">
-                                <span class="contentfield">7.00 A.M</span><br>
+                                <span class="contentfield">Slot <%=Edao.getSlot(event.getEventID())%></span><br>
                                 <span class="contentfield"><%=event.getEventStartDate()%></span>
                             </div>
                             <div class="border">
@@ -292,33 +296,84 @@
                             <div class="contentfield">
                                 <span class="contentfield"><%=Edao.getUserName(event.getUserID())%></span>
                             </div>
-
+                            <h3>Rooms</h3>
+                            <%
+                                List<RoomDTO> listroom = Edao.getListRoom(event.getEventID());
+                                for (RoomDTO room : listroom) {
+                            %>
+                            <div class="contentfield">
+                                <span class="contentfield"><%=room.getRoomID()%></span>
+                            </div>
+                            <%
+                                }
+                            %>
                             <h3>Limit</h3>
                             <div class="contentfield">
-                                <span style="font-size: 24px; color: rgb(241, 90, 64);">123/<%=event.getLimitMember()%></span>
+                                <span style="font-size: 24px; color: rgb(241, 90, 64);"><%=Edao.CountJoin(event.getEventID())%>/<%=event.getLimitMember()%></span>
                             </div>
 
                         </div>
+                        <%
+                            String join = "";
+                            boolean checkjoin = Edao.checkJoin(loginUser.getUserID(), event.getEventID());
+                            if (checkjoin) {
+                                join = "joinbutton contactbtn disable";
+                            } else {
+                                join = "joinbutton contactbtn";
+                            }
+                        %>
                         <div class="sidebarright-contact">
-                            <button class="joinbutton contactbtn">
-                                <h2>Join Now!!!</h2>
-                            </button>
+                            <form action="MainController">
+                                <input type="hidden" name="userIDlike" value="<%=loginUser.getUserID()%>">
+                                <input type="hidden" name="eventIDlike" value="<%=event.getEventID()%>">
+                                <input type="hidden" name="status" value="<%=join%>">
+                                <button class="<%=join%>" name="action" value="join_post">
+                                    <h2>Join Now!!!</h2>
+                                </button>
+                            </form>
                             <div class="followliked">
+                                <%
+                                    String follow = "";
+                                    boolean checkfollow = Edao.checkFollow(loginUser.getUserID(), event.getEventID());
+                                    if (checkfollow) {
+                                        follow = "followbutton contactbtn disable";
+                                    } else {
+                                        follow = "followbutton contactbtn";
+                                    }
+                                %>
 
                                 <div class="buttonwrapper">
-                                    <span>1000</span><br>
-                                    <button class="followbutton contactbtn">
-                                        <i><img src="image/notepad-regular-24.png" width="16px" alt=""></i>
-                                        Follow
-                                    </button>
-
+                                    <form action="MainController">
+                                        <input type="hidden" name="userIDlike" value="<%=loginUser.getUserID()%>">
+                                        <input type="hidden" name="eventIDlike" value="<%=event.getEventID()%>">
+                                        <input type="hidden" name="status" value="<%=follow%>">
+                                        <span><%=Edao.CountFollow(event.getEventID())%></span><br>
+                                        <button class="<%=follow%>" name="action" value="follow_post">
+                                            <i><img src="image/notepad-regular-24.png" width="16px" alt=""></i>
+                                            Follow
+                                        </button>
+                                    </form>
                                 </div>
+                                <%
+                                    String chat = "";
+                                    boolean check = Edao.checkLike(loginUser.getUserID(), event.getEventID());
+                                    if (check) {
+                                        chat = "likebutton disable theUnbtn2";
+                                    } else {
+                                        chat = "likebutton contactbtn";
+                                    }
+                                %>
                                 <div class="buttonwrapper">
-                                    <span><%=event.getLike()%></span><br>
-                                    <button class="likebutton contactbtn">
-                                        <i><img src="image/heart-regular-24.png" width="16px" alt=""></i>
-                                        <span>Like</span>
-                                    </button>
+                                    <form action="MainController">
+                                        <input type="hidden" name="userIDlike" value="<%=loginUser.getUserID()%>">
+                                        <input type="hidden" name="eventIDlike" value="<%=event.getEventID()%>">
+                                        <input type="hidden" name="status" value="<%=chat%>">
+                                        <span><%=event.getLike()%></span><br>
+                                        <button class="<%=chat%>" name="action" value="like_post">
+                                            <i><img src="image/heart-regular-24.png" width="16px" alt=""></i>
+                                            <span>Like</span>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -335,19 +390,20 @@
             }
         %>
         <script>
-            let but = document.querySelector("#but");
             let
-                    sidebar = document.querySelector(".sidebar");
+            but = document.querySelector("#but");
             let
-                    searchBtn = document.querySelector("#but-search");
+            sidebar = document.querySelector(".sidebar");
             let
-                    userBtn = document.querySelector("#user-search");
+            searchBtn = document.querySelector("#but-search");
             let
-                    editBtn = document.querySelector("#edit-search");
+            userBtn = document.querySelector("#user-search");
             let
-                    notiBtn = document.querySelector("#noti-search");
+            editBtn = document.querySelector("#edit-search");
             let
-                    logBtn = document.querySelector("#log-out");
+            notiBtn = document.querySelector("#noti-search");
+            let
+            logBtn = document.querySelector("#log-out");
             but.onclick = function () {
                 sidebar.classList.toggle("active");
             }
@@ -371,13 +427,6 @@
                 sidebar.classList.toggle("active");
             }
 
-            $(".contactbtn").click(function () {
-                if ($(this).hasClass('disable')) {
-                    $(this).removeClass('disable');
-                } else {
-                    $(this).addClass('disable');
-                }
-            });
         </script>
         <script>
             $(".contactbtn").click(function () {

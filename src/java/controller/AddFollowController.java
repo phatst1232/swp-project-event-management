@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
         maxFileSize = 1024 * 1024 * 50,
         maxRequestSize = 1024 * 1024 * 100
 )
-public class JoinEventController extends HttpServlet {
+public class AddFollowController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
     private static final String SUCCESS = "ShowAnEvent.jsp";
@@ -32,30 +32,26 @@ public class JoinEventController extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        eventDAO edao = new eventDAO();
-        String userID = request.getParameter("userIDlike");
-        String eventID = request.getParameter("eventIDlike");
-        String status = request.getParameter("status");
-        boolean checkjoin = false;
-        HttpSession session = request.getSession();
-        eventDTO event = (eventDTO) session.getAttribute("CLICK_ON_EVENT");
         try {
-            if (status.equals("joinbutton contactbtn disable")) {
-                checkjoin = edao.UnJoin(userID, eventID);
-                if (checkjoin) {
-                    url = SUCCESS;
-                } 
-            }else {
-                    checkjoin = edao.AddJoin(userID, eventID);
-                    if(event.getLimitMember()<edao.CountJoin(eventID)){
-                        edao.UnJoin(userID, eventID);
-                        url = ERROR;
-                    }else if(!checkjoin) {
-                    } else {
-                        url = SUCCESS;
-                    }
+            eventDAO edao = new eventDAO();
+            String userID = request.getParameter("userIDlike");
+            String eventID = request.getParameter("eventIDlike");
+            String status = request.getParameter("status");
+            boolean checkfollow = false;
+            HttpSession session = request.getSession();
+            eventDTO event = (eventDTO) session.getAttribute("CLICK_ON_EVENT");
+            if(status.equals("followbutton contactbtn disable")){
+            checkfollow = edao.UnFollow(userID, eventID);
+            if(checkfollow){
+                url=SUCCESS;
             }
-            
+        }else{
+                checkfollow = edao.AddFollow(userID, eventID);
+                if(checkfollow){
+                    url=SUCCESS;
+                }
+            }
+
         } catch (Exception e) {
         } finally {
             response.sendRedirect("ShowAnEvent.jsp");

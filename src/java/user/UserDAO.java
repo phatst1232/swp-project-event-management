@@ -77,7 +77,7 @@ public class UserDAO {
         ResultSet rs = null;
         try {
             conn = DBUtils.getConnection();
-            String sql = " SELECT userID, userName, email, phoneNumber, ClubID, DmID, roleID, avtLink FROM tblUsers "
+            String sql = " SELECT userID, userName, email, phoneNumber,address, ClubID,majorID, DmID, roleID, avtLink FROM tblUsers "
                     + " WHERE userID=? AND Password=? AND statusID = 'AC' ";
             stm = conn.prepareStatement(sql);
             stm.setString(1, userID);
@@ -87,11 +87,13 @@ public class UserDAO {
                 String userName = rs.getString("userName");
                 String email = rs.getString("email");
                 String phone = rs.getString("phoneNumber");
+                String majorID = rs.getString("majorID");
                 String ClubID = rs.getString("ClubID");
                 String DmID = rs.getString("DmID");
                 String roleID = rs.getString("roleID");
+                String address = rs.getString("address");
                 String avtLink = rs.getString("avtLink");
-                user = new UserDTO(userID, userName, "****", roleID, "", phone, email, "AC", "", ClubID, DmID, avtLink);
+                user = new UserDTO(userID, userName, "****", roleID, address, phone, email, "AC", majorID,ClubID, DmID, avtLink);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -108,7 +110,6 @@ public class UserDAO {
         }
         return user;
     }
-
     //CRUD
     public boolean insertUserNew(UserDTO user) throws SQLException, ClassNotFoundException, NamingException {
         boolean check = false;

@@ -68,6 +68,14 @@
         <servlet-name>SearchEventWithFilterController</servlet-name>
         <servlet-class>controller.SearchEventWithFilterController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddLikeController</servlet-name>
+        <servlet-class>controller.AddLikeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddFollowController</servlet-name>
+        <servlet-class>controller.AddFollowController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddEventController</servlet-name>
         <url-pattern>/AddEventController</url-pattern>
@@ -135,6 +143,14 @@
     <servlet-mapping>
         <servlet-name>SearchEventWithFilterController</servlet-name>
         <url-pattern>/SearchEventWithFilterController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddLikeController</servlet-name>
+        <url-pattern>/AddLikeController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddFollowController</servlet-name>
+        <url-pattern>/AddFollowController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

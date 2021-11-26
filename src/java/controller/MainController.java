@@ -36,6 +36,9 @@ public class MainController extends HttpServlet {
     private static final String SHOW_EVENT = "ShowEventController";
     private static final String DELETE_EVENT = "DeleteEventController";
     private static final String UPDATE_EVENT = "UpdateEventController";
+    private static final String LIKE_EVENT = "AddLikeController";
+    private static final String JOIN_EVENT = "JoinEventController";
+    private static final String FOLLOW_EVENT = "AddFollowController";
     //-- User
     private static final String USER_PROFILE = "ShowProfileController";
     private static final String SEARCH_USER = "SearchUserController";
@@ -86,7 +89,13 @@ public class MainController extends HttpServlet {
                 url = SearchImg;
             } else if ("userpr5".equals(action)) {
                 url = UP_PROFILE;
-            } else {
+            }else if ("like_post".equals(action)) {
+                url = LIKE_EVENT;
+            } else if ("join_post".equals(action)) {
+                url = JOIN_EVENT;
+            }else if ("follow_post".equals(action)) {
+                url = FOLLOW_EVENT;
+            }else {
                 HttpSession session = request.getSession();
                 session.setAttribute("ERROR_MESSAGE", "Function is not avaiable!!!!");
             }

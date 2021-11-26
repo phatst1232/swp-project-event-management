@@ -1,3 +1,5 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
 <%@page import="java.time.LocalDate"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page autoFlush="true" buffer="1094kb"%>
@@ -6,32 +8,36 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </script>
     <script src="https://cdn.tiny.cloud/1/8my3f4oobwgch3da52qojo7g9oko7704n1bu135edm12xo20/tinymce/5/tinymce.min.js"
     referrerpolicy="origin"></script>
-    <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> -->
+        <script src="https://cdn.tiny.cloud/1/8my3f4oobwgch3da52qojo7g9oko7704n1bu135edm12xo20/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
     <script src="https://kit.fontawesome.com/912e671d73.js" crossorigin="anonymous"></script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
     <title>Create Event</title>
-    <link rel="stylesheet" href="css/CreateEvent5.css">
+    <link rel="stylesheet" href="css/CreateEvent.css">
     <script src="js/CreateEvent3.js" defer></script>
     <script>  function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
-
                 reader.onload = function (e) {
                     $('#blah')
                             .attr('src', e.target.result);
                 };
-
                 reader.readAsDataURL(input.files[0]);
             }
         }</script>
+            <script>
+                tinymce.init({
+                selector: '#mytextarea'
+                });        </script>
+    </head>
     <style>img{
             max-width:480px;
             max-height: 280px;
@@ -39,39 +45,49 @@
         input[type=file]{
             padding:10px;
         </style>
-
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      
     </head>
-
     <body>
-
+        <% List er=(List) request.getAttribute("Event_ERROR");
+        if(er!=null){
+            for(Iterator it = er.iterator(); it.hasNext();)
+            {
+        String error =(String) it.next();
+        %>
+            <script>
+                    swal("<%=error%>");
+                </script>
+   <%
+   }
+   }
+   %>
+        <form action="MainController" method="post" enctype="multipart/form-data" id="createform">
         <div class="modal contentbox-modal">
             <div id="contentbox"  class="textarea">
                 <label for="show" class="close-btn fas fa-times"></label>
                 <span class="title">Event Content</span>
-                <textarea name="content" class="textareacontent"> </textarea>
+                       <textarea name="content" id="mytextarea">
+                    </textarea>
                 <!-- <input type="image" width="50px"> -->
                 <div class="image-wrapper-block">
                     <p class="title">Thumbnail</p>
                     <div class="actual-input-image">
                         <input type="file"  onchange="readURL(this)" name="imageURL" style="margin-top: 30px;" class="imgfields"  placeholder="Choose Thumbnail Image">
-                        <img id="blah" src="http://placehold.it/180" alt="your image" />
+                        <img id="blah" src="https://alaskabirchsyrup.com/wp-content/uploads/2017/08/placeholder-800x500.jpg" alt="your image" />
                     </div>
                 </div>
                 <!-- <button type="button" onclick="showtextaria()"></button> -->
             </div>
         </div>
-
         <div>
             <div class="left" id="left">
                 <div class="createeventbox">
-                    <form action="MainController" method="post" enctype="multipart/form-data" id="createform">
+                    
                         <div class="space"></div><span class="title">Enter Event Name</span><br> <input type="text" name="eventName"
                                                                                                         class="fields" placeholder="Event Name " required><br>
                         <div class="space"></div><span class="title">Max Participants</span><br> <input type="text" name="capacity"
                                                                                                         class="fields" placeholder="Enter estimated participants " required><br>
-
-
-
                         <!-- dropdown categories -->
                         <div class="space"></div><span class="title">Categories</span>
                         <div class="multi-select2">
@@ -79,12 +95,10 @@
                                 <input type="text" name="category" placeholder="Choose categories" id="hihi2" class="input-selector2"
                                        required>
                                 <span class="down-arrow2">&blacktriangledown; </span>
-
                             </div>
-
                             <div class="slotlist2">
                                 <label for="Meow1" class="catetask">
-                                    <input class="catepick" value="CLUBA" type="checkbox" name="" id="Meow1">Cooking
+                                    <input class="catepick" value="CLUBA" type="checkbox" name="" id="Meow1">Club's Activies
                                 </label>
                                 <label for="Meow2" class="catetask">
                                     <input class="catepick" value="F&D" type="checkbox" name="" id="Meow2">Food And Drink
@@ -103,14 +117,9 @@
                                     Review
                                 </label>
                             </div>
-
-
                         </div>
-
-
                         <!-- Time slot -->
-                        <div class="space"></div><span class="title">Date</span><br>
-
+                        <div class="space"></div><span class="title">Start Date</span><br>
                         <input type="date"  name="Date" data-date-inline-picker="true" width="70%" /><br>
                         <div class="space"></div><span class="title">Slots</span>
                         <div class="multi-select">
@@ -144,17 +153,10 @@
                                                                  id="task5">Slot 6</div> <span>16.00 - 17.30</span>
                                 </label>
                             </div>
-
-
                         </div>
-
-
-
                         <!-- input cho PhÃ²ng báº­n -->
                         <input type="text" id="occuredrooms" value=" 315 316" onChange="updateTable()"
                                style="display: none;">
-
-
                         <!-- <span class="title contenttitle" style="margin-right: 30px;"> AddContent</span> -->
                         <div class="roomfield">
                             <span class="title">Choose Rooms</span><br>
@@ -165,15 +167,11 @@
                             <div id="roomss"></div>
                             <div class="border"></div>
                         </div>
-
                         <!-- content -->
                         <label class="addcontent" for="show" id="addcontent">Add Content  +</label>
-
                         <!-- texteria -->
-
                         <!-- DÃ²ng dÆ°á»i cho hiá»n áº©n content nÃªn Äá»«ng care -->
                         <input type="checkbox" id="show">  
-
                         <!-- input slot áº©n -->
                         <!-- <div class="Createbtn"><input type="submit" value="Create Event"></div>
                         <input type="reset" class="reset" value="Reset"> -->
@@ -181,14 +179,12 @@
                             <input type="hidden" name="createDate" value="<%=java.sql.Date.valueOf(LocalDate.now())%>"/>
                             <div class="Createbtn"><input type="submit" name="action"  value="Create_Event"></div>
                             <div class="Createbtn"><input type="reset" class="reset" value="Reset"></div>
-
                             <!-- <input type="reset" class="reset" value="Reset"> -->
                         </div>
                         <!-- <button class="reset">Reset</button> -->
                     </form>
                 </div>
             </div>
-
             <!--      <script>
                         tinymce.init({
                             selector: 'textarea',
@@ -205,12 +201,8 @@
                         //     }
                         // }
                     </script>-->
-
             <!-- script datepick -->
             <script>
-
-
-
                 // show occured rooms
                 function updateTable(e) {
                     if (!document.getElementById('occuredrooms').value) {
@@ -220,16 +212,12 @@
                             x[j].classList.add('default');
                         }
                     }
-
-
                     let arr = document.getElementById('occuredrooms').value.split('/');
                     var x = document.getElementsByClassName('tblbtn');
-
                     for (j = 0; j <= x.length - 1; j++) {
                         x[j].classList.remove('inactive');
                         x[j].classList.add('default');
                     }
-
                     for (i = 0; i <= arr.length - 1; i++) {
                         for (j = 0; j <= x.length - 1; j++) {
                             if (x[j].innerHTML == arr[i]) {
@@ -253,7 +241,6 @@
                             meow = meow + x[i].value + " ";
                         }
                         // document.getElementsByClassName('input-selector').value = meow;
-
                     }
                     // alert(meow);
                     document.getElementById('hihi').value = meow;
@@ -272,7 +259,6 @@
                             meow1 = meow1 + x[i].value + " ";
                         }
                         // document.getElementsByClassName('input-selector').value = meow;
-
                     }
                     // alert(meow);
                     document.getElementById('hihi2').value = meow1;
@@ -280,16 +266,14 @@
             </script>
             <!-- privious btn -->
             <!-- <div class="previous"></div>     -->
-
-            <button class="previous" onclick="goBack()" id="forward">&laquo;</button>
-
+            <form action="LoginPage.jsp">
+            <button class="previous"  id="forward">&laquo;</button>
+            </form>
             <script>
                 function goBack() {
                     window.history.back();
                 }
             </script>
-
-
         </div>
         <div class="right" id="right">
             <div class="tabs">
@@ -297,8 +281,6 @@
                 <button onclick="opentable('content16')">FLOOR 1-6</button>
             </div>
             <div class="addroombtn"><button onclick="myFunction()" class="addroombtn">Add rooms</button></div>
-
-
             <div class="tab-content">
                 <div id="content16" class="roomtable" style="display: none;">
                     <table class="tg">
@@ -463,7 +445,6 @@
                             </tr>
                         </tbody>
                     </table>
-
                 </div>
                 <div id="content0" class="roomtable">
                     <table class="tg">
@@ -571,10 +552,7 @@
                                 </tr>
                             </tbody>
                         </table>
-
                     </div>
-
-
                     <!-- js xÃ¡c nháº­n phÃ²ng -->
                     <script>
                         function myFunction() {
@@ -588,11 +566,8 @@
                             }
                             var y = document.getElementById("rooms").value = fullroom;
                             var z = document.getElementById("roomss").innerHTML = fullroom;
-
-
                         }
                     </script>
-
                     <!-- js cá»§a show phÃ²ng trong 2 báº£ng-->
                     <script>
                         function opentable(tabName, elmnt) {
@@ -606,8 +581,6 @@
                             //     tablinks[i].style.backgroundColor = "";
                             // }
                             document.getElementById(tabName).style.display = "block";
-
-
                         }
                     </script>
                     <!-- js cá»§a categories -->
@@ -616,7 +589,6 @@
                     crossorigin="anonymous"></script>
                     <!-- <script src="/content.js"></script> -->
                     <script src="./js/NewCreateEvent.js"></script> 
-
                     <script>
                         $(document).ready(function () {
                             // Country
@@ -628,7 +600,6 @@
                                 {value: 5, text: 'Meow Meow'},
                                 {value: 6, text: 'Meow'},
                             ];
-
                             // Set a default values in list
                             var select = $('[data-access_multi_select="true"]').check_multi_select({
                                 multi_select: true,
@@ -636,7 +607,6 @@
                                 defaults: [],
                                 rtl: false
                             });
-
                             // Display the selected Values
                             $('#display_selected').click(function () {
                                 alert(select.check_multi_select('fetch_country'))
@@ -645,19 +615,7 @@
                     </script>
                 </div>
             </div>
-
-
-
         </body>
-
     </html>
 </head>
-
-<body>
-
-
-
-
-</body>
-
 </html>

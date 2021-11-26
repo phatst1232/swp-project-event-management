@@ -43,16 +43,15 @@ public class UpdateUserProfileController extends HttpServlet {
             String userName = request.getParameter("userName");
             String address = request.getParameter("Address");
             String phoneNumber = request.getParameter("phoneNumber");
-            
+
             String avtLink = uploadFile(request);
-            
             UserError userError = new UserError("", "", "", "", "", "", "", "", "", "", "", "");
             boolean check = true;
             if (userName.length() < 10) {
                 userError.setUserName("Please Enter Your Full Name");
                 check = false;
             }
-            if (address.length() < 5 ) {
+            if (address.length() < 5) {
                 userError.setAddress("Address must be real");
                 check = false;
             }
@@ -67,7 +66,12 @@ public class UpdateUserProfileController extends HttpServlet {
                 user.setUserName(userName);
                 user.setAddress(address);
                 user.setPhoneNumber(phoneNumber);
-                user.setAvtLink(avtLink);
+                if (avtLink.equals("")) {
+                    user.setAvtLink(user.getAvtLink());
+                } else {
+                    user.setAvtLink(avtLink);
+                }
+
                 session.setAttribute("LOGIN_USER", user);
                 boolean checkUpdate = dao.updateprofile(user);
                 if (checkUpdate) {
@@ -88,30 +92,30 @@ public class UpdateUserProfileController extends HttpServlet {
         try {
             Part filePart = request.getPart("avtLink");
             fileName = (String) getFileName(filePart);
-            String applicationPath = request.getServletContext().getRealPath("");
-            int end = applicationPath.lastIndexOf("build");
-            String truePath = applicationPath.substring(0, end) + "web";
-            String basePath = truePath + File.separator + UPLOAD_DIR + File.separator;
-            InputStream inputStream = null;
-            OutputStream outputStream = null;
-            try {
-                File outputFilePath = new File(basePath + fileName);
-                inputStream = filePart.getInputStream();
-                outputStream = new FileOutputStream(outputFilePath);
-                int read = 0;
-                final byte[] bytes = new byte[1024];
-                while ((read = inputStream.read(bytes)) != -1) {
-                    outputStream.write(bytes, 0, read);
+                String applicationPath = request.getServletContext().getRealPath("");
+                int end = applicationPath.lastIndexOf("build");
+                String truePath = applicationPath.substring(0, end) + "web";
+                String basePath = truePath + File.separator + UPLOAD_DIR + File.separator;
+                InputStream inputStream = null;
+                OutputStream outputStream = null;
+                try {
+                    File outputFilePath = new File(basePath + fileName);
+                    inputStream = filePart.getInputStream();
+                    outputStream = new FileOutputStream(outputFilePath);
+                    int read = 0;
+                    final byte[] bytes = new byte[1024];
+                    while ((read = inputStream.read(bytes)) != -1) {
+                        outputStream.write(bytes, 0, read);
+                    }
+                } finally {
+                    if (inputStream != null) {
+                        inputStream.close();
+                    }
+                    if (outputStream != null) {
+                        outputStream.close();
+                    }
                 }
-            } finally {
-                if (inputStream != null) {
-                    inputStream.close();
-                }
-                if (outputStream != null) {
-                    outputStream.close();
-                }
-            }
-
+             
         } catch (Exception e) {
             fileName = "";
         }

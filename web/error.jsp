@@ -10,9 +10,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Error Page</title>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <style>.swal-text{
+                font-size: 25px;
+            }</style>
     </head>
     <body>
-        <h1>Error: <%= session.getAttribute("ERROR_MESSAGE")%> </h1>
-        <h1>Hello World!</h1>
+        <script>
+            swal(<%=request.getAttribute("Event_ERROR")%>);
+        </script>
+
+        <h1>Error: <%=request.getAttribute("Event_ERROR")%> </h1>
     </body>
 </html>

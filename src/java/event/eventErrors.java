@@ -23,6 +23,7 @@ public class eventErrors {
     private String limitMemberError;
     private String roomIDError;
     private String interestedIDError;
+    private String SlotError;
 
     public eventErrors() {
     }
@@ -118,6 +119,14 @@ public class eventErrors {
 
     public String getInterestedIDError() {
         return interestedIDError;
+    }
+
+    public String getSlotError() {
+        return SlotError;
+    }
+
+    public void setSlotError(String SlotError) {
+        this.SlotError = SlotError;
     }
 
 }

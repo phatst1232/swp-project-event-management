@@ -165,6 +165,39 @@ public class eventDAO {
         return check;
     }
 
+    public String getSlot(String eventID) throws SQLException {
+        String slot = null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " SELECT slotID "
+                        + " FROM tblEvent_Slots "
+                        + " WHERE eventID = ? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, eventID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    slot = rs.getString("slotID");
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return slot;
+    }
+
     public boolean joinEvent(String eventID, String userID) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -847,7 +880,7 @@ public class eventDAO {
         return check;
     }
 
-    public boolean addImage(String eventID, String image) throws SQLException {
+    public boolean addImage(String eventID, String link) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement stm = null;
@@ -858,12 +891,451 @@ public class eventDAO {
                         + " Values (?,?) ";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, eventID);
-                stm.setString(2, image);
+                stm.setString(2, link);
                 check = stm.executeUpdate() > 0;
             }
 
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+    public List<RoomDTO> getListRoom(String eventID) throws SQLException {
+        List<RoomDTO> listRoom = new ArrayList();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " SELECT roomID "
+                        + " FROM tblEvent_Rooms "
+                        + " WHERE eventID = ? ORDER BY  roomID ASC ";          //or DESC
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, eventID);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    String roomID = rs.getString("roomID");
+                    listRoom.add(new RoomDTO(roomID, eventID));
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listRoom;
+    }
+
+    public boolean AddLike(String userID, String eventID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " insert into tblEvent_Likes(userID,eventID) "
+                        + " VALUES (?,?) ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, userID);
+                stm.setString(2, eventID);
+                check = stm.executeUpdate() > 0;
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+    public boolean UnLike(String userID, String eventID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " Delete tblEvent_Likes"
+                        + " where userID= ? and eventID = ? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, userID);
+                stm.setString(2, eventID);
+                check = stm.executeUpdate() > 0;
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+    public boolean checkLike(String userID, String eventID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " SELECT userID, eventID "
+                        + " FROM tblEvent_Likes "
+                        + " WHERE userID = ? and eventID = ? ";          //or DESC
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, userID);
+                stm.setString(2, eventID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    check = true;
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+    public boolean UpdateLike(String eventID) throws SQLException {
+        boolean result = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " UPDATE tblEvents "
+                        + " SET [like] = [like] + 1 "
+                        + " WHERE eventID=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, eventID);
+                result = stm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return result;
+    }
+
+    public boolean DeleteLike(String eventID) throws SQLException {
+        boolean result = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " UPDATE tblEvents "
+                        + " SET [like] = [like] - 1 "
+                        + " WHERE eventID=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, eventID);
+                result = stm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return result;
+    }
+
+    public int getLike(String eventID) throws SQLException {
+        int like = 0;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " Select [like] from tblEvents "
+                        + "WHERE eventID = ?";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, eventID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    like = rs.getInt("like");
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return like;
+    }
+
+    public boolean checkJoin(String userID, String eventID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " SELECT userID, eventID "
+                        + " FROM tblJoins "
+                        + " WHERE userID = ? and eventID = ? ";          //or DESC
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, userID);
+                stm.setString(2, eventID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    check = true;
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+    public int CountJoin(String eventID) throws SQLException {
+        int count = 0;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " select count(userID) from tblJoins "
+                        + "WHERE eventID = ?";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, eventID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    count = rs.getInt("");
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return count;
+    }
+
+    public boolean AddJoin(String userID, String eventID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " insert into tblJoins(userID,eventID) "
+                        + " VALUES (?,?) ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, userID);
+                stm.setString(2, eventID);
+                check = stm.executeUpdate() > 0;
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+    public boolean UnJoin(String userID, String eventID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " Delete tblJoins"
+                        + " where userID= ? and eventID = ? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, userID);
+                stm.setString(2, eventID);
+                check = stm.executeUpdate() > 0;
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+    public boolean checkFollow(String userID, String eventID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " SELECT userID, eventID "
+                        + " FROM tblFollows "
+                        + " WHERE userID = ? and eventID = ? ";          //or DESC
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, userID);
+                stm.setString(2, eventID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    check = true;
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+    public int CountFollow(String eventID) throws SQLException {
+        int count = 0;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " select count(userID) from tblFollows "
+                        + "WHERE eventID = ?";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, eventID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    count = rs.getInt("");
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return count;
+    }
+    
+    public boolean AddFollow(String userID, String eventID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " insert into tblFollows(userID,eventID) "
+                        + " VALUES (?,?) ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, userID);
+                stm.setString(2, eventID);
+                check = stm.executeUpdate() > 0;
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+        public boolean UnFollow(String userID, String eventID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " Delete tblFollows"
+                        + " where userID= ? and eventID = ? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, userID);
+                stm.setString(2, eventID);
+                check = stm.executeUpdate() > 0;
+            }
+        } catch (Exception e) {
         } finally {
             if (stm != null) {
                 stm.close();

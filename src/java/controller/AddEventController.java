@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.Date;
+import java.util.LinkedList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -31,7 +33,7 @@ import user.UserDTO;
 )
 public class AddEventController extends HttpServlet {
 
-    private final static String ERROR = "error.jsp";
+    private final static String ERROR = "createEvent.jsp";
     private final static String SUCCESS = "LoginPage.jsp";
     private static final String UPLOAD_DIR = "event-user-photo";
 
@@ -42,18 +44,23 @@ public class AddEventController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         HttpSession session = request.getSession();
-        eventErrors userError = new eventErrors("", "", "", "", "", "", "", "", "", "");
+        eventErrors eer = new eventErrors("", "", "", "", "", "", "", "", "", "");
         try {
             eventDAO dao = new eventDAO();
-            String cate1 = "";
-            String cate2 = "";
-            String cate3 = "";
-            String slot1 = "";
-            String slot2 = "";
-            String slot3 = "";
             UserDTO user = (UserDTO) session.getAttribute("LOGIN_USER");
             String userID = user.getUserID();
             String eventID;
+            int limitMember = Integer.parseInt(request.getParameter("capacity"));
+            String eventName = request.getParameter("eventName");
+            String content = request.getParameter("content");
+            String category = request.getParameter("category");
+            String roomID = request.getParameter("roomID");
+            String Slot = request.getParameter("slot");
+            Date createDate = Date.valueOf(request.getParameter("createDate"));
+            Date startDate = Date.valueOf(request.getParameter("Date"));
+            long millis = System.currentTimeMillis();
+            Date date = new java.sql.Date(millis);
+            boolean check = true;
             if (user.getRoleID().equals("CL")) {
                 eventID = "CL";
             } else if (user.getRoleID().equals("DM")) {
@@ -80,80 +87,63 @@ public class AddEventController extends HttpServlet {
                     dmID = null;
                     break;
             }
-            int limitMember = Integer.parseInt(request.getParameter("capacity"));
-            String eventName = request.getParameter("eventName");
-            String content = request.getParameter("content");
-            String category = request.getParameter("category");
+            List er = new LinkedList();
+            //room
+            String imageURL = uploadFile(request);
+            if (content.isEmpty()) {
+                er.add("Please add content");
+                check = false;
+            }
+            if (imageURL.isEmpty()) {
+                er.add("Please add  Thumbnail picture");
+                check = false;
+            }
+            String[] room = roomID.split("[|]");
+            if (room.length > 4 || room.length < 1) {
+                er.add("Room must between 1  and  4");
+                check = false;
+            }
+            String[] cate = category.split("\\s+");
+            if (cate.length > 4 || cate.length < 1) {
+                er.add("Category must between  1  and  4");
+                check = false;
+            }
+            String[] slots = Slot.split("\\s");
+            if (slots.length > 4 || slots.length < 1) {
+                er.add("Slot must between  1  and  4");
+                check = false;
+            }
+            if (date.compareTo(startDate) > 0) {
+                er.add("Start Date must be in future");
+                check = false;
+            }
 
-            Date createDate = Date.valueOf(request.getParameter("createDate"));
-            Date startDate = Date.valueOf(request.getParameter("Date"));
-            eventDTO event = new eventDTO(eventID, eventName, createDate, startDate, userID, "AC", limitMember, content, clubID, dmID, 0);
-            boolean checkEvent = dao.AddEvent(event);
-            if (checkEvent) {
-                String roomID = request.getParameter("roomID");
-                String[] room = roomID.split("[|]");
-                boolean checkRoom = dao.addRoom(eventID, room[0]);
-                if (checkRoom) {
-                    String imageURL = uploadFile(request);
-                    boolean checkimg = dao.addImage(eventID, imageURL);
-                    if (checkimg) {
-                        String[] cate = category.split("\\s+");
-                        boolean checkcate = false;
-                        if (cate.length == 1) {
-                            cate1 = cate[0];
-                            dao.addCate(eventID, cate1);
-                            checkcate = true;
-                        } else if (cate.length == 2) {
-                            cate1 = cate[0];
-                            cate2 = cate[1];
-                            dao.addCate(eventID, cate1);
-                            dao.addCate(eventID, cate2);
-                            checkcate = true;
-                        } else if (cate.length == 3) {
-                            cate1 = cate[0];
-                            cate2 = cate[1];
-                            cate3 = cate[2];
-                            dao.addCate(eventID, cate1);
-                            dao.addCate(eventID, cate2);
-                            dao.addCate(eventID, cate3);
-                            checkcate = true;
-                        }
-                        if (checkcate) {
-                            String Slot = request.getParameter("slot");
-                            boolean checkSlot = false;
-                            String[] slots = Slot.split("\\s");
-                            if (slots.length == 1) {
-                                slot1 = slots[0];
-                                dao.addSlot(eventID, slot1);
-                                checkSlot = true;
-                            } else if (slots.length == 2) {
-                                slot1 = slots[0];
-                                slot2 = slots[1];
-                                dao.addSlot(eventID, slot1);
-                                dao.addSlot(eventID, slot2);
-                                checkSlot = true;
-                            } else if (slots.length == 3) {
-                                slot1 = slots[0];
-                                slot2 = slots[1];
-                                slot3 = slots[2];
-                                dao.addSlot(eventID, slot1);
-                                dao.addSlot(eventID, slot2);
-                                dao.addSlot(eventID, slot3);
-                                checkSlot = true;
-                            }
-                            if (checkSlot) {
-                                url = SUCCESS;
-                            }
-                        }
+            if (check) {
+                eventDTO event = new eventDTO(eventID, eventName, createDate, startDate, userID, "AC", limitMember, content, clubID, dmID, 0);
+                boolean checkEvent = dao.AddEvent(event);
+                if (checkEvent) {
+                    for (String ro : room) {
+                        dao.addRoom(eventID, ro);
                     }
+                    //cate
+                    for (String ca : cate) {
+                        dao.addCate(eventID, ca);
+                    }
+                    // slot
+                    for (String sl : slots) {
+                        dao.addSlot(eventID, sl);
+                    }
+                    dao.addImage(eventID, imageURL);
+                    url = SUCCESS;
                 }
-
+            } else {
+                request.setAttribute("Event_ERROR", er);
             }
         } catch (Exception e) {
             log("Error at CreateController: " + e.toString());
             if (e.toString().contains("duplicate")) {
-                userError.setUserIDError("Duplicate UserID !!!");
-                request.setAttribute("USER_ERROR", userError);
+                eer.setUserIDError("Duplicate UserID !!!");
+                request.setAttribute("USER_ERROR", eer);
             }
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
