@@ -50,10 +50,10 @@
                     response.sendRedirect("Eventmanagement.jsp");
                     return;
                 }
-                        String search = (String) request.getParameter("search");
-                        if (search == null) {
-                            search = "";
-                        }%>
+                String search = (String) request.getParameter("search");
+                if (search == null) {
+                    search = "";
+                }%>
             <div class="sidebar">
                 <div class="logo-content">
                     <div class="logo">
@@ -101,7 +101,7 @@
                     </li>
 
                     <% if ("AD".equals(loginUser.getRoleID()) || "CL".equals(loginUser.getRoleID())
-                                                || "DM".equals(loginUser.getRoleID())) { %>
+                                || "DM".equals(loginUser.getRoleID())) { %>
                     <li>
                         <a href="createEvent.jsp">
                             <i id="user-search"><img src="image/notepad-regular-24.png"
@@ -120,14 +120,14 @@
                         <span class="tooltip">User</span>
                     </li>
                     <% }
-                                                } %>
-                    <li>
+                        } %>
+<!--                    <li>
                         <a href="#">
                             <i id="noti-search"><img src="image\bell-solid-24.png"></i>
                             <span class="link-name">Notification</span>
                         </a>
                         <span class="tooltip">Notification</span>
-                    </li>
+                    </li>-->
                     <% }%>
                 </ul>
 
@@ -163,13 +163,13 @@
                     <div class="extrabox">
                         <div class="extrabox-content">
                             <div class="avatar"><img src="./event-user-photo/<%=loginUser.getAvtLink()%>">
-                                
-                                
+
+
                             </div>
-                                       <div class="extraName"><%=loginUser.getUserName()%></div>
+                            <div class="extraName"><%=loginUser.getUserName()%></div>
                         </div>
                     </div>
-                        
+
                     <div class=" containerbox">
                         <div id="tabcon" class=" accountcontent tabcontent">
                             <h1 class="tabtitle">Change Your User Detail</h1>
@@ -188,12 +188,12 @@
                                     <div class="accfieldrow">
                                         <div class="accfieldbox">
                                             <label for="">Phone Number</label><input type="text"
-                                              name="phoneNumber" value="<%=loginUser.getPhoneNumber()%>">
+                                                                                     name="phoneNumber" value="<%=loginUser.getPhoneNumber()%>">
                                         </div>
-                                        <div class="accfieldbox">
-                                            <label for="">Major</label>
-                                            <input type="text"value="<%=loginUser.getMajorID()%>" readonly="">
-                                        </div>
+                                        <!--                                        <div class="accfieldbox">
+                                                                                    <label for="">Major</label>
+                                                                                    <input type="text"value="<%=loginUser.getMajorID()%>" readonly="">
+                                                                                </div>-->
                                     </div>
                                     <div class="accfieldrow">
                                         <div class="accfieldbox">
@@ -235,11 +235,11 @@
                                     <%=loginUser.getPhoneNumber()%>
                                 </div>
                             </div>
+                            <% String club = loginUser.getClubID();
+                                if (club == null || club.equals("null")) {
+                                    club = "Not yet";
+                                }%>
                             <div class="profile fields"><span>Club</span>
-                                <% String club = loginUser.getClubID();
-                                            if (club == null) {
-                                                club = "Not yet";
-                                            }%>
                                 <div class="profile value">
                                     <%=club%>
                                 </div>
@@ -350,7 +350,7 @@
             <script>
                 let
                 but = document.querySelector("#but");
-                        let
+                let
                 sidebar = document.querySelector(".sidebar");
                 let
                 searchBtn = document.querySelector("#but-search");
@@ -358,18 +358,18 @@
                 userBtn = document.querySelector("#user-search");
                 let
                 editBtn = document.querySelector("#edit-search");
-                let
-                notiBtn = document.querySelector("#noti-search");
+//                let
+//                notiBtn = document.querySelector("#noti-search");
                 let
                 logBtn = document.querySelector("#log-out");
-                        let
+                let
                 AccBtn = document.querySelector("#Account-search");
-                        let ProBtn = document.querySelector("#Activities-search");
-                        let
+                let ProBtn = document.querySelector("#Activities-search");
+                let
                 AcBtn = document.querySelector("#Profile-search");
-                        but.onclick = function () {
-                            sidebar.classList.toggle("active");
-                        }
+                but.onclick = function () {
+                    sidebar.classList.toggle("active");
+                }
 
                 searchBtn.onclick = function () {
                     sidebar.classList.toggle("active");
@@ -383,9 +383,9 @@
                     sidebar.classList.toggle("active");
                 }
 
-                notiBtn.onclick = function () {
-                    sidebar.classList.toggle("active");
-                }
+//                notiBtn.onclick = function () {
+//                    sidebar.classList.toggle("active");
+//                }
                 logBtn.onclick = function () {
                     sidebar.classList.toggle("active");
                 }

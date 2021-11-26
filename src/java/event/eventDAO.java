@@ -35,7 +35,7 @@ public class eventDAO {
                         + " userID,statusID,limitMember, "
                         + " content,clubID,dmID,[like] "
                         + " From tblEvents "
-                        + " WHERE eventName like ? AND statusID='AC' ORDER BY eventStartDate ASC";
+                        + " WHERE eventName like ? AND statusID='AC' ORDER BY eventCreateDate DESC";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, "%" + search + "%");
                 rs = stm.executeQuery();

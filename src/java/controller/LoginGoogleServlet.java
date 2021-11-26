@@ -52,7 +52,7 @@ public class LoginGoogleServlet extends HttpServlet {
                     session.setAttribute("LOGIN_USER", user);
                 }
                 else {
-                    user=dao.checkLogin(googlePojo.getId(), "*****");
+                    user=dao.checkLogin(googlePojo.getId(), "***");
                     session.setAttribute("LOGIN_USER", user);
                 }
             }

@@ -160,7 +160,7 @@
                     <p>List event has most interact:</p>
                     <%
                         if (interact_list.size() >= 5) {
-                            for (int i = 0; i <= 5; i++) {
+                            for (int i = 0; i < 5; i++) {
                     %>
                     <p><%=i + 1%>. <%=interact_list.get(i).getEventName()%></p>
                     <%
@@ -176,10 +176,10 @@
                 </div>
 
                 <div class="list-event">
-                    <p>List event just start to create:</p>
+                    <p>List event up coming:</p>
                     <%
                         if (justCreate_list.size() >= 5) {
-                            for (int i = 0; i <= 5; i++) {
+                            for (int i = 0; i < 5; i++) {
                     %>
                     <p><%=i + 1%>. <%=justCreate_list.get(i).getEventName()%></p>
                     <%

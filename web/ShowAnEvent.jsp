@@ -52,7 +52,7 @@
                         <i id="user-search"><img src="image\home+24px-131985192429179046_24.png"></i>
                         <span class="link-name">Home</span>
                     </a>
-                    <span class="tooltip">User</span>
+                    <span class="tooltip">Home</span>
                 </li>
                 <%
                     if (loginUser != null) {
@@ -62,7 +62,7 @@
                         <i id="user-search"><img src="image\icons8-user-24.png"></i>
                         <span class="link-name">Profile</span>
                     </a>
-                    <span class="tooltip">User</span>
+                    <span class="tooltip">Profile</span>
                 </li>
                 <%
                     if ("AD".equals(loginUser.getRoleID()) || "CL".equals(loginUser.getRoleID()) || "DM".equals(loginUser.getRoleID())) {
@@ -72,7 +72,7 @@
                         <i id="user-search"><img src="image/notepad-regular-24.png" style="width: 24px; height: 24px;"></i>
                         <span class="link-name">Create Event</span>
                     </a>
-                    <span class="tooltip">User</span>
+                    <span class="tooltip">Create Event</span>
                 </li>
                 <%
                     if ("AD".equals(loginUser.getRoleID())) {
@@ -82,19 +82,19 @@
                         <i id="user-search"><img src="image/favourite.png" style="width: 24px; height: 24px;"></i>
                         <span class="link-name">Admin Page</span>
                     </a>
-                    <span class="tooltip">User</span>
+                    <span class="tooltip">Admin Page</span>
                 </li>
                 <%
                         }
                     }
                 %>
-                <li>
+<!--                <li>
                     <a href="#">
                         <i id="noti-search"><img src="image\bell-solid-24.png"></i>
                         <span class="link-name">Notification</span>
                     </a>
                     <span class="tooltip">Notification</span>
-                </li>
+                </li>-->
                 <%
                     }
                 %>
@@ -400,8 +400,8 @@
             userBtn = document.querySelector("#user-search");
             let
             editBtn = document.querySelector("#edit-search");
-            let
-            notiBtn = document.querySelector("#noti-search");
+//            let
+//            notiBtn = document.querySelector("#noti-search");
             let
             logBtn = document.querySelector("#log-out");
             but.onclick = function () {
@@ -420,9 +420,9 @@
                 sidebar.classList.toggle("active");
             }
 
-            notiBtn.onclick = function () {
-                sidebar.classList.toggle("active");
-            }
+//            notiBtn.onclick = function () {
+//                sidebar.classList.toggle("active");
+//            }
             logBtn.onclick = function () {
                 sidebar.classList.toggle("active");
             }
