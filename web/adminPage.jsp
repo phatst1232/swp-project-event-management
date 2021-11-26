@@ -1,3 +1,6 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.util.Hashtable"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="java.util.List"%>
 <%@page import="event.eventDTO"%>
 <%@page import="user.UserDTO"%>
@@ -92,7 +95,9 @@
                 }
             </script>
         </header>
-
+        <%
+            Hashtable<String, String> chartData = Edao.getChartData();
+        %>
         <div class="main-container">
             <!-- table show sum event -->
             <div class="grid">
@@ -103,9 +108,8 @@
                     <span><%=Edao.countEventOfLastMonth()%></span>
                 </div>
                 <div class="grid-item">
-                    <p>Tổng lượt tương tác:</p>
-                    <span>????????</span>
-                    <p>so với tháng trước</p>
+                    <p>Club's Activities:</p>
+                    <span><%=chartData.get("Club-Activies")%></span>
                 </div>
                 <!--pie chart  -->
                 <div id="chartContainer"">
@@ -113,6 +117,7 @@
 
             </div>
             <!-- Script pie chart -->
+
             <script type="text/javascript">
                 window.onload = function () {
                     var chart = new CanvasJS.Chart("chartContainer",
@@ -130,11 +135,13 @@
                                         showInLegend: true,
                                         legendText: "{indexLabel}",
                                         dataPoints: [
-                                            {y: <%=Edao.getQuantity()%>, indexLabel: "Âm nhạc"},
-                                            {y: 3, indexLabel: "Wii"},
-                                            {y: 4, indexLabel: "Xbox 360"},
-                                            {y: 38, indexLabel: "Nintendo DS"},
-                                            {y: 11, indexLabel: "PSP"},
+                <%
+                                                for (Map.Entry<String, String> e : chartData.entrySet()) {
+                %>
+                                            {y: <%=Integer.parseInt(e.getValue())%>, indexLabel: "<%=e.getKey()%>"},
+                <%
+                                                }
+                %>
                                         ]
                                     }
                                 ]

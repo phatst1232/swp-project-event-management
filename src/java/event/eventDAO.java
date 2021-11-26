@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 import javax.naming.NamingException;
 import utils.DBUtils;
@@ -66,6 +67,44 @@ public class eventDAO {
             }
         }
         return list;
+    }
+
+    public Hashtable<String, String> getChartData() throws SQLException {
+        Hashtable<String, String> dict = new Hashtable<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " SELECT categoryName, COUNT(*) as [count] "
+                        + " FROM ("
+                        + " SELECT  a.categoryName, b.categoryID "
+                        + " FROM tblCategory a, tblEvent_Categories b "
+                        + " WHERE a.categoryID = b.categoryID) as tb "
+                        + " GROUP BY categoryName ";
+                stm = conn.prepareStatement(sql);              
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    String categoryName = rs.getString("categoryName");
+                    String count = String.valueOf(rs.getInt("count"));
+                    if (categoryName!=null)
+                    dict.put(categoryName,count);
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return dict;
     }
 
     //Get list user with filter
